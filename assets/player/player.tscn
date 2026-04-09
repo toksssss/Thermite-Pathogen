@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cp70mx5feo7pe"]
+
+[ext_resource type="Script" uid="uid://d1m68rj0ryquw" path="res://src/player.gd" id="1_d6veg"]
+[ext_resource type="Script" uid="uid://d3bo7cu2k0wyv" path="res://src/input_gatherer.gd" id="2_h6syq"]
+[ext_resource type="PackedScene" uid="uid://dvf4x8vhwnv7v" path="res://assets/player/visuals.tscn" id="2_tb4ck"]
+[ext_resource type="Script" uid="uid://bu6y214ty2ajd" path="res://src/model.gd" id="2_v2miy"]
+[ext_resource type="Script" uid="uid://b4uhbx2iduvte" path="res://src/player_visuals.gd" id="3_kwvpd"]
+[ext_resource type="Script" uid="uid://sbtfqounnf5b" path="res://src/moves/idle.gd" id="3_toylo"]
+[ext_resource type="Script" uid="uid://dwn0vjoyqbpfc" path="res://src/moves/walk.gd" id="4_tb4ck"]
+[ext_resource type="Script" uid="uid://d0qqpdubytpkw" path="res://src/moves/jump.gd" id="5_kwvpd"]
+[ext_resource type="Script" uid="uid://baate7hm6jw5i" path="res://src/moves/falling.gd" id="8_op4fd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model")]
+script = ExtResource("1_d6veg")
+input_gatherer = NodePath("Input")
+model = NodePath("Model")
+
+[node name="Visuals" parent="." unique_id=314601792 instance=ExtResource("2_tb4ck")]
+script = ExtResource("3_kwvpd")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1917109621]
+shape = SubResource("CapsuleShape3D_j84mu")
+
+[node name="Model" type="Node3D" parent="." unique_id=1361034799]
+script = ExtResource("2_v2miy")
+
+[node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
+unique_name_in_owner = true
+
+[node name="Idle" type="Node" parent="Model" unique_id=1859298100]
+script = ExtResource("3_toylo")
+animation = "idle"
+
+[node name="Walk" type="Node" parent="Model" unique_id=1940717438]
+script = ExtResource("4_tb4ck")
+speed = 20.0
+animation = "walk"
+
+[node name="Jump" type="Node" parent="Model" unique_id=1696793814]
+script = ExtResource("5_kwvpd")
+animation = "jump"
+
+[node name="Falling" type="Node" parent="Model" unique_id=426560067]
+script = ExtResource("8_op4fd")
+animation = "falling"
+
+[node name="Input" type="Node" parent="." unique_id=1637412369]
+script = ExtResource("2_h6syq")
