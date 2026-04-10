@@ -1,9 +1,12 @@
+@abstract
 extends Node
 class_name Move
 
 #all move flags and variables here
 var player : Player
 @export var animation : String
+
+var walk_speed : float
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,

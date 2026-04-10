@@ -29,13 +29,14 @@ script = ExtResource("2_v2miy")
 [node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
 unique_name_in_owner = true
 
+[node name="SkeletonAnimator" type="AnimationPlayer" parent="Model" unique_id=520151888]
+
 [node name="Idle" type="Node" parent="Model" unique_id=1859298100]
 script = ExtResource("3_toylo")
 animation = "idle"
 
 [node name="Walk" type="Node" parent="Model" unique_id=1940717438]
 script = ExtResource("4_tb4ck")
-speed = 20.0
 animation = "walk"
 
 [node name="Jump" type="Node" parent="Model" unique_id=1696793814]

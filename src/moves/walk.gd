@@ -1,7 +1,5 @@
 extends Move
 
-@export var speed : float
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_relevance(input: InputPackage) -> String:
@@ -22,8 +20,8 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	
 	var direction : Vector3 = (Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
 	
-	new_velocity.x = direction.x * speed
-	new_velocity.z = direction.z * speed
+	new_velocity.x = direction.x * walk_speed
+	new_velocity.z = direction.z * walk_speed
 	
 	if !player.is_on_floor():
 		new_velocity.y -= gravity * delta
