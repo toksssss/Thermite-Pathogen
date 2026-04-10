@@ -3,7 +3,7 @@ class_name PlayerModel
 
 @onready var player : Player = $".."
 @onready var skeleton : Skeleton3D = %GeneralSkeleton
-#@onready var animator : AnimationPlayer = $SkeletonAnimator\
+#@onready var animator : AnimationPlayer = $SkeletonAnimator
 
 var current_move : Move
 var movement_upgrades : ReactiveArray
@@ -19,12 +19,7 @@ var movement_upgrades : ReactiveArray
 }
 
 func _ready() -> void:
-	movement_upgrades = ReactiveArray.new()
-	movement_upgrades.value = []
-	movement_upgrades.value.append(SpeedMovementStrategy.new())
-	movement_upgrades.reactive_changed.connect(_on_movement_strategy_changed)
-	for i : BaseMovementStrategy in movement_upgrades.value:
-		i.apply_upgrade(self)
+	_init_movement_upgrade()
 	
 	current_move = moves["idle"]
 	for move : Move in moves.values():
@@ -49,5 +44,15 @@ func switch_to(state: String) -> void:
 	#animator.play(current_move.animation)
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:
-	for i : BaseMovementStrategy in v.values:
-		i.apply_upgrade(self)
+	# Скорее всего надо будет переделать
+	for strategy : BaseMovementStrategy in v.values:
+		strategy.apply_upgrade(self)
+		
+func _init_movement_upgrade() -> void:
+	movement_upgrades = ReactiveArray.new()
+	movement_upgrades.value = []
+	movement_upgrades.value.append(SpeedMovementStrategy.new())
+	movement_upgrades.reactive_changed.connect(_on_movement_strategy_changed)
+
+	for strategy: BaseMovementStrategy in movement_upgrades.value:
+		strategy.apply_upgrade(self)

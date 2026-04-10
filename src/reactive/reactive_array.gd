@@ -1,6 +1,8 @@
 extends Reactive
 class_name ReactiveArray
 
+signal element_added(v: Variant)
+
 var value : Array:
 	set(v):
 		value = v
@@ -12,6 +14,7 @@ func _init(initial_value : Array = []) -> void:
 
 func append(v : Variant) -> void:
 	value.append(v)
+	element_added.emit(v)
 	reactive_changed.emit(self)
 
 func errase(v : Variant) -> void:
