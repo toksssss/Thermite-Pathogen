@@ -3,6 +3,7 @@ class_name Player
 
 @export var input_gatherer : InputGatherer
 @export var model : PlayerModel
+@export var head : Node3D
 
 func _physics_process(delta: float) -> void:
 	var input : InputPackage = input_gatherer.gather_input()
