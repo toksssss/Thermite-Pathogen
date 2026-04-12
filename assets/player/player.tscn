@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://e213ns8yk22b" path="res://addons/Pistol Beretta/pistol_model.tscn" id="10_yx3jh"]
 [ext_resource type="Script" uid="uid://cclehtjojp1od" path="res://src/player_weapon.gd" id="11_0eov8"]
 [ext_resource type="Script" uid="uid://vysm6isgpm67" path="res://src/weapon_model.gd" id="11_hai6l"]
-[ext_resource type="PackedScene" uid="uid://m06pkggkl2lu" path="res://assets/weapon/weapon_visuals.tscn" id="12_g7aau"]
 [ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
 [ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_resource.gd" id="13_g7aau"]
 [ext_resource type="Script" uid="uid://bn6hnad5wn430" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
@@ -85,9 +84,6 @@ fov = 90.0
 [node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model")]
 script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
-
-[node name="Visuals" parent="Weapon" unique_id=778406136 instance=ExtResource("12_g7aau")]
-visible = false
 
 [node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig")]
 script = ExtResource("11_hai6l")
