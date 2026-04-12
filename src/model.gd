@@ -11,6 +11,7 @@ var movement_upgrades : ReactiveArray
 # All move stats here:
 @export var walk_speed := 10.0
 
+# Вместо ручного вписывания заменить на "for child in get_children()"
 @onready var moves: Dictionary[String, Move] = {
 	"idle" : $Idle,
 	"walk" : $Walk,
@@ -37,10 +38,13 @@ func update(input: InputPackage, delta: float) -> void:
 	current_move.update(input, delta)
 
 func switch_to(state: String) -> void:
-	print("Switch from %s to %s" % [current_move.name, state])
+	if current_move == moves[state]:
+		return
+
 	current_move.on_exit_state()
 	current_move = moves[state]
 	current_move.on_enter_state()
+	print("Switch from %s to %s" % [current_move.name, state])
 	#animator.play(current_move.animation)
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:

@@ -4,29 +4,50 @@
 [ext_resource type="Script" uid="uid://d3bo7cu2k0wyv" path="res://src/input_gatherer.gd" id="2_h6syq"]
 [ext_resource type="PackedScene" uid="uid://dvf4x8vhwnv7v" path="res://assets/player/visuals.tscn" id="2_tb4ck"]
 [ext_resource type="Script" uid="uid://bu6y214ty2ajd" path="res://src/model.gd" id="2_v2miy"]
-[ext_resource type="Script" uid="uid://b4uhbx2iduvte" path="res://src/player_visuals.gd" id="3_kwvpd"]
 [ext_resource type="Script" uid="uid://sbtfqounnf5b" path="res://src/moves/idle.gd" id="3_toylo"]
 [ext_resource type="Script" uid="uid://dwn0vjoyqbpfc" path="res://src/moves/walk.gd" id="4_tb4ck"]
 [ext_resource type="Script" uid="uid://d0qqpdubytpkw" path="res://src/moves/jump.gd" id="5_kwvpd"]
 [ext_resource type="Script" uid="uid://baate7hm6jw5i" path="res://src/moves/falling.gd" id="8_op4fd"]
 [ext_resource type="Script" uid="uid://dp4rvfvl08oiv" path="res://src/camera.gd" id="10_m2mll"]
+[ext_resource type="PackedScene" uid="uid://e213ns8yk22b" path="res://addons/Pistol Beretta/pistol_model.tscn" id="10_yx3jh"]
+[ext_resource type="Script" uid="uid://cclehtjojp1od" path="res://src/player_weapon.gd" id="11_0eov8"]
+[ext_resource type="Script" uid="uid://vysm6isgpm67" path="res://src/weapon_model.gd" id="11_hai6l"]
+[ext_resource type="PackedScene" uid="uid://m06pkggkl2lu" path="res://assets/weapon/weapon_visuals.tscn" id="12_g7aau"]
+[ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
+[ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_resource.gd" id="13_g7aau"]
+[ext_resource type="Script" uid="uid://bn6hnad5wn430" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "head")]
+[sub_resource type="Resource" id="Resource_d61i2"]
+script = ExtResource("13_g7aau")
+name = "test"
+damage = 10.0
+weapon_scene = ExtResource("10_yx3jh")
+position = Vector3(0.19, -0.075, -0.35)
+rotation = Vector3(0, -2.9984756, 0)
+scale = Vector3(0.05, 0.05, 0.05)
+metadata/_custom_type_script = "uid://dutvrqf2cf0be"
+
+[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head")]
 script = ExtResource("1_d6veg")
 input_gatherer = NodePath("Input")
 model = NodePath("Model")
+weapon = NodePath("Weapon")
 head = NodePath("Head")
 
+[node name="Input" type="Node" parent="." unique_id=1637412369]
+script = ExtResource("2_h6syq")
+
 [node name="Visuals" parent="." unique_id=314601792 instance=ExtResource("2_tb4ck")]
-script = ExtResource("3_kwvpd")
+visible = false
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=1917109621]
 shape = SubResource("CapsuleShape3D_j84mu")
 
 [node name="Model" type="Node3D" parent="." unique_id=1361034799]
 script = ExtResource("2_v2miy")
+walk_speed = 7.0
 
 [node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
 unique_name_in_owner = true
@@ -49,17 +70,33 @@ animation = "jump"
 script = ExtResource("8_op4fd")
 animation = "falling"
 
-[node name="Input" type="Node" parent="." unique_id=1637412369]
-script = ExtResource("2_h6syq")
-
-[node name="Head" type="Node3D" parent="." unique_id=1393603650]
+[node name="Head" type="Marker3D" parent="." unique_id=1377328552 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752, 0)
-
-[node name="CameraMount" type="Marker3D" parent="Head" unique_id=1377328552 node_paths=PackedStringArray("player", "head")]
 gizmo_extents = 0.51
 script = ExtResource("10_m2mll")
-player = NodePath("../..")
-head = NodePath("..")
+player = NodePath("..")
+sensetivity = 1.0
 
-[node name="Camera3D" type="Camera3D" parent="Head/CameraMount" unique_id=1680930214]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1680930214]
 fov = 90.0
+
+[node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]
+
+[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model")]
+script = ExtResource("11_0eov8")
+weapon_model = NodePath("Model")
+
+[node name="Visuals" parent="Weapon" unique_id=778406136 instance=ExtResource("12_g7aau")]
+visible = false
+
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig")]
+script = ExtResource("11_hai6l")
+initial_weapon = SubResource("Resource_d61i2")
+viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
+
+[node name="Idle" type="Node" parent="Weapon/Model" unique_id=1156865502]
+script = ExtResource("12_vlpqo")
+
+[node name="Reload" type="Node" parent="Weapon/Model" unique_id=112731332]
+script = ExtResource("15_d61i2")
+animation = "reload"

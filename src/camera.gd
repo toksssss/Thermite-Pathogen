@@ -1,7 +1,6 @@
 extends Marker3D
 
 @export var player : Player
-@export var head : Node3D
 
 @export_category("Settings")
 @export var sensetivity : float = 2.0
@@ -23,4 +22,4 @@ func rotate_head(mouse_axis: Vector2) -> void:
 	actual_rotation.x = clamp(actual_rotation.x - mouse_axis.y * (sensetivity / 1000), -90, 90)
 	
 	player.rotation.y = actual_rotation.y
-	head.rotation.x = actual_rotation.x
+	rotation.x = actual_rotation.x
