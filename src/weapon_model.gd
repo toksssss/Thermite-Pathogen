@@ -45,11 +45,11 @@ func switch_to(new_state: String) -> void:
 	if current_state == states[new_state]:
 		return
 
+	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
-	print("Switch from %s to %s" % [current_state.name, new_state])
 	if current_state.animation:
 		animator.play(current_state.animation)
 
