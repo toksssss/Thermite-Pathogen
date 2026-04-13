@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://m06pkggkl2lu"]
+
+[ext_resource type="Script" uid="uid://b4uhbx2iduvte" path="res://src/visuals.gd" id="1_ume06"]
+[ext_resource type="PackedScene" uid="uid://e213ns8yk22b" path="res://addons/Pistol Beretta/pistol_model.tscn" id="2_4oy60"]
+
+[node name="Visuals" type="Node3D" unique_id=778406136]
+script = ExtResource("1_ume06")
+
+[node name="Weapon" parent="." unique_id=918261198 instance=ExtResource("2_4oy60")]

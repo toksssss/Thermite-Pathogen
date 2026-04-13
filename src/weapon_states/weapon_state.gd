@@ -1,22 +1,21 @@
 @abstract
 extends Node
-class_name Move
+class_name WeaponState
 
 #all move flags and variables here
-var player : Player
+#var weapon_model : WeaponModel
 @export var animation : String
 
-var walk_speed : float
+var enter_state_time : float
 
-static var moves_priority : Dictionary[String, int] = {
+static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,
-	"walk" : 2,
-	"jump" : 10,
-	"falling" : 20
+	"shoot" : 2,
+	"reload" : 10
 }
 
 static func moves_priority_sort(a: String, b: String) -> bool:
-	if moves_priority[a] > moves_priority[b]:
+	if states_priority[a] > states_priority[b]:
 		return true
 	return false
 
@@ -35,16 +34,25 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	pass
 
+func works_longer_than(time : float) -> bool:
+	if get_progress() >= time:
+		return true
+	return false
+
+func get_progress() -> float:
+	var now = Time.get_unix_time_from_system()
+	return now - enter_state_time
+
+func mark_enter_state():
+	enter_state_time = Time.get_unix_time_from_system()
 
 
 
-
-
-# General Moves heir usage guide.
+# General States heir usage guide.
 
 # > check_relevance function aims to be short and simple.
 # 	Its general structure is as follows: 
-#	if (move is ready to transition) :
+#	if (state is ready to transition) :
 #		transition to the highest priority out there
 #	else:
 #		return "okay" to save our managing status.
@@ -53,9 +61,8 @@ func on_exit_state() -> void:
 #	If you are starting to understand that your transition readyness is a complex method, OR
 # 	if you are tempted to add third branching operator into your check_relevance function,
 #	seriously consider if Combo can do this logic for you, you won't regret its usage I promise.
-#	(Combo is clickable even from comments btw)
 
-# > update functions manages perframe behaviour of your Move.
+# > update functions manages perframe behaviour of your State.
 #	There are two update types: constant change and a single dynamic update on some timing.
 #	To implement simple constant changes, try to find some physics abstraction for them to make
 #	engine work for you. If your constant changes are too complex, try to avoid hardcoding 
