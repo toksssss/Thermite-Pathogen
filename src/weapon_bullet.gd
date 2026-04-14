@@ -12,6 +12,7 @@ var spawn_pos : Vector3
 func _ready() -> void:
 	spawn_pos = position
 	hurtbox.hit_enemy.connect(on_hit, CONNECT_DEFERRED)
+	hurtbox.attack_data = attack_data
 
 func _physics_process(delta: float) -> void:
 	position += transform.basis * Vector3(0, 0, speed) * delta

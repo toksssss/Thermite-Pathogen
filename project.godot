@@ -78,6 +78,13 @@ btn_reload={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="PlayerHitbox"
+3d_physics/layer_2="PlayerHurtbox"
+3d_physics/layer_3="EnemyHitbox"
+3d_physics/layer_4="EnemyHurtBox"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

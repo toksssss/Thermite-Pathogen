@@ -13,14 +13,17 @@ size = Vector3(3.925, 2.665, 1.07)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4o67q"]
 size = Vector3(0.07025, 0.087, 0.143)
 
-[node name="Bullet" type="Node3D" unique_id=1217583271]
+[node name="Bullet" type="Node3D" unique_id=1217583271 node_paths=PackedStringArray("hurtbox")]
 script = ExtResource("1_4s76n")
+hurtbox = NodePath("Hurtbox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2028879588]
 transform = Transform3D(0.012544589, 0, 0, 0, 0.015623552, 0, 0, 0, 0.09357443, 0, 0, 0)
 mesh = SubResource("BoxMesh_4o67q")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=492534385]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("2_ap2xi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=606666969]

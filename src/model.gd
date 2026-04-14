@@ -13,10 +13,10 @@ var movement_upgrades : ReactiveArray
 
 # Вместо ручного вписывания заменить на "for child in get_children()"
 @onready var moves: Dictionary[String, Move] = {
-	"idle" : $Idle,
-	"walk" : $Walk,
-	"jump" : $Jump,
-	"falling" : $Falling
+	"idle" : $States/Idle,
+	"walk" : $States/Walk,
+	"jump" : $States/Jump,
+	"falling" : $States/Falling
 }
 
 func _ready() -> void:

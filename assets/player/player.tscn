@@ -44,6 +44,7 @@ script = ExtResource("2_v2miy")
 walk_speed = 7.0
 
 [node name="Hitbox" type="Area3D" parent="Model" unique_id=1363708466 node_paths=PackedStringArray("health")]
+collision_mask = 2
 script = ExtResource("5_apuko")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://br8duwo3s26f0"
