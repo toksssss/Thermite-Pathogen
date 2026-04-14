@@ -1,6 +1,7 @@
 extends Marker3D
 
 @export var player : Player
+@onready var camera : Camera3D = $Camera3D
 
 @export_category("Settings")
 @export var sensetivity : float = 2.0

@@ -2,11 +2,13 @@ extends WeaponState
 
 const ANIMATION_END : float = 3.6334
 
+@warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
 	if works_longer_than(ANIMATION_END):
 		return "idle"
 	return "okay"
 
+@warning_ignore("unused_parameter")
 func update(input: InputPackage, delta: float) -> void:
 	print("Reloading")
 
