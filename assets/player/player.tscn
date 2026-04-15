@@ -86,6 +86,7 @@ player = NodePath("..")
 sensetivity = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1680930214]
+current = true
 fov = 90.0
 
 [node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]

@@ -40,7 +40,8 @@ func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
 	#for strategy : BaseMovementStategy in movement_upgrades:
 		 #strategy.apply_upgrade(self)
-	
+
+	# input = contextualize_combat(input)
 	var relevance : String = current_state.check_relevance(input)
 	if relevance != "okay":
 		switch_to(relevance)
@@ -50,7 +51,7 @@ func switch_to(new_state: String) -> void:
 	if current_state == states[new_state]:
 		return
 
-	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
+	#print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
