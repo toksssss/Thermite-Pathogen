@@ -21,7 +21,8 @@ func on_enter_state() -> void:
 func velocity_by_input(input, delta) -> Vector3:
 	var new_velocity = player.velocity
 	
-	var direction : Vector3 = (player.head.global_transform.basis * Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
+	var direction : Vector3 = (player.global_transform.basis * 
+	Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
 	
 	new_velocity.x = direction.x * walk_speed
 	new_velocity.z = direction.z * walk_speed
