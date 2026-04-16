@@ -6,6 +6,10 @@ func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
 	
+	if input.actions.has("crouch"):
+		if player.velocity.length() > 5.0:
+			return "slide"
+	
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "walk":
 		return "okay"
