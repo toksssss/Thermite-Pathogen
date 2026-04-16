@@ -11,6 +11,7 @@ var walk_speed : float
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,
 	"walk" : 2,
+	"crouch" : 3,
 	"jump" : 10,
 	"falling" : 20
 }

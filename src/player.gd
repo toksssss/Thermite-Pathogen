@@ -5,6 +5,7 @@ class_name Player
 @export var model : PlayerModel
 @export var weapon : PlayerWeapon
 @export var head : Marker3D
+@export var collision : CollisionShape3D
 
 func _physics_process(delta: float) -> void:
 	var input : InputPackage = input_gatherer.gather_input()

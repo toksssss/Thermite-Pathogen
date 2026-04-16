@@ -4,6 +4,7 @@ class_name PlayerModel
 @onready var player : Player = $".."
 @onready var skeleton : Skeleton3D = %GeneralSkeleton
 #@onready var animator : AnimationPlayer = $SkeletonAnimator
+@export var states_group : Node
 
 var current_move : Move
 var movement_upgrades : ReactiveArray
@@ -11,16 +12,11 @@ var movement_upgrades : ReactiveArray
 # All move stats here:
 @export var walk_speed := 10.0
 
-# Вместо ручного вписывания заменить на "for child in get_children()"
-@onready var moves: Dictionary[String, Move] = {
-	"idle" : $States/Idle,
-	"walk" : $States/Walk,
-	"jump" : $States/Jump,
-	"falling" : $States/Falling
-}
+@onready var moves: Dictionary[String, Move] = {}
 
 func _ready() -> void:
-	_init_movement_upgrade()
+	_init_moves()
+	#_init_movement_upgrade()
 	
 	current_move = moves["idle"]
 	for move : Move in moves.values():
@@ -41,17 +37,18 @@ func switch_to(state: String) -> void:
 	if current_move == moves[state]:
 		return
 
+	print("Switch from %s to %s" % [current_move.name, state])
 	current_move.on_exit_state()
 	current_move = moves[state]
 	current_move.on_enter_state()
-	print("Switch from %s to %s" % [current_move.name, state])
-	#animator.play(current_move.animation)
+	#if current_move.animation: 
+		#animator.play(current_move.animation)
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	# Скорее всего надо будет переделать
 	for strategy : BaseMovementStrategy in v.values:
 		strategy.apply_upgrade(self)
-		
+
 func _init_movement_upgrade() -> void:
 	movement_upgrades = ReactiveArray.new()
 	movement_upgrades.value = []
@@ -60,3 +57,8 @@ func _init_movement_upgrade() -> void:
 
 	for strategy: BaseMovementStrategy in movement_upgrades.value:
 		strategy.apply_upgrade(self)
+
+func _init_moves() -> void:
+	for child in states_group.get_children():
+		if child is Move:
+			moves[child.name.to_lower()] = child

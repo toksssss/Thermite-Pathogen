@@ -21,7 +21,7 @@ script = ExtResource("1_4s76n")
 hurtbox = NodePath("Hurtbox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2028879588]
-transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, -0.05, 0, 0.05, -2.1855695e-09, 0, 0, 0)
+transform = Transform3D(0.09984389, 0, 0, 0, -2.9470582e-09, -0.094669685, 0, 0.06742083, -4.1381436e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_s25co")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=492534385]

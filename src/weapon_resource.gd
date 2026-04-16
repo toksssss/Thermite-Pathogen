@@ -8,8 +8,8 @@ class_name WeaponResource
 
 @export_category("Transform")
 @export var position : Vector3
-@export var rotation : Vector3
-@export var scale : Vector3
+#@export var rotation : Vector3
+@export var scale : Vector3 = Vector3(1.0, 1.0, 1.0)
 
 @export var input_to_state : Dictionary[String, String]
 

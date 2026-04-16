@@ -9,6 +9,9 @@ func gather_input() -> InputPackage:
 	if Input.is_action_just_pressed("btn_jump"):
 		new_input.actions.append("jump")
 	
+	if Input.is_action_pressed("btn_crouch"):
+		new_input.actions.append("crouch")
+	
 	new_input.input_direction = Input.get_vector(
 		"btn_walk_left",
 		"btn_walk_right",

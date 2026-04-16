@@ -26,4 +26,4 @@ func rotate_head(mouse_axis: Vector2) -> void:
 	
 	player.rotation.y = actual_rotation.y
 	rotation.x = actual_rotation.x
-	print("Player.rotation.y = %s \t rotation.x = %s" % [player.rotation.y, rotation.x])
+	#print("Player.rotation.y = %s \t rotation.x = %s" % [player.rotation.y, rotation.x])

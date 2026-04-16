@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://v14ydn7ts5eo" path="res://addons/Pistol Beretta/Berreta M9_Material_BaseColor.png" id="1_5powm"]
 [ext_resource type="Texture2D" uid="uid://sf0g4jf3l0ar" path="res://addons/Pistol Beretta/Berreta M9_Material_Roughness.png" id="2_opjvk"]
 [ext_resource type="Texture2D" uid="uid://boug0vjx52m40" path="res://addons/Pistol Beretta/Berreta M9_Material_Normal.png" id="3_v8i68"]
-[ext_resource type="Animation" uid="uid://clsptju857kry" path="res://assets/weapon/animations/reload.res" id="4_opjvk"]
+[ext_resource type="Animation" uid="uid://clsptju857kry" path="res://assets/weapons/animations/reload.res" id="4_opjvk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oah0"]
 resource_name = "Material"
