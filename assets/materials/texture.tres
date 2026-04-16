@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://5s6hlhb2p3fp"]
+
+[ext_resource type="Shader" uid="uid://131ucs6qalu5" path="res://assets/materials/shaders/texture.gdshader" id="1_1t8of"]
+[ext_resource type="Texture2D" uid="uid://bs52cxd4sccvv" path="res://assets/decals/grid.png" id="2_ahn2q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1t8of")
+shader_parameter/_MainTex = ExtResource("2_ahn2q")

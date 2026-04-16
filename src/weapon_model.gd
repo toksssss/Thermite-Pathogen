@@ -1,13 +1,16 @@
 extends Node3D
 class_name WeaponModel
 
-@export var initial_weapon : WeaponResource
+@onready var player : Player = $"../.."
+
+@export var initial_weapon_strategy : WeaponStrategy
 @export var viewmodel_rig : Node3D
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
-var current_weapon : WeaponResource
+var current_weapon_strategy : WeaponStrategy
 var current_weapon_viewmodel : Node3D
+var marker : Marker3D
 
 var animator : AnimationPlayer
 
@@ -16,8 +19,8 @@ var animator : AnimationPlayer
 # Вместо ручного вписывания заменить на "for child in get_children()"
 @onready var states: Dictionary[String, WeaponState] = {
 	"idle" : $Idle,
-	#"shoot" : $Shoot,
-	"reload" : $Reload
+	"reload" : $Reload,
+	"fire" : $Fire
 }
 
 func _ready() -> void:
@@ -26,16 +29,19 @@ func _ready() -> void:
 	_setup_weapon()
 	_setup_animator()
 	
+	marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
+	
 	current_state = states["idle"]
 	for state : WeaponState in states.values():
-		#state.weapon_model = self
-		pass
+		state.current_weapon = current_weapon_strategy
+		state.weapon_model = self
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
 	#for strategy : BaseMovementStategy in movement_upgrades:
 		 #strategy.apply_upgrade(self)
-	
+
+	# input = contextualize_combat(input)
 	var relevance : String = current_state.check_relevance(input)
 	if relevance != "okay":
 		switch_to(relevance)
@@ -45,7 +51,7 @@ func switch_to(new_state: String) -> void:
 	if current_state == states[new_state]:
 		return
 
-	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
+	#print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
@@ -57,11 +63,10 @@ func _setup_animator() -> void:
 	animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
 
 func _setup_weapon() -> void:
-	current_weapon = initial_weapon
-	current_weapon_viewmodel = current_weapon.weapon_scene.instantiate()
-	current_weapon_viewmodel.position = current_weapon.position
-	current_weapon_viewmodel.rotation = current_weapon.rotation
-	current_weapon_viewmodel.scale = current_weapon.scale
+	current_weapon_strategy = initial_weapon_strategy
+	current_weapon_viewmodel = current_weapon_strategy.weapon_resource.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = current_weapon_strategy.weapon_resource.position
+	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_resource.scale
 	
 	viewmodel_rig.add_child(current_weapon_viewmodel)
 

@@ -3,14 +3,15 @@ extends Node
 class_name WeaponState
 
 #all move flags and variables here
-#var weapon_model : WeaponModel
+var current_weapon : WeaponStrategy
+var weapon_model : WeaponModel
 @export var animation : String
 
 var enter_state_time : float
 
 static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,
-	"shoot" : 2,
+	"fire" : 2,
 	"reload" : 10
 }
 

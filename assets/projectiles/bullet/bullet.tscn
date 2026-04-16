@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ekk5ve1r28ee"]
+
+[ext_resource type="Script" uid="uid://cjei33pka4d1s" path="res://src/weapon_bullet.gd" id="1_4s76n"]
+[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="2_ap2xi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ap2xi"]
+albedo_color = Color(1, 0.98333335, 0, 1)
+emission_enabled = true
+emission = Color(0.9534804, 0.9324403, 7.70092e-07, 1)
+emission_energy_multiplier = 5.2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s25co"]
+material = SubResource("StandardMaterial3D_ap2xi")
+height = 4.041
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4o67q"]
+size = Vector3(0.07025, 0.087, 0.21547632)
+
+[node name="Bullet" type="Node3D" unique_id=1217583271 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("1_4s76n")
+hurtbox = NodePath("Hurtbox")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2028879588]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, -0.05, 0, 0.05, -2.1855695e-09, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_s25co")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=492534385]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_ap2xi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=606666969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0.0011029039)
+shape = SubResource("BoxShape3D_4o67q")

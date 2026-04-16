@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponStrategy" format=3 uid="uid://cuq08t1huothi"]
+
+[ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="1_tltf5"]
+[ext_resource type="Script" uid="uid://c1fgobbs18xn1" path="res://src/weapon_strategy.gd" id="2_nrf3p"]
+[ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_resource.gd" id="3_2jbk6"]
+[ext_resource type="PackedScene" uid="uid://e213ns8yk22b" path="res://addons/Pistol Beretta/pistol_model.tscn" id="4_75yt7"]
+
+[sub_resource type="Resource" id="Resource_4t7cd"]
+script = ExtResource("3_2jbk6")
+name = "test"
+damage = 10.0
+speed = 100.0
+weapon_scene = ExtResource("4_75yt7")
+position = Vector3(0.19, -0.105, -0.35)
+scale = Vector3(0.05, 0.05, 0.05)
+metadata/_custom_type_script = "uid://dutvrqf2cf0be"
+
+[resource]
+script = ExtResource("2_nrf3p")
+weapon_resource = SubResource("Resource_4t7cd")
+bullet_scene = ExtResource("1_tltf5")
+metadata/_custom_type_script = "uid://c1fgobbs18xn1"

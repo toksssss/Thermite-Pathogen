@@ -14,6 +14,8 @@ func update(input: InputPackage, delta: float) -> void:
 	player.velocity = velocity_by_input(input, delta)
 	player.move_and_slide()
 
+
+@warning_ignore("unused_parameter")
 func velocity_by_input(input, delta) -> Vector3:
 	var new_velocity = player.velocity
 

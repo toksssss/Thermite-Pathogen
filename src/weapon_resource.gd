@@ -3,6 +3,7 @@ class_name WeaponResource
 
 @export var name : String
 @export var damage : float
+@export var speed : float
 @export var weapon_scene : PackedScene
 
 @export_category("Transform")

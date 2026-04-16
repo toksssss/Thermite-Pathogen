@@ -655,14 +655,68 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pistol_Magazine:position")
+tracks/2/path = NodePath("Pistol_Top:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.02051416, 1.5780411, -3.2896638)]
+"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pistol_Hammer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pistol_Trigger:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.711391, -0.679082)]
+}
+
+[sub_resource type="Animation" id="Animation_v8i68"]
+resource_name = "fire"
+length = 0.13333334
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pistol_Magazine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.01220616, 1.3441541, -2.9239404)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pistol_Magazine")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pistol_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -671,10 +725,10 @@ tracks/3/path = NodePath("Pistol_Top:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
+"values": [Vector3(-0.01220616, 1.3441541, -2.9239404), Vector3(-0.01220616, 1.3441541, -4.053824), Vector3(-0.01220616, 1.3441541, -2.9077694)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -701,100 +755,23 @@ tracks/5/keys = {
 "values": [Vector3(0, 0.711391, -0.679082)]
 }
 
-[sub_resource type="Animation" id="Animation_v8i68"]
-resource_name = "fire"
-length = 0.13333334
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pistol_Magazine")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.02051416, 1.5780411, -3.2896638)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pistol_Magazine")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pistol_Body:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pistol_Magazine:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.02051416, 1.5780411, -3.2896638)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pistol_Top:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.01220616, 1.3441541, -2.9239404), Vector3(-0.01220616, 1.3441541, -4.053824), Vector3(-0.01220616, 1.3441541, -2.9077694)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Pistol_Hammer:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.01220616, 1.3441541, -2.9239404)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Pistol_Trigger:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.711391, -0.679082)]
-}
-
 [sub_resource type="Animation" id="Animation_paneb"]
 resource_name = "idle"
+length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Pistol_Magazine")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.02051416, 1.5780411, -3.2896638)
+tracks/0/keys = PackedFloat32Array(0, 1, -0.01220616, 1.3441541, -2.9239404)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Pistol_Magazine")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.70710677, 0.70710677)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.7071068, 0.7071067)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pckcp"]
 _data = {
@@ -811,6 +788,7 @@ _data = {
 }
 
 [node name="Pistol_Model" type="Node3D" unique_id=918261198]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Pistol_Hammer" type="MeshInstance3D" parent="." unique_id=1815116537]
 transform = Transform3D(-1.9450718e-07, 1.1938765, 0, -1.1938765, -1.9450718e-07, 0, 0, 0, 1.1938765, -0.01220616, 1.3441541, -2.9239404)
@@ -829,9 +807,12 @@ transform = Transform3D(-1.9450718e-07, 1.1938765, 0, -1.1938765, -1.9450718e-07
 mesh = SubResource("ArrayMesh_f716u")
 
 [node name="Pistol_Magazine" type="MeshInstance3D" parent="." unique_id=361364344]
-transform = Transform3D(-5.2186e-08, 1.1938765, 0, -1.1938765, -5.2186e-08, 0, 0, 0, 1.1938765, 0.02051416, 1.5780411, -3.2896638)
+transform = Transform3D(-5.2186e-08, 1.1938765, 0, -1.1938765, -5.2186e-08, 0, 0, 0, 1.1938765, -0.01220616, -5.1542177, -4.14766)
 rotation_edit_mode = 1
 mesh = SubResource("ArrayMesh_gdjhb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1919459054]
 libraries/ = SubResource("AnimationLibrary_pckcp")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=590378332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011481285, 1.8302603, 3.6614907)
