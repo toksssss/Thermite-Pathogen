@@ -7,7 +7,7 @@ func check_relevance(input: InputPackage) -> String:
 		return "falling"
 	
 	if input.actions.has("crouch"):
-		if player.velocity.length() > 5.0:
+		if player.velocity.length() > 12.0:
 			return "slide"
 	
 	input.actions.sort_custom(moves_priority_sort)

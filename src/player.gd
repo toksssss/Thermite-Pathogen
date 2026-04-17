@@ -12,4 +12,4 @@ func _physics_process(delta: float) -> void:
 	model.update(input, delta)
 	weapon.update(input, delta)
 	
-	print(velocity.length())
+	print("%10.3f" % velocity.length())

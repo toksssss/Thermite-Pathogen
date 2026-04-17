@@ -104,6 +104,10 @@ fov = 90.0
 
 [node name="STR2M" parent="Head/Camera3D/ViewmodelRig" unique_id=1453719344 instance=ExtResource("12_u5y8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.075, -0.87, -2.5)
+visible = false
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=822030576]
+target_position = Vector3(0, 0, -2.265)
 
 [node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model")]
 script = ExtResource("11_0eov8")
