@@ -10,7 +10,9 @@ var current_move : Move
 var movement_upgrades : ReactiveArray
 
 # All move stats here:
-@export var walk_speed := 10.0
+@export var base_speed := 10.0
+
+# All move flags here:
 
 @onready var moves: Dictionary[String, Move] = {}
 
@@ -21,7 +23,7 @@ func _ready() -> void:
 	current_move = moves["idle"]
 	for move : Move in moves.values():
 		move.player = player
-		move.walk_speed = walk_speed
+		move.base_speed = base_speed
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -30,17 +32,19 @@ func update(input: InputPackage, delta: float) -> void:
 	
 	var relevance : String = current_move.check_relevance(input)
 	if relevance != "okay":
-		switch_to(relevance)
+		switch_to(relevance, delta)
 	current_move.update(input, delta)
 
-func switch_to(state: String) -> void:
+func switch_to(state: String, delta: float) -> void:
 	if current_move == moves[state]:
 		return
 
 	print("Switch from %s to %s" % [current_move.name, state])
 	current_move.on_exit_state()
+	current_move.on_continious_exit_state(delta)
 	current_move = moves[state]
 	current_move.on_enter_state()
+	current_move.on_continious_enter_state(delta)
 	#if current_move.animation: 
 		#animator.play(current_move.animation)
 

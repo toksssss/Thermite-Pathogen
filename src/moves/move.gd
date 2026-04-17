@@ -6,7 +6,9 @@ class_name Move
 var player : Player
 @export var animation : String
 
-var walk_speed : float
+var base_speed : float
+var acceleration : float = 12
+var deccelartion : float = 18
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,
@@ -36,8 +38,13 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	pass
 
+@warning_ignore("unused_parameter")
+func on_continious_exit_state(delta: float) -> void:
+	pass
 
-
+@warning_ignore("unused_parameter")
+func on_continious_enter_state(delta: float) -> void:
+	pass
 
 
 

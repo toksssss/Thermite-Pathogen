@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="5_4t7cd"]
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="5_apuko"]
 [ext_resource type="Script" uid="uid://d0qqpdubytpkw" path="res://src/moves/jump.gd" id="5_kwvpd"]
+[ext_resource type="Script" uid="uid://dbi71ulls0bl7" path="res://src/player_head_movement.gd" id="7_q1ug7"]
 [ext_resource type="Script" uid="uid://baate7hm6jw5i" path="res://src/moves/falling.gd" id="8_op4fd"]
 [ext_resource type="Script" uid="uid://dp4rvfvl08oiv" path="res://src/camera.gd" id="10_m2mll"]
 [ext_resource type="Script" uid="uid://cclehtjojp1od" path="res://src/player_weapon.gd" id="11_0eov8"]
@@ -16,7 +17,6 @@
 [ext_resource type="Script" uid="uid://dsfsqu14raudx" path="res://src/moves/crouch.gd" id="11_n8qm5"]
 [ext_resource type="Resource" uid="uid://cuq08t1huothi" path="res://assets/resources/test_weapon.tres" id="12_d61i2"]
 [ext_resource type="Script" uid="uid://w1ndsb27ivpu" path="res://src/moves/slide.gd" id="12_q1ug7"]
-[ext_resource type="PackedScene" uid="uid://drc5ik0k8q7yi" path="res://assets/weapons/str02m/str_2m.tscn" id="12_u5y8p"]
 [ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
 [ext_resource type="Script" uid="uid://bn6hnad5wn430" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape3D_j84mu")
 [node name="Model" type="Node3D" parent="." unique_id=1361034799 node_paths=PackedStringArray("states_group")]
 script = ExtResource("2_v2miy")
 states_group = NodePath("States")
-walk_speed = 15.0
+base_speed = 15.0
 
 [node name="Hitbox" type="Area3D" parent="Model" unique_id=1363708466 node_paths=PackedStringArray("health")]
 collision_mask = 2
@@ -59,6 +59,9 @@ shape = SubResource("CapsuleShape3D_u5y8p")
 
 [node name="Health" type="Node" parent="Model" unique_id=904618511]
 script = ExtResource("5_4t7cd")
+
+[node name="HeadMovement" type="Node" parent="Model" unique_id=200095077]
+script = ExtResource("7_q1ug7")
 
 [node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
 unique_name_in_owner = true
@@ -101,10 +104,6 @@ current = true
 fov = 90.0
 
 [node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]
-
-[node name="STR2M" parent="Head/Camera3D/ViewmodelRig" unique_id=1453719344 instance=ExtResource("12_u5y8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.075, -0.87, -2.5)
-visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=822030576]
 target_position = Vector3(0, 0, -2.265)

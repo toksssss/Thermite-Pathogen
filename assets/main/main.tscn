@@ -1,25 +1,9 @@
 [gd_scene format=3 uid="uid://blovxxcqjxm0o"]
 
+[ext_resource type="Environment" uid="uid://cx23gvsuxc585" path="res://assets/main/sky_environment.tres" id="1_j84mu"]
 [ext_resource type="PackedScene" uid="uid://cp70mx5feo7pe" path="res://assets/player/player.tscn" id="1_xch4i"]
 [ext_resource type="Texture2D" uid="uid://bs52cxd4sccvv" path="res://assets/decals/grid.png" id="2_k5mrd"]
 [ext_resource type="Texture2D" uid="uid://etq0717mjqoj" path="res://assets/decals/range.png" id="2_lv126"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xch4i"]
-sky_top_color = Color(0.3305888, 0.39803508, 0.82858187, 1)
-sky_horizon_color = Color(0.5686945, 0.579334, 0.67996943, 1)
-ground_bottom_color = Color(0.14626765, 0.121379636, 0.09337447, 1)
-ground_horizon_color = Color(0.5686945, 0.579334, 0.67996943, 1)
-energy_multiplier = 2.25
-
-[sub_resource type="Sky" id="Sky_lv126"]
-sky_material = SubResource("ProceduralSkyMaterial_xch4i")
-
-[sub_resource type="Environment" id="Environment_k5mrd"]
-background_mode = 2
-sky = SubResource("Sky_lv126")
-tonemap_mode = 2
-ssao_enabled = true
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5mrd"]
 albedo_texture = ExtResource("2_k5mrd")
@@ -56,8 +40,8 @@ light_energy = 0.345
 shadow_enabled = true
 directional_shadow_max_distance = 561.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=228639975]
-environment = SubResource("Environment_k5mrd")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=671609340]
+environment = ExtResource("1_j84mu")
 
 [node name="CharacterBody3D" parent="." unique_id=1034354759 instance=ExtResource("1_xch4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.955992, 0)
