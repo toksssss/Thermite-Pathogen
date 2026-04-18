@@ -6,12 +6,8 @@ func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
 	
-	if input.actions.has("crouch"):
-		if player.velocity.length() > 12.0:
-			return "slide"
-	
 	input.actions.sort_custom(moves_priority_sort)
-	if input.actions[0] == "walk":
+	if input.actions[0] == "crouch":
 		return "okay"
 	return input.actions[0]
 
@@ -26,7 +22,7 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	temp_vel.y = 0
 	
 	var temp_accel : float
-	var target : Vector3 = direction * base_speed * walk_speed_multiplier
+	var target : Vector3 = direction * base_speed * crouch_speed_multiplier
 	
 	if direction.dot(temp_vel) > 0:
 		temp_accel = acceleration
@@ -36,3 +32,9 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	temp_vel.x = lerp(temp_vel.x, target.x, delta * temp_accel)
 	temp_vel.z = lerp(temp_vel.z, target.z, delta * temp_accel)
 	return temp_vel
+
+func on_enter_state() -> void:
+	player.is_crouching = true
+
+func on_exit_state() -> void:
+	player.is_crouching = false

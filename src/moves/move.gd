@@ -6,11 +6,19 @@ class_name Move
 var player : Player
 @export var animation : String
 
-var walk_speed : float
+var base_speed : float
+
+var crouch_speed_multiplier : float
+var walk_speed_multiplier : float
+var slide_speed_multiplier : float
+
+var acceleration : float
+var deccelartion : float
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,
 	"walk" : 2,
+	"crouch" : 3,
 	"jump" : 10,
 	"falling" : 20
 }
@@ -35,8 +43,13 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	pass
 
+@warning_ignore("unused_parameter")
+func on_continious_exit_state(delta: float) -> void:
+	pass
 
-
+@warning_ignore("unused_parameter")
+func on_continious_enter_state(delta: float) -> void:
+	pass
 
 
 
