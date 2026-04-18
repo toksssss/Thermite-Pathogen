@@ -3,6 +3,7 @@ class_name PlayerModel
 
 @onready var player : Player = $".."
 @onready var skeleton : Skeleton3D = %GeneralSkeleton
+@export var head_checker : RayCast3D
 #@onready var animator : AnimationPlayer = $SkeletonAnimator
 @export var states_group : Node
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	current_move = moves["idle"]
 	for move : Move in moves.values():
 		move.player = player
+		move.head_raycast = head_checker
 		move.base_speed = base_speed
 		move.walk_speed_multiplier = walk_speed_multiplier
 		move.crouch_speed_multiplier = crouch_speed_multiplier

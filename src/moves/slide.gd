@@ -6,6 +6,12 @@ func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
 	
+	if head_raycast.is_colliding():
+		if player.velocity.length() > 15:
+			return "okay"
+		else:
+			return "crouch"
+	
 	input.actions.sort_custom(moves_priority_sort)
 	if input.actions[0] == "crouch":
 		return "okay"
@@ -35,6 +41,8 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 
 func on_enter_state() -> void:
 	player.is_crouching = true
+	set_crouch_collision_shape()
 
 func on_exit_state() -> void:
 	player.is_crouching = false
+	set_stand_collision_shape()

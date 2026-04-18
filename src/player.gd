@@ -5,7 +5,8 @@ class_name Player
 @export var model : PlayerModel
 @export var weapon : PlayerWeapon
 @export var head : Marker3D
-@export var collision : CollisionShape3D
+@export var stand_collision : CollisionShape3D
+@export var crouch_collision : CollisionShape3D
 
 # flags
 var is_crouching : bool = false

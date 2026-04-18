@@ -15,3 +15,6 @@ func _physics_process(delta: float) -> void:
 	text += "Velocity:%10.3f\n" % player.velocity.length()
 	text += "PlayerMove: %s\n" % model.current_move.name
 	text += "WeaponState: %s\n" % weapon.current_state.name
+	text += "StandCollisionShape is enabled: %s\n" % !player.stand_collision.disabled
+	text += "CrouchCollisionShape is enabled: %s\n" % !player.crouch_collision.disabled
+	text += "HeadRayCast is colliding: %s\n" % model.head_checker.is_colliding()

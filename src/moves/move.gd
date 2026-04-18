@@ -5,6 +5,7 @@ class_name Move
 #all move flags and variables here
 var player : Player
 @export var animation : String
+var head_raycast : RayCast3D
 
 var base_speed : float
 
@@ -27,6 +28,14 @@ static func moves_priority_sort(a: String, b: String) -> bool:
 	if moves_priority[a] > moves_priority[b]:
 		return true
 	return false
+
+func set_crouch_collision_shape() -> void:
+	player.crouch_collision.disabled = false
+	player.stand_collision.disabled = true
+
+func set_stand_collision_shape() -> void:
+	player.crouch_collision.disabled = true
+	player.stand_collision.disabled = false
 
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
