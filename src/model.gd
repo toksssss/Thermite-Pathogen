@@ -10,9 +10,15 @@ var current_move : Move
 var movement_upgrades : ReactiveArray
 
 # All move stats here:
+@export_category("Move Stats")
 @export var base_speed := 10.0
 
-# All move flags here:
+@export var walk_speed_multiplier : float = 1.0
+@export var crouch_speed_multiplier : float = 0.5
+@export var slide_speed_multiplier : float = 2.0
+
+@export var acceleration : float = 12
+@export var deccelartion : float = 18
 
 @onready var moves: Dictionary[String, Move] = {}
 
@@ -24,6 +30,11 @@ func _ready() -> void:
 	for move : Move in moves.values():
 		move.player = player
 		move.base_speed = base_speed
+		move.walk_speed_multiplier = walk_speed_multiplier
+		move.crouch_speed_multiplier = crouch_speed_multiplier
+		move.slide_speed_multiplier = slide_speed_multiplier
+		move.acceleration = acceleration
+		move.deccelartion = deccelartion
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -39,7 +50,7 @@ func switch_to(state: String, delta: float) -> void:
 	if current_move == moves[state]:
 		return
 
-	print("Switch from %s to %s" % [current_move.name, state])
+	#print("Switch from %s to %s" % [current_move.name, state])
 	current_move.on_exit_state()
 	current_move.on_continious_exit_state(delta)
 	current_move = moves[state]

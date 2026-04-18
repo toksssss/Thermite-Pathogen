@@ -16,18 +16,22 @@ func update(input: InputPackage, delta: float) -> void:
 	player.move_and_slide()
 
 func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
-	var new_velocity = player.velocity
-	
-	var direction : Vector3 = (player.global_transform.basis *
+	var direction : Vector3 = (player.global_transform.basis * 
 	Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
-
-	new_velocity.x = direction.x * base_speed * 0.5
-	new_velocity.z = direction.z * base_speed * 0.5
+	var temp_vel : Vector3 = player.velocity
+	temp_vel.y = 0
 	
-	if !player.is_on_floor():
-		new_velocity.y -= gravity * delta
+	var temp_accel : float
+	var target : Vector3 = direction * base_speed * crouch_speed_multiplier
 	
-	return new_velocity
+	if direction.dot(temp_vel) > 0:
+		temp_accel = acceleration
+	else:
+		temp_accel = deccelartion
+	
+	temp_vel.x = lerp(temp_vel.x, target.x, delta * temp_accel)
+	temp_vel.z = lerp(temp_vel.z, target.z, delta * temp_accel)
+	return temp_vel
 
 func on_enter_state() -> void:
 	player.is_crouching = true

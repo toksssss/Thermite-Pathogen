@@ -23,14 +23,14 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	temp_vel.y = 0
 	
 	var temp_accel : float
-	var target : Vector3 = direction * base_speed * 2
+	var target : Vector3 = direction * base_speed * slide_speed_multiplier
 	
 	if direction.dot(temp_vel) > 0:
 		temp_accel = acceleration
 	else:
 		temp_accel = deccelartion
 	
-	temp_vel = lerp(temp_vel, target, temp_accel * delta)
+	temp_vel = lerp(temp_vel, target, temp_accel / 2.0 * delta)
 	return temp_vel
 
 func on_enter_state() -> void:

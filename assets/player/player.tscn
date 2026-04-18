@@ -21,10 +21,14 @@
 [ext_resource type="Script" uid="uid://bn6hnad5wn430" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
+[ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
+font_size = 34
 
 [node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "collision") groups=["player"]]
 script = ExtResource("1_d6veg")
@@ -47,6 +51,7 @@ shape = SubResource("CapsuleShape3D_j84mu")
 script = ExtResource("2_v2miy")
 states_group = NodePath("States")
 base_speed = 15.0
+slide_speed_multiplier = 1.5
 
 [node name="Hitbox" type="Area3D" parent="Model" unique_id=1363708466 node_paths=PackedStringArray("health")]
 collision_mask = 2
@@ -142,3 +147,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_4t7cd")
 stretch_mode = 2
+
+[node name="DevLabel" type="Label" parent="CanvasLayer" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Velocity"
+label_settings = SubResource("LabelSettings_q1ug7")
+script = ExtResource("22_5bqul")
+model = NodePath("../../Model")
+weapon = NodePath("../../Weapon/Model")
+player = NodePath("../..")

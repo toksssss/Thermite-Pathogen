@@ -276,7 +276,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0074766874, 0.534829, 4.849
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=784141470]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1357267929]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24276589, 0.26118702, -0.19815405)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18587111, 0.26118702, -0.19815405)
 light_color = Color(0, 0.9000001, 1, 1)
-light_energy = 0.3
-omni_range = 0.211
+light_energy = 0.15
+distance_fade_begin = 0.0
+distance_fade_length = 0.2
+omni_range = 0.136

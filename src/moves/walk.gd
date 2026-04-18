@@ -26,7 +26,7 @@ func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	temp_vel.y = 0
 	
 	var temp_accel : float
-	var target : Vector3 = direction * base_speed
+	var target : Vector3 = direction * base_speed * walk_speed_multiplier
 	
 	if direction.dot(temp_vel) > 0:
 		temp_accel = acceleration
