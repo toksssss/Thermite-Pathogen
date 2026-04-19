@@ -1,9 +1,19 @@
 extends Node
 class_name InputGatherer
 
+var mouse_motion : Vector2
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_motion = event.relative
+
 func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
-
+	
+	# Mouse movement:
+	new_input.mouse_motion = mouse_motion
+	mouse_motion = Vector2(0, 0)
+	
 	# Move actions:
 	
 	if Input.is_action_just_pressed("btn_jump"):
