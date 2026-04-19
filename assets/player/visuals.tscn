@@ -4,9 +4,8 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lqaot"]
 
-[node name="Visuals" type="Node3D" unique_id=314601792 node_paths=PackedStringArray("mesh")]
+[node name="Visuals" type="Node3D" unique_id=314601792]
 script = ExtResource("1_54ym4")
-mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=15899647]
 mesh = SubResource("CapsuleMesh_lqaot")

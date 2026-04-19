@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 class_name WeaponBullet
 
 @export var hurtbox : Hurtbox
@@ -15,7 +15,21 @@ func _ready() -> void:
 	hurtbox.attack_data = attack_data
 
 func _physics_process(delta: float) -> void:
-	position += transform.basis * Vector3(0, 0, speed) * delta
+	velocity = transform.basis * Vector3(0, 0, speed)
+	
+	var collision : KinematicCollision3D = move_and_collide(velocity*delta)
+	
+	if collision:
+		var obj : Object = collision.get_collider()
+		var nrml : Vector3 = collision.get_normal()
+		var pt : Vector3 = collision.get_position()
+		var material : Material
+		if obj is StaticBody3D:
+			var mesh : MeshInstance3D = obj.get_node("MeshInstance3D")
+			material = mesh.material_override
+		BulletDecalPool.spawn_bullet_decal(pt, nrml, obj, global_basis, material)
+		
+		queue_free()
 	
 	if spawn_pos.distance_to(position) > 100:
 		queue_free()

@@ -17,7 +17,8 @@ radius = 0.015
 height = 0.03
 
 [node name="BulletDecal" type="Decal" unique_id=1114215082]
-size = Vector3(0.07, 0.07, 0.07)
+physics_interpolation_mode = 2
+size = Vector3(0.5, 0.5, 0.5)
 texture_albedo = ExtResource("1_s03b3")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=406736753]
