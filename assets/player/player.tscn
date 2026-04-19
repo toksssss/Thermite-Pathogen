@@ -85,8 +85,9 @@ shape = SubResource("CapsuleShape3D_u5y8p")
 [node name="Health" type="Node" parent="Model" unique_id=904618511]
 script = ExtResource("5_4t7cd")
 
-[node name="HeadMovement" type="Node" parent="Model" unique_id=200095077]
+[node name="HeadMovement" type="Node" parent="Model" unique_id=200095077 node_paths=PackedStringArray("camera")]
 script = ExtResource("7_q1ug7")
+camera = NodePath("../../Head/Camera3D")
 
 [node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
 unique_name_in_owner = true
