@@ -18,9 +18,9 @@ var animator : AnimationPlayer
 
 # Вместо ручного вписывания заменить на "for child in get_children()"
 @onready var states: Dictionary[String, WeaponState] = {
-	"idle" : $Idle,
-	"reload" : $Reload,
-	"fire" : $Fire
+	"idle" : $States/Idle,
+	"reload" : $States/Reload,
+	"fire" : $States/Fire
 }
 
 func _ready() -> void:
@@ -66,6 +66,7 @@ func _setup_weapon() -> void:
 	current_weapon_strategy = initial_weapon_strategy
 	current_weapon_viewmodel = current_weapon_strategy.weapon_resource.weapon_scene.instantiate()
 	current_weapon_viewmodel.position = current_weapon_strategy.weapon_resource.position
+	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_resource.rotation
 	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_resource.scale
 	
 	viewmodel_rig.add_child(current_weapon_viewmodel)

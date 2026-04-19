@@ -12,6 +12,8 @@ damage = 10.0
 speed = 100.0
 weapon_scene = ExtResource("4_tltf5")
 position = Vector3(1.015, -0.83, -1.73)
+rotation = Vector3(0, 180, 0)
+sway_amount_position = 0.3
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 
 [resource]

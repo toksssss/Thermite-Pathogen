@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://bn6hnad5wn430" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
+[ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
@@ -132,22 +133,28 @@ fov = 90.0
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=822030576]
 target_position = Vector3(0, 0, -2.265)
 
-[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model")]
+[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
 script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
+weapon_sway = NodePath("Model/WeaponSway")
 
 [node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig")]
 script = ExtResource("11_hai6l")
 initial_weapon_strategy = ExtResource("12_d61i2")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
 
-[node name="Idle" type="Node" parent="Weapon/Model" unique_id=1156865502]
+[node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
+script = ExtResource("18_i44by")
+
+[node name="States" type="Node" parent="Weapon/Model" unique_id=650061942]
+
+[node name="Idle" type="Node" parent="Weapon/Model/States" unique_id=1156865502]
 script = ExtResource("12_vlpqo")
 
-[node name="Reload" type="Node" parent="Weapon/Model" unique_id=112731332]
+[node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
 script = ExtResource("15_d61i2")
 
-[node name="Fire" type="Node" parent="Weapon/Model" unique_id=108073062]
+[node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
 script = ExtResource("16_yx3jh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
