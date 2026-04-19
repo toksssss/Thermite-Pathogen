@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdxlr4lx65eg3"
-path="res://.godot/imported/Mag_painter.png-8a7c8275c3fb2da1191d80c86bd72f06.ctex"
+path="res://.godot/imported/Mag_painter.png-c686440919c3a5ed35ec884fec808aaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/new folder/Mag_painter.png"
-dest_files=["res://.godot/imported/Mag_painter.png-8a7c8275c3fb2da1191d80c86bd72f06.ctex"]
+source_file="res://assets/weapons/str2m/Mag_painter.png"
+dest_files=["res://.godot/imported/Mag_painter.png-c686440919c3a5ed35ec884fec808aaa.ctex"]
 
 [params]
 
