@@ -6,8 +6,11 @@ func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
 	
+	if player.velocity.length() <= 15:
+			return "crouch"
+	
 	if head_raycast.is_colliding():
-		if player.velocity.length() > 15:
+		if player.velocity.length() >= 15:
 			return "okay"
 		else:
 			return "crouch"
