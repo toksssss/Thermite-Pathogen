@@ -160,17 +160,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6669056, -1.0182828)
 visible = false
 mesh = SubResource("BoxMesh_y54wj")
 
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, -0.76993966)
+
 [node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
 script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
 
-[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox")]
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
 script = ExtResource("11_hai6l")
 initial_weapon_strategy = ExtResource("12_d61i2")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
 melee_animator = NodePath("ArmsAnimator")
 melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
+marker = NodePath("../../Head/Camera3D/Marker3D")
 
 [node name="ArmsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
 

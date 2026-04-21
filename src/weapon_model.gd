@@ -15,8 +15,8 @@ var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
 var current_weapon_strategy : WeaponStrategy
 var current_weapon_viewmodel : Node3D
-var marker : Marker3D
-
+#var marker : Marker3D
+@export var marker : Marker3D
 var weapon_animator : AnimationPlayer
 
 # All state stats here:
@@ -36,7 +36,8 @@ func _ready() -> void:
 	_setup_weapon_animator()
 	
 	melee_hurtbox.monitoring = false
-	marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
+	#marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
+	
 	
 	current_state = states["idle"]
 	for state : WeaponState in states.values():
