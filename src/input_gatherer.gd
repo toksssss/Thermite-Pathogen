@@ -41,6 +41,9 @@ func gather_input() -> InputPackage:
 	if Input.is_action_just_pressed("btn_reload"):
 		new_input.combat_actions.append("reload")
 	
+	if Input.is_action_just_pressed("btn_melee"):
+		new_input.combat_actions.append("melee")
+	
 	if new_input.combat_actions.is_empty():
 		new_input.combat_actions.append("idle")
 	

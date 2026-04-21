@@ -3,16 +3,19 @@ extends Node
 class_name WeaponState
 
 #all move flags and variables here
+@export var weapon_animation : String
+@export var arms_animation : String
+
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
-@export var animation : String
-
+var melee_hurtbox : Hurtbox
 var enter_state_time : float
 
 static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,
 	"fire" : 2,
-	"reload" : 10
+	"reload" : 10,
+	"melee" : 20
 }
 
 static func moves_priority_sort(a: String, b: String) -> bool:

@@ -5,6 +5,7 @@ class_name WeaponModel
 
 @export var initial_weapon_strategy : WeaponStrategy
 @export var viewmodel_rig : Node3D
+@export var melee_hurtbox : Hurtbox
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
@@ -20,7 +21,8 @@ var animator : AnimationPlayer
 @onready var states: Dictionary[String, WeaponState] = {
 	"idle" : $States/Idle,
 	"reload" : $States/Reload,
-	"fire" : $States/Fire
+	"fire" : $States/Fire,
+	"melee" : $States/Melee
 }
 
 func _ready() -> void:
@@ -29,12 +31,14 @@ func _ready() -> void:
 	_setup_weapon()
 	_setup_animator()
 	
+	melee_hurtbox.monitoring = false
 	marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
 	
 	current_state = states["idle"]
 	for state : WeaponState in states.values():
 		state.current_weapon = current_weapon_strategy
 		state.weapon_model = self
+		state.melee_hurtbox = melee_hurtbox
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -56,11 +60,13 @@ func switch_to(new_state: String) -> void:
 	current_state = states[new_state]
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
-	if current_state.animation:
+	if animator and current_state.animation:
 		animator.play(current_state.animation)
 
 func _setup_animator() -> void:
 	animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
+	if animator == null:
+		push_warning("Weapons AnimationPlayer has not found")
 
 func _setup_weapon() -> void:
 	current_weapon_strategy = initial_weapon_strategy
