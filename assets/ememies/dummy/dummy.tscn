@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://td1pq7fpxsln"]
+
+[ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="1_wrak5"]
+[ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="2_kqou2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrak5"]
+size = Vector3(1.2979126, 2.0920105, 1.4157715)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3htdy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5jlwe"]
+
+[sub_resource type="GDScript" id="GDScript_yabyd"]
+resource_name = "health"
+script/source = "extends Label3D
+
+@export var health_component : HealthComponent
+
+func _physics_process(_delta: float) -> void:
+	text = \"%3.3f\" % health_component.health
+"
+
+[node name="Dummy" type="StaticBody3D" unique_id=452110114]
+collision_layer = 16
+collision_mask = 17
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1064920331 node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_wrak5")
+health = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://br8duwo3s26f0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=122113808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029693604, 0.053848267, -0.0052490234)
+shape = SubResource("BoxShape3D_wrak5")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1252709132]
+script = ExtResource("2_kqou2")
+metadata/_custom_type_script = "uid://cioxphk6xyju1"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1971649626]
+mesh = SubResource("CapsuleMesh_3htdy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=392129196]
+shape = SubResource("CapsuleShape3D_5jlwe")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1912911277 node_paths=PackedStringArray("health_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1709814, 0)
+billboard = 1
+script = SubResource("GDScript_yabyd")
+health_component = NodePath("../HealthComponent")
