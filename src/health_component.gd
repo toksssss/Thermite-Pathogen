@@ -7,4 +7,4 @@ func damage(attack: AttackData) -> void:
 	health -= attack.damage
 	
 	if health <= 0:
-		print("Death")
+		get_parent().queue_free()

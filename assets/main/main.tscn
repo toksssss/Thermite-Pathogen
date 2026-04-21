@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cp70mx5feo7pe" path="res://assets/player/player.tscn" id="1_xch4i"]
 [ext_resource type="Texture2D" uid="uid://bs52cxd4sccvv" path="res://assets/decals/grid.png" id="2_k5mrd"]
 [ext_resource type="Texture2D" uid="uid://etq0717mjqoj" path="res://assets/decals/range.png" id="2_lv126"]
+[ext_resource type="PackedScene" uid="uid://td1pq7fpxsln" path="res://assets/ememies/dummy/dummy.tscn" id="5_yti63"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5mrd"]
 albedo_texture = ExtResource("2_k5mrd")
@@ -181,6 +182,21 @@ texture_albedo = ExtResource("2_lv126")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.952557, -0.18115234, 12.037481)
 size = Vector3(8, 1, 8)
 texture_albedo = ExtResource("2_lv126")
+
+[node name="Dummy" parent="Objects" unique_id=452110114 instance=ExtResource("5_yti63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 4)
+
+[node name="Dummy2" parent="Objects" unique_id=421084368 instance=ExtResource("5_yti63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 0)
+
+[node name="Dummy3" parent="Objects" unique_id=559741111 instance=ExtResource("5_yti63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -2)
+
+[node name="Dummy4" parent="Objects" unique_id=1951111048 instance=ExtResource("5_yti63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 2)
+
+[node name="Dummy5" parent="Objects" unique_id=648800441 instance=ExtResource("5_yti63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -4)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1929088955]
 transform = Transform3D(-1, 8.742278e-08, 0, 3.821371e-15, 4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 4, 0.01, 16.5)

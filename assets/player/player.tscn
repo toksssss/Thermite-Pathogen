@@ -152,6 +152,7 @@ metadata/_custom_type_script = "uid://dr25kpbbuggri"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=643993144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6862473, -1.0966349)
 shape = SubResource("BoxShape3D_bvphe")
+debug_color = Color(0.81, 0, 0.013499794, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=1985783658]
 process_mode = 4

@@ -13,6 +13,9 @@ func update(input: InputPackage, delta: float) -> void:
 	pass
 
 func on_enter_state() -> void:
+	var attack_data : AttackData = AttackData.new()
+	attack_data.damage = 10
+	melee_hurtbox.attack_data = attack_data
 	melee_hurtbox.monitoring = true
 
 func on_exit_state() -> void:
