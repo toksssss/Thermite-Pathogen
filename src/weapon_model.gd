@@ -3,8 +3,12 @@ class_name WeaponModel
 
 @onready var player : Player = $"../.."
 
+@export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
+@export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
+@export_group("Melee")
+@export var melee_animator : AnimationPlayer
 @export var melee_hurtbox : Hurtbox
 
 var current_state : WeaponState
@@ -13,7 +17,7 @@ var current_weapon_strategy : WeaponStrategy
 var current_weapon_viewmodel : Node3D
 var marker : Marker3D
 
-var animator : AnimationPlayer
+var weapon_animator : AnimationPlayer
 
 # All state stats here:
 
@@ -29,7 +33,7 @@ func _ready() -> void:
 	#_init_weapon_upgrade()
 
 	_setup_weapon()
-	_setup_animator()
+	_setup_weapon_animator()
 	
 	melee_hurtbox.monitoring = false
 	marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
@@ -60,12 +64,14 @@ func switch_to(new_state: String) -> void:
 	current_state = states[new_state]
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
-	if animator and current_state.animation:
-		animator.play(current_state.animation)
+	if weapon_animator and current_state.weapon_animation:
+		weapon_animator.play(current_state.animation)
+	if current_state.arms_animation:
+		melee_animator.play(current_state.arms_animation)
 
-func _setup_animator() -> void:
-	animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
-	if animator == null:
+func _setup_weapon_animator() -> void:
+	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
+	if weapon_animator == null:
 		push_warning("Weapons AnimationPlayer has not found")
 
 func _setup_weapon() -> void:

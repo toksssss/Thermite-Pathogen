@@ -164,10 +164,11 @@ script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
 
-[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_hurtbox")]
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox")]
 script = ExtResource("11_hai6l")
 initial_weapon_strategy = ExtResource("12_d61i2")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
+melee_animator = NodePath("ArmsAnimator")
 melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
 
 [node name="ArmsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
