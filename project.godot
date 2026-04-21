@@ -110,6 +110,7 @@ btn_melee={
 3d_physics/layer_3="EnemyHitbox"
 3d_physics/layer_4="EnemyHurtBox"
 3d_physics/layer_5="World"
+3d_physics/layer_6="Entity"
 
 [physics]
 

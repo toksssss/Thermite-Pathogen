@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 "
 
 [node name="Dummy" type="StaticBody3D" unique_id=452110114]
-collision_layer = 16
+collision_layer = 36
 collision_mask = 17
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1064920331 node_paths=PackedStringArray("health")]

@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 			material = mesh.material_override
 		BulletDecalPool.spawn_bullet_decal(pt, nrml, obj, global_basis, material)
 		
+		# Или делать допольнительные проверки, или оставлять как есть
+		queue_free()
 	
 	if spawn_pos.distance_to(position) > 100:
 		queue_free()
