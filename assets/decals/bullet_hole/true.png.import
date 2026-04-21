@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2fcl2werop4"
-path="res://.godot/imported/MainFramePixelated.png-34902878f7ea4b234d84e4ac22c9c7c3.ctex"
+uid="uid://c2dxfoyc7638"
+path="res://.godot/imported/true.png-55b422b6d5ddda4dd7f0bf0c865202f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/new folder/MainFramePixelated.png"
-dest_files=["res://.godot/imported/MainFramePixelated.png-34902878f7ea4b234d84e4ac22c9c7c3.ctex"]
+source_file="res://assets/decals/bullet_hole/true.png"
+dest_files=["res://.godot/imported/true.png-55b422b6d5ddda4dd7f0bf0c865202f9.ctex"]
 
 [params]
 

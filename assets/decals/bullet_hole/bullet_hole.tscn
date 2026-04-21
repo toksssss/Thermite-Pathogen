@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bf53dps1xqu60"]
+
+[ext_resource type="Texture2D" uid="uid://c2dxfoyc7638" path="res://assets/decals/bullet_hole/true.png" id="1_s03b3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pi54u"]
+direction = Vector3(0, 1, 0)
+spread = 11.352
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wl8f"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yxxpl"]
+material = SubResource("StandardMaterial3D_4wl8f")
+radius = 0.015
+height = 0.03
+
+[node name="BulletDecal" type="Decal" unique_id=1114215082]
+physics_interpolation_mode = 2
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("1_s03b3")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=406736753]
+emitting = false
+amount = 16
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_pi54u")
+draw_pass_1 = SubResource("CapsuleMesh_yxxpl")

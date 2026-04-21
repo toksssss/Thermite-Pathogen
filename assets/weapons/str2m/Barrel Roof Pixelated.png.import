@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf0hh8fhikxb3"
-path="res://.godot/imported/Barrel Roof Pixelated.png-e2acb9d06fcefcc1cebedac2e3c1997c.ctex"
+path="res://.godot/imported/Barrel Roof Pixelated.png-7a038ff99fec0feb37bdcbf8ec7408b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/new folder/Barrel Roof Pixelated.png"
-dest_files=["res://.godot/imported/Barrel Roof Pixelated.png-e2acb9d06fcefcc1cebedac2e3c1997c.ctex"]
+source_file="res://assets/weapons/str2m/Barrel Roof Pixelated.png"
+dest_files=["res://.godot/imported/Barrel Roof Pixelated.png-7a038ff99fec0feb37bdcbf8ec7408b2.ctex"]
 
 [params]
 

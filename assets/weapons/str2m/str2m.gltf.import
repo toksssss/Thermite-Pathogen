@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b3jirbki2y4ym"
-path="res://.godot/imported/Untitledgtybc.gltf-bf9ed94e63c7fe4928f70f48c3c506cf.scn"
+path="res://.godot/imported/str2m.gltf-6f3192d66f575ce540fcb4e0aab012cc.scn"
 
 [deps]
 
-source_file="res://assets/weapons/new folder/Untitledgtybc.gltf"
-dest_files=["res://.godot/imported/Untitledgtybc.gltf-bf9ed94e63c7fe4928f70f48c3c506cf.scn"]
+source_file="res://assets/weapons/str2m/str2m.gltf"
+dest_files=["res://.godot/imported/str2m.gltf-6f3192d66f575ce540fcb4e0aab012cc.scn"]
 
 [params]
 
