@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b0vef6jxiao6j"]
+
+[ext_resource type="Script" uid="uid://gm7v8m5uowh5" path="res://src/grenade_test.gd" id="1_lide8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_at8f0"]
+bounce = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lide8"]
+albedo_color = Color(0, 0, 0, 1)
+grow_amount = 2.151
+proximity_fade_distance = 5.0
+distance_fade_mode = 3
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gcidc"]
+material = SubResource("StandardMaterial3D_lide8")
+radius = 0.15
+height = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bjoa1"]
+radius = 0.2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_btux2"]
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+flatness = 0.495
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_min = 0.099999994
+scale_max = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_irtu5"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Throwable" type="RigidBody3D" unique_id=849698709]
+collision_layer = 16
+collision_mask = 17
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_at8f0")
+script = ExtResource("1_lide8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1071467817]
+mesh = SubResource("SphereMesh_gcidc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1007873172]
+shape = SubResource("SphereShape3D_bjoa1")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1608363710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21274494, 0)
+amount = 32
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_btux2")
+draw_pass_1 = SubResource("BoxMesh_irtu5")

@@ -26,6 +26,12 @@
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
+size = Vector3(0.65618896, 0.4678192, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y54wj"]
+size = Vector3(0.8, 0.8, 0.8)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bqul"]
@@ -33,12 +39,6 @@ height = 1.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
 height = 1.9985352
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
-size = Vector3(0.65618896, 0.4678192, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y54wj"]
-size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
@@ -59,45 +59,12 @@ script = ExtResource("2_h6syq")
 [node name="Visuals" parent="." unique_id=314601792 instance=ExtResource("2_tb4ck")]
 visible = false
 
-[node name="StandCollider" type="CollisionShape3D" parent="." unique_id=1917109621]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_j84mu")
-
-[node name="CrouchCollider" type="CollisionShape3D" parent="." unique_id=690505481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649, 0)
-shape = SubResource("CapsuleShape3D_5bqul")
-disabled = true
-debug_color = Color(0.9727394, 0, 0.44225875, 0.41960785)
-
-[node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
-target_position = Vector3(0, 2, 0)
-collision_mask = 255
-debug_shape_custom_color = Color(1, 0, 0.016666412, 1)
-debug_shape_thickness = 1
-
 [node name="Model" type="Node3D" parent="." unique_id=1361034799 node_paths=PackedStringArray("head_checker", "states_group")]
 script = ExtResource("2_v2miy")
 head_checker = NodePath("../HeadCollidingRaycast")
 states_group = NodePath("States")
 base_speed = 15.0
 slide_speed_multiplier = 1.5
-
-[node name="Hitbox" type="Area3D" parent="Model" unique_id=1363708466 node_paths=PackedStringArray("health")]
-collision_mask = 2
-script = ExtResource("5_apuko")
-health = NodePath("../Health")
-metadata/_custom_type_script = "uid://br8duwo3s26f0"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Hitbox" unique_id=1388031248]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9973947, 0)
-shape = SubResource("CapsuleShape3D_u5y8p")
-
-[node name="Health" type="Node" parent="Model" unique_id=904618511]
-script = ExtResource("5_4t7cd")
-
-[node name="HeadMovement" type="Node" parent="Model" unique_id=200095077 node_paths=PackedStringArray("camera")]
-script = ExtResource("7_q1ug7")
-camera = NodePath("../../Head/Camera3D")
 
 [node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
 unique_name_in_owner = true
@@ -163,10 +130,37 @@ mesh = SubResource("BoxMesh_y54wj")
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, -0.76993966)
 
-[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
+[node name="StandCollider" type="CollisionShape3D" parent="." unique_id=1917109621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_j84mu")
+
+[node name="CrouchCollider" type="CollisionShape3D" parent="." unique_id=690505481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649, 0)
+shape = SubResource("CapsuleShape3D_5bqul")
+disabled = true
+debug_color = Color(0.9727394, 0, 0.44225875, 0.41960785)
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1363708466 node_paths=PackedStringArray("health")]
+collision_mask = 2
+script = ExtResource("5_apuko")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://br8duwo3s26f0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1388031248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9973947, 0)
+shape = SubResource("CapsuleShape3D_u5y8p")
+
+[node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
+target_position = Vector3(0, 2, 0)
+collision_mask = 255
+debug_shape_custom_color = Color(1, 0, 0.016666412, 1)
+debug_shape_thickness = 1
+
+[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway", "grenade")]
 script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
+grenade = NodePath("")
 
 [node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
 script = ExtResource("11_hai6l")
@@ -196,6 +190,13 @@ script = ExtResource("16_yx3jh")
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
+
+[node name="Health" type="Node" parent="." unique_id=904618511]
+script = ExtResource("5_4t7cd")
+
+[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_q1ug7")
+camera = NodePath("../Head/Camera3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
 

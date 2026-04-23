@@ -28,6 +28,5 @@ func sway(strategy: WeaponStrategy, input: InputPackage, delta: float) -> void:
 	temp_rotation.y = lerp(temp_rotation.y, stats.rotation.y + 
 	(mouse_movement.x * stats.sway_amount_rotation) * delta, stats.sway_speed_rotation)
 	
-	
 	model.current_weapon_viewmodel.position = temp_position
 	model.current_weapon_viewmodel.rotation_degrees = temp_rotation

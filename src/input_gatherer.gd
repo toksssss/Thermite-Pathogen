@@ -33,7 +33,12 @@ func gather_input() -> InputPackage:
 	if new_input.actions.is_empty():
 		new_input.actions.append("idle")
 	
-	# Combat actions:
+	# Secondary actions (heal, throw item etc.):
+	
+	if Input.is_action_just_pressed("btn_throw"):
+		new_input.secondary_actions.append("throw")
+	
+	# Combat actions (Main weapon):
 	
 	if Input.is_action_just_pressed("btn_attack"):
 		new_input.combat_actions.append("fire")

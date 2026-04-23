@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player : Player = $"../.."
+@onready var player : Player = $".."
 @export var camera : Camera3D
 @onready var stand_head_height : float = player.head.position.y
 
