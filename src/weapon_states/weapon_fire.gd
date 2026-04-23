@@ -1,6 +1,6 @@
 extends WeaponState
 
-const ANIMATION_END : float = 0.1333
+const ANIMATION_END : float = 0.5417
 
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:

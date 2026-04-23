@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="1_tltf5"]
 [ext_resource type="Script" uid="uid://c1fgobbs18xn1" path="res://src/weapon_strategy.gd" id="2_nrf3p"]
 [ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_resource.gd" id="3_2jbk6"]
-[ext_resource type="PackedScene" uid="uid://b8vm70qgnfxfi" path="res://assets/weapons/str2m/str_2m.tscn" id="4_tltf5"]
+[ext_resource type="PackedScene" uid="uid://dgandf74eclau" path="res://assets/weapons/str2m/str_2m.tscn" id="4_tltf5"]
 
 [sub_resource type="Resource" id="Resource_4t7cd"]
 script = ExtResource("3_2jbk6")
@@ -11,8 +11,7 @@ name = "test"
 damage = 10.0
 speed = 100.0
 weapon_scene = ExtResource("4_tltf5")
-position = Vector3(1.015, -0.83, -1.73)
-rotation = Vector3(0, 180, 0)
+position = Vector3(0.6949196, -1, -2)
 sway_amount_position = 0.3
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2fcl2werop4"
-path="res://.godot/imported/MainFramePixelated.png-6bda08a411b3f1704f4d617457bb5acd.ctex"
+uid="uid://ccqf058t6wca7"
+path="res://.godot/imported/Mag_painter.jpg-739d319846ea3ec741df136a3f2ba24f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/str2m/MainFramePixelated.png"
-dest_files=["res://.godot/imported/MainFramePixelated.png-6bda08a411b3f1704f4d617457bb5acd.ctex"]
+source_file="res://assets/weapons/str2m/Mag_painter.jpg"
+dest_files=["res://.godot/imported/Mag_painter.jpg-739d319846ea3ec741df136a3f2ba24f.ctex"]
 
 [params]
 

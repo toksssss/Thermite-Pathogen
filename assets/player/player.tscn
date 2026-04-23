@@ -26,6 +26,9 @@
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
+font_size = 34
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
 size = Vector3(0.65618896, 0.4678192, 1)
 
@@ -40,9 +43,6 @@ height = 1.3
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
 height = 1.9985352
 
-[sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
-font_size = 34
-
 [node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision") groups=["player"]]
 collision_mask = 49
 script = ExtResource("1_d6veg")
@@ -52,6 +52,36 @@ weapon = NodePath("Weapon")
 head = NodePath("Head")
 stand_collision = NodePath("StandCollider")
 crouch_collision = NodePath("CrouchCollider")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=454614360]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_4t7cd")
+stretch_mode = 2
+
+[node name="DevLabel" type="Label" parent="CanvasLayer" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Velocity"
+label_settings = SubResource("LabelSettings_q1ug7")
+script = ExtResource("22_5bqul")
+model = NodePath("../../Model")
+weapon = NodePath("../../Weapon/Model")
+player = NodePath("../..")
 
 [node name="Input" type="Node" parent="." unique_id=1637412369]
 script = ExtResource("2_h6syq")
@@ -130,6 +160,16 @@ mesh = SubResource("BoxMesh_y54wj")
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, -0.76993966)
 
+[node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
+target_position = Vector3(0, 2, 0)
+collision_mask = 255
+debug_shape_custom_color = Color(1, 0, 0.016666412, 1)
+debug_shape_thickness = 1
+
+[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_q1ug7")
+camera = NodePath("../Head/Camera3D")
+
 [node name="StandCollider" type="CollisionShape3D" parent="." unique_id=1917109621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_j84mu")
@@ -150,17 +190,13 @@ metadata/_custom_type_script = "uid://br8duwo3s26f0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9973947, 0)
 shape = SubResource("CapsuleShape3D_u5y8p")
 
-[node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
-target_position = Vector3(0, 2, 0)
-collision_mask = 255
-debug_shape_custom_color = Color(1, 0, 0.016666412, 1)
-debug_shape_thickness = 1
+[node name="Health" type="Node" parent="." unique_id=904618511]
+script = ExtResource("5_4t7cd")
 
-[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway", "grenade")]
+[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
 script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
-grenade = NodePath("")
 
 [node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
 script = ExtResource("11_hai6l")
@@ -184,46 +220,14 @@ script = ExtResource("12_vlpqo")
 
 [node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
 script = ExtResource("15_d61i2")
+weapon_animation = "str_reload"
 
 [node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
 script = ExtResource("16_yx3jh")
+weapon_animation = "str_shoot_anim"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
+weapon_animation = "str_melee_text_anim"
 
-[node name="Health" type="Node" parent="." unique_id=904618511]
-script = ExtResource("5_4t7cd")
-
-[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
-script = ExtResource("7_q1ug7")
-camera = NodePath("../Head/Camera3D")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=454614360]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16_4t7cd")
-stretch_mode = 2
-
-[node name="DevLabel" type="Label" parent="CanvasLayer" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Velocity"
-label_settings = SubResource("LabelSettings_q1ug7")
-script = ExtResource("22_5bqul")
-model = NodePath("../../Model")
-weapon = NodePath("../../Weapon/Model")
-player = NodePath("../..")
+[node name="Abilities" type="Node" parent="." unique_id=1692119669]
