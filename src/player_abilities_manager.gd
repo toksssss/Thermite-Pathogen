@@ -30,5 +30,6 @@ func try_to_use_ability(input: InputPackage) -> void:
 	if input.ability_actions.has("ability_4"):
 		abilities[3].apply_strategy(player)
 
+@warning_ignore("unused_parameter")
 func _on_ability_changed(ability: PlayerAbilityStrategy) -> void:
 	pass
