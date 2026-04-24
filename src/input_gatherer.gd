@@ -39,6 +39,9 @@ func gather_input() -> InputPackage:
 		new_input.secondary_actions.append("throw")
 	
 	# Ability actions (hotbar):
+	if Input.is_action_just_pressed("btn_ability_prime"):
+		new_input.ability_actions.append("ability_prime")
+	
 	if Input.is_action_just_pressed("btn_ability_1"):
 		new_input.ability_actions.append("ability_1")
 

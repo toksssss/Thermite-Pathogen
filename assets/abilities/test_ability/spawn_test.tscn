@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cspyvjbjv8nod"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfeck"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jre8m"]
+material = SubResource("StandardMaterial3D_mfeck")
+size = Vector3(4.575, 4.325, 4.365)
+
+[node name="SpawnTest" type="Node3D" unique_id=419776887]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=816243655]
+mesh = SubResource("BoxMesh_jre8m")

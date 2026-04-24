@@ -11,7 +11,7 @@ name = "test"
 damage = 10.0
 speed = 100.0
 weapon_scene = ExtResource("4_tltf5")
-position = Vector3(0.6949196, -1, -2)
+position = Vector3(1.4, -1.6, -2.5)
 sway_amount_position = 0.3
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 

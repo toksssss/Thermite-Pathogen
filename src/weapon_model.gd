@@ -1,3 +1,4 @@
+#@tool
 extends Node3D
 class_name WeaponModel
 
@@ -5,6 +6,10 @@ class_name WeaponModel
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
+	#set(v):
+		#initial_weapon_strategy = v
+		#if Engine.is_editor_hint():
+			#_setup_weapon()
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
 @export_group("Melee")

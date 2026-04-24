@@ -25,6 +25,9 @@
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
+[ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
+[ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
+[ext_resource type="Script" uid="uid://b25b7ep4tmcor" path="res://src/player_abilities/behaviors/active_ability.gd" id="27_v1qdb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
@@ -43,7 +46,16 @@ height = 1.3
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
 height = 1.9985352
 
-[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision") groups=["player"]]
+[sub_resource type="Resource" id="Resource_awgyn"]
+script = ExtResource("27_v1qdb")
+metadata/_custom_type_script = "uid://b25b7ep4tmcor"
+
+[sub_resource type="Resource" id="Resource_v1qdb"]
+script = ExtResource("27_82wjp")
+behavior = SubResource("Resource_awgyn")
+metadata/_custom_type_script = "uid://csne0jq35eaxq"
+
+[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision", "abilities_manager") groups=["player"]]
 collision_mask = 49
 script = ExtResource("1_d6veg")
 input_gatherer = NodePath("Input")
@@ -52,6 +64,7 @@ weapon = NodePath("Weapon")
 head = NodePath("Head")
 stand_collision = NodePath("StandCollider")
 crouch_collision = NodePath("CrouchCollider")
+abilities_manager = NodePath("Abilities")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
 
@@ -231,3 +244,6 @@ script = ExtResource("23_bvphe")
 weapon_animation = "str_melee_text_anim"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
+script = ExtResource("26_h1x7r")
+starting_ability = SubResource("Resource_v1qdb")
+abilities = Array[ExtResource("27_82wjp")]([null, null, null, null])

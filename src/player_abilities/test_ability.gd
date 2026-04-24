@@ -2,4 +2,4 @@ extends BasePlayerAbilityStrategy
 class_name TestAbility
 
 func apply_strategy(player: Player) -> void:
-	pass
+	print_debug("Applied TestAbility strategy")

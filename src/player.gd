@@ -7,6 +7,7 @@ class_name Player
 @export var head : PlayerHead
 @export var stand_collision : CollisionShape3D
 @export var crouch_collision : CollisionShape3D
+@export var abilities_manager : PlayerAbilitiesManager
 
 # flags
 var is_crouching : bool = false
@@ -15,3 +16,4 @@ func _physics_process(delta: float) -> void:
 	var input : InputPackage = input_gatherer.gather_input()
 	model.update(input, delta)
 	weapon.update(input, delta)
+	abilities_manager.try_to_use_ability(input)
