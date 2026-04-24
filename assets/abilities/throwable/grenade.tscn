@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b0vef6jxiao6j"]
 
 [ext_resource type="Script" uid="uid://cnhw0t3mqx6jj" path="res://src/grenade.gd" id="1_7h17y"]
+[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="2_12tq6"]
+[ext_resource type="Shader" uid="uid://131ucs6qalu5" path="res://assets/materials/shaders/texture.gdshader" id="3_tnyal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_at8f0"]
 bounce = 0.2
@@ -34,13 +36,28 @@ scale_max = 1.5
 [sub_resource type="BoxMesh" id="BoxMesh_irtu5"]
 size = Vector3(0.05, 0.05, 0.05)
 
-[node name="Grenade" type="RigidBody3D" unique_id=849698709 node_paths=PackedStringArray("particles")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_tnyal"]
+radius = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12tq6"]
+render_priority = 0
+shader = ExtResource("3_tnyal")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tnyal"]
+material = SubResource("ShaderMaterial_12tq6")
+radius = 2.0
+height = 4.0
+
+[node name="Grenade" type="RigidBody3D" unique_id=849698709 node_paths=PackedStringArray("particles", "mesh", "debug_mesh", "hurtbox")]
 collision_layer = 0
-collision_mask = 16
+collision_mask = 20
 mass = 0.2
 physics_material_override = SubResource("PhysicsMaterial_at8f0")
 script = ExtResource("1_7h17y")
 particles = NodePath("GPUParticles3D")
+mesh = NodePath("MeshInstance3D")
+debug_mesh = NodePath("DebugHurtBox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1071467817]
 mesh = SubResource("SphereMesh_gcidc")
@@ -57,3 +74,16 @@ explosiveness = 1.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_btux2")
 draw_pass_1 = SubResource("BoxMesh_irtu5")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1311838406]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_12tq6")
+metadata/_custom_type_script = "uid://dr25kpbbuggri"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1769852574]
+shape = SubResource("SphereShape3D_tnyal")
+
+[node name="DebugHurtBox" type="MeshInstance3D" parent="." unique_id=497489362]
+visible = false
+mesh = SubResource("SphereMesh_tnyal")
