@@ -1,3 +1,4 @@
+#@tool
 extends Node3D
 class_name WeaponModel
 
@@ -5,6 +6,10 @@ class_name WeaponModel
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
+	#set(v):
+		#initial_weapon_strategy = v
+		#if Engine.is_editor_hint():
+			#_setup_weapon()
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
 @export_group("Melee")
@@ -66,7 +71,7 @@ func switch_to(new_state: String) -> void:
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
 	if weapon_animator and current_state.weapon_animation:
-		weapon_animator.play(current_state.animation)
+		weapon_animator.play(current_state.weapon_animation)
 	if current_state.arms_animation:
 		melee_animator.play(current_state.arms_animation)
 

@@ -2,6 +2,7 @@ extends Marker3D
 class_name PlayerHead
 
 @export var player : Player
+@export var marker : Marker3D
 @onready var camera : Camera3D = $Camera3D
 
 @export_category("Settings")
