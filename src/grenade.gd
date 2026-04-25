@@ -10,7 +10,9 @@ class_name Grenade
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered, CONNECT_ONE_SHOT)
-	particles.finished.connect(_on_partice_finished, CONNECT_ONE_SHOT)
+	particles.finished.connect(func() -> void: queue_free())
+	
+	create_attack_data()
 	
 	hurtbox.monitoring = false
 
@@ -18,18 +20,17 @@ func _on_body_entered(_body: Node) -> void:
 	explode()
 
 func explode() -> void:
-	particles.restart()
 	hurtbox.monitoring = true
+	
+	particles.restart()
 	debug_mesh.visible = true
 	mesh_node.visible = false
+	freeze = true
 
 func create_attack_data() -> void:
 	var attack_data := AttackData.new()
 	attack_data.damage = damage
 	hurtbox.attack_data = attack_data
-
-func _on_partice_finished() -> void:
-	queue_free()
 
 func _enter_tree() -> void:
 	apply_impulse(force)
