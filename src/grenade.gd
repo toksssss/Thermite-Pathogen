@@ -9,15 +9,12 @@ class_name Grenade
 @export var damage : float = 30.0
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered, CONNECT_ONE_SHOT)
-	particles.finished.connect(func() -> void: queue_free())
+	body_entered.connect(func(_x): explode())
+	particles.finished.connect(func(): queue_free())
 	
 	create_attack_data()
 	
 	hurtbox.monitoring = false
-
-func _on_body_entered(_body: Node) -> void:
-	explode()
 
 func explode() -> void:
 	hurtbox.monitoring = true
