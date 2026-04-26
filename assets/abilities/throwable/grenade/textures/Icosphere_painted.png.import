@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wjlc54aaox1m"
-path="res://.godot/imported/Icosphere_uv.png-ee1ba4e7bb7e60d055a482962af52d58.ctex"
+uid="uid://da1ui6506mbgb"
+path="res://.godot/imported/Icosphere_painted.png-31e9b18552d69f255af42df43f6b0f23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/throwable/grenade/Icosphere_uv.png"
-dest_files=["res://.godot/imported/Icosphere_uv.png-ee1ba4e7bb7e60d055a482962af52d58.ctex"]
+source_file="res://assets/abilities/throwable/grenade/textures/Icosphere_painted.png"
+dest_files=["res://.godot/imported/Icosphere_painted.png-31e9b18552d69f255af42df43f6b0f23.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyb2d3qyw1kjd"
-path="res://.godot/imported/Grenadeframe_uv.png-5655c7fc824be37ba74793a49af9b4a1.ctex"
+uid="uid://cgb3qe7ef4pwy"
+path="res://.godot/imported/Grenadeframe_uv.png-d74e8bd91c5ced45bff12afbf5f3d810.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/throwable/grenade/Grenadeframe_uv.png"
-dest_files=["res://.godot/imported/Grenadeframe_uv.png-5655c7fc824be37ba74793a49af9b4a1.ctex"]
+source_file="res://assets/abilities/throwable/grenade/textures/Grenadeframe_uv.png"
+dest_files=["res://.godot/imported/Grenadeframe_uv.png-d74e8bd91c5ced45bff12afbf5f3d810.ctex"]
 
 [params]
 

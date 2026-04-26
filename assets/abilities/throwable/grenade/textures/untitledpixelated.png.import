@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc203eu60nxkd"
-path="res://.godot/imported/untitledpixelated.png-213e7a307b37da87c0f718ca7deab66d.ctex"
+uid="uid://76733bnwvto0"
+path="res://.godot/imported/untitledpixelated.png-f519afe329366532e7e476e07527f8b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/throwable/grenade/untitledpixelated.png"
-dest_files=["res://.godot/imported/untitledpixelated.png-213e7a307b37da87c0f718ca7deab66d.ctex"]
+source_file="res://assets/abilities/throwable/grenade/textures/untitledpixelated.png"
+dest_files=["res://.godot/imported/untitledpixelated.png-f519afe329366532e7e476e07527f8b9.ctex"]
 
 [params]
 

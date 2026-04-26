@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
 [ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
-[ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/throw_grenade_ability.tres" id="27_v1qdb"]
+[ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
