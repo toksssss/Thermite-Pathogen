@@ -2,8 +2,13 @@
 extends Node
 class_name EnemiesState
 
+var npc : CharacterBody3D
+var player : Player
+var navigation_agent : NavigationAgent3D
+
+
 @warning_ignore("unused_signal")
-signal transitioned
+signal transitioned(state: EnemiesState, new_state_name: String)
 
 func enter() -> void:
 	pass

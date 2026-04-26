@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs52cxd4sccvv" path="res://assets/decals/grid.png" id="2_k5mrd"]
 [ext_resource type="Texture2D" uid="uid://etq0717mjqoj" path="res://assets/decals/range.png" id="2_lv126"]
 [ext_resource type="PackedScene" uid="uid://td1pq7fpxsln" path="res://assets/ememies/dummy/dummy.tscn" id="5_yti63"]
+[ext_resource type="PackedScene" uid="uid://yo2obebee2te" path="res://assets/ememies/nav_test/nav_ai.tscn" id="6_xajwi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5mrd"]
 albedo_texture = ExtResource("2_k5mrd")
@@ -18,14 +19,14 @@ size = Vector2(300, 300)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xch4i"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j84mu"]
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_k5mrd"]
 size = Vector3(8, 8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xch4i"]
 size = Vector3(8, 8, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j84mu"]
-albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xch4i"]
 size = Vector3(8, 8, 1)
@@ -35,6 +36,13 @@ size = Vector3(5.24, 1, 3.735)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lv126"]
 size = Vector3(5.203186, 1, 3.7277832)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_dg683"]
+vertices = PackedVector3Array(-3.501709, 3, -9.75, -3.501709, 3, -3.5, 3.748291, 3, -3.5, 3.748291, 3, -9.75, -11.001709, 1, -4.5, -4.501709, 1, -4.5, -4.501709, 1, -9.5, -11.001709, 1, -9.5, -4.251709, 1, -2.25, -11.001709, 1, 9.5, 7.998291, 1, -9.5, 4.748291, 1, -9.5, 4.498291, 1, -2.25, 7.998291, 1, 9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(5, 8, 4), PackedInt32Array(4, 8, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(12, 13, 8), PackedInt32Array(8, 13, 9)]
+agent_height = 2.0
+edge_max_length = 2.0
+edge_max_error = 3.0
 
 [node name="Main" type="Node3D" unique_id=1934239975]
 
@@ -66,18 +74,6 @@ mesh = SubResource("PlaneMesh_lv126")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Floor" unique_id=1430992356]
 shape = SubResource("WorldBoundaryShape3D_xch4i")
 
-[node name="Wall" type="StaticBody3D" parent="Objects" unique_id=78569720]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -11)
-collision_layer = 16
-collision_mask = 31
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Wall" unique_id=1503000720]
-mesh = SubResource("BoxMesh_k5mrd")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall" unique_id=1686191987]
-shape = SubResource("BoxShape3D_xch4i")
-
 [node name="Wall8" type="StaticBody3D" parent="Objects" unique_id=1686990744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.27652, 4, -11)
 collision_layer = 16
@@ -89,18 +85,6 @@ material_override = SubResource("StandardMaterial3D_j84mu")
 mesh = SubResource("BoxMesh_k5mrd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall8" unique_id=757412020]
-shape = SubResource("BoxShape3D_xch4i")
-
-[node name="Wall7" type="StaticBody3D" parent="Objects" unique_id=707627780]
-transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, -1, 0, 1, 2.9802322e-08, 0, 2.148305, -7)
-collision_layer = 16
-collision_mask = 31
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Wall7" unique_id=1854613802]
-mesh = SubResource("BoxMesh_k5mrd")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall7" unique_id=887933261]
 shape = SubResource("BoxShape3D_xch4i")
 
 [node name="Wall2" type="StaticBody3D" parent="Objects" unique_id=2009442299]
@@ -227,3 +211,41 @@ font_size = 145
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1321210081]
 transform = Transform3D(0.0627905, 0, -0.9980267, 0, 1, 0, 0.9980267, 0, 0.0627905, -0.165, 1.77, 0.245)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=233152063]
+navigation_mesh = SubResource("NavigationMesh_dg683")
+metadata/_edit_group_ = true
+
+[node name="Wall" type="StaticBody3D" parent="NavigationRegion3D" unique_id=78569720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -11)
+collision_layer = 16
+collision_mask = 31
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall" unique_id=1503000720]
+mesh = SubResource("BoxMesh_k5mrd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall" unique_id=1686191987]
+shape = SubResource("BoxShape3D_xch4i")
+
+[node name="Wall7" type="StaticBody3D" parent="NavigationRegion3D" unique_id=707627780]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, -1, 0, 1, 2.9802322e-08, 0, 2.148305, -7)
+collision_layer = 16
+collision_mask = 31
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall7" unique_id=1854613802]
+mesh = SubResource("BoxMesh_k5mrd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall7" unique_id=887933261]
+shape = SubResource("BoxShape3D_xch4i")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=182486274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.501709, 0, 0)
+use_collision = true
+collision_layer = 16
+collision_mask = 255
+size = Vector3(20, 1, 20)
+
+[node name="NavAI" parent="." unique_id=1500583793 instance=ExtResource("6_xajwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6000643, 0)
