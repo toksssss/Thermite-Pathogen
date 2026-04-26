@@ -2,7 +2,7 @@ extends Move
 
 @export var jump_velocity : float = 4.5
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_relevance(input: InputPackage) -> String:
 	if player.is_on_floor():
@@ -17,7 +17,7 @@ func update(input: InputPackage, delta: float) -> void:
 func on_enter_state() -> void:
 	player.velocity.y += jump_velocity
 
-func velocity_by_input(input, delta) -> Vector3:
+func velocity_by_input(input: InputPackage, delta: float) -> Vector3:
 	var direction : Vector3 = (player.global_transform.basis * 
 	Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
 	var temp_vel : Vector3 = player.velocity

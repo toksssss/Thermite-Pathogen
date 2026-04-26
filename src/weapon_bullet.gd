@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:
 		var pt : Vector3 = collision.get_position()
 		var material : Material
 		if obj is StaticBody3D:
-			var mesh : MeshInstance3D = obj.get_node("MeshInstance3D")
+			var mesh : MeshInstance3D = (obj as Node).get_node("MeshInstance3D")
 			material = mesh.material_override
-		BulletDecalPool.spawn_bullet_decal(pt, nrml, obj, global_basis, material)
+		BulletDecalPool.spawn_bullet_decal(pt, nrml, obj as Node3D, global_basis, material)
 		
 		# Или делать допольнительные проверки, или оставлять как есть
 		queue_free()

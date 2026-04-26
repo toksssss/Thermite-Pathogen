@@ -7,7 +7,7 @@ static var decal_pool : Array[Decal] = []
 static var decal_scene : PackedScene = preload("res://assets/decals/bullet_hole/bullet_hole.tscn")
 
 static func spawn_bullet_decal(global_pos : Vector3, normal: Vector3, 
-parent: Node3D, bullet_basis : Basis, material_override : Material = null, texture_override = null) -> void:
+parent: Node3D, bullet_basis : Basis, material_override : Material = null, texture_override : Texture2D = null) -> void:
 	var decal_instance : Decal
 	if decal_pool.size() >= MAX_BULLET_DECALS and is_instance_valid(decal_pool[0]):
 		decal_instance = decal_pool.pop_front()

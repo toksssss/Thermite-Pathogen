@@ -1,6 +1,6 @@
 extends Move
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_relevance(input: InputPackage) -> String:
 	if player.is_on_floor():
@@ -14,8 +14,8 @@ func update(input: InputPackage, delta: float) -> void:
 	player.move_and_slide()
 
 @warning_ignore("unused_parameter")
-func velocity_by_input(input, delta) -> Vector3:
-	var new_velocity = player.velocity
+func velocity_by_input(input : InputPackage, delta: float) -> Vector3:
+	var new_velocity : Vector3 = player.velocity
 	new_velocity.y -= gravity * delta
 
 	return new_velocity
