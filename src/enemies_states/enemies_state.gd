@@ -2,6 +2,8 @@
 extends Node
 class_name EnemiesState
 
+#var disabled: bool
+
 var npc : CharacterBody3D
 var player : Player
 var navigation_agent : NavigationAgent3D

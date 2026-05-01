@@ -13,6 +13,10 @@ func physics_update(_delta: float) -> void:
 	if !npc:
 		return
 	
+	#var distance := player.global_position - npc.global_position
+	#if distance.length() <= 20:
+		#transitioned.emit(self, "follow")
+	
 	if navigation_agent.is_navigation_finished():
 		npc.velocity = Vector3.ZERO
 		_randomize_wander()
