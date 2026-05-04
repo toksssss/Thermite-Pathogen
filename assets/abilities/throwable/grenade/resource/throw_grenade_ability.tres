@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PlayerAbilityStrategy" format=3 uid="uid://dnu1gvujv8iqe"]
+
+[ext_resource type="PackedScene" uid="uid://b0vef6jxiao6j" path="res://assets/abilities/throwable/grenade/grenade.tscn" id="1_av5qk"]
+[ext_resource type="Script" uid="uid://b5k60qbhlheas" path="res://src/player_abilities/behaviors/throw_ability.gd" id="2_syvli"]
+[ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="3_b6yxm"]
+
+[sub_resource type="Resource" id="Resource_xhr4e"]
+script = ExtResource("2_syvli")
+item_scene = ExtResource("1_av5qk")
+metadata/_custom_type_script = "uid://b5k60qbhlheas"
+
+[resource]
+script = ExtResource("3_b6yxm")
+behavior = SubResource("Resource_xhr4e")
+metadata/_custom_type_script = "uid://csne0jq35eaxq"

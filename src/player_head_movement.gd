@@ -31,10 +31,10 @@ func check_crouching(delta: float) -> void:
 		temp_head_height = lerp(temp_head_height, stand_head_height, delta * lerp_time)
 	player.head.position.y = temp_head_height
 
-func calculate_view_offset(_delta) -> void:
-	var velocity = player.velocity
+func calculate_view_offset(_delta: float) -> void:
+	var velocity : Vector3 = player.velocity
 	
-	var angles = Vector3.ZERO
+	var angles : Vector3 = Vector3.ZERO
 	
 	if enable_tilt:
 		var forward : Vector3 = camera.global_transform.basis.z

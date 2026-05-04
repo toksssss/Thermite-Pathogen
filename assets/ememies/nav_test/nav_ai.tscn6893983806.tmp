@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://yo2obebee2te"]
+
+[ext_resource type="Script" uid="uid://l5l6ytwi55ys" path="res://src/enemies_state_machine.gd" id="1_6dkss"]
+[ext_resource type="Script" uid="uid://djhi0axi7fe76" path="res://src/enemies_states/nav_test/idle.gd" id="2_cjg1s"]
+
+[sub_resource type="GDScript" id="GDScript_trl0x"]
+resource_name = "nav_test_enemy"
+script/source = "extends CharacterBody3D
+
+var gravity : float = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+
+func _physics_process(delta: float) -> void:
+	if !is_on_floor():
+		velocity.y -= gravity
+	move_and_slide()
+
+func _on_velocity_computed(vel: Vector3) -> void:
+	velocity.x = vel.x
+	velocity.z = vel.z
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dkss"]
+size = Vector3(1, 1.96875, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttjxv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a0vu8"]
+material = SubResource("StandardMaterial3D_ttjxv")
+
+[node name="NavAI" type="CharacterBody3D" unique_id=1500583793]
+collision_layer = 4
+collision_mask = 255
+script = SubResource("GDScript_trl0x")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=12481611]
+path_desired_distance = 0.5
+target_desired_distance = 0.6
+avoidance_enabled = true
+radius = 2.0
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=775229017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0085238, 0)
+shape = SubResource("BoxShape3D_6dkss")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1298809117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0055941, 0)
+mesh = SubResource("CapsuleMesh_a0vu8")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=493535206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2182126, 0)
+billboard = 1
+text = "NavigationTest"
+
+[node name="StateMachine" type="Node" parent="." unique_id=122063946 node_paths=PackedStringArray("initial_state", "npc", "navigation_agent")]
+script = ExtResource("1_6dkss")
+initial_state = NodePath("Idle")
+npc = NodePath("..")
+navigation_agent = NodePath("../NavigationAgent3D")
+metadata/_custom_type_script = "uid://l5l6ytwi55ys"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1089313761]
+script = ExtResource("2_cjg1s")

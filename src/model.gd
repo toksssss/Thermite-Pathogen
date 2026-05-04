@@ -63,7 +63,7 @@ func switch_to(state: String, delta: float) -> void:
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	# Скорее всего надо будет переделать
-	for strategy : BaseMovementStrategy in v.values:
+	for strategy : BaseMovementStrategy in v.value:
 		strategy.apply_upgrade(self)
 
 func _init_movement_upgrade() -> void:
