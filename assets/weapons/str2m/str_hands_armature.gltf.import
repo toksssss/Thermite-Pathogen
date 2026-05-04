@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cktlhmj063vib"
-path="res://.godot/imported/STR02M_anims.gltf-24f2bac49151f797fddd5085a8dd39e0.scn"
+uid="uid://c131na0vky231"
+path="res://.godot/imported/str_hands_armature.gltf-9269f0ed1bb70d3cd5c763b732fad9bc.scn"
 
 [deps]
 
-source_file="res://assets/weapons/str2m/STR02M_anims.gltf"
-dest_files=["res://.godot/imported/STR02M_anims.gltf-24f2bac49151f797fddd5085a8dd39e0.scn"]
+source_file="res://assets/weapons/str2m/str_hands_armature.gltf"
+dest_files=["res://.godot/imported/str_hands_armature.gltf-9269f0ed1bb70d3cd5c763b732fad9bc.scn"]
 
 [params]
 
@@ -18,7 +18,7 @@ nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
-nodes/import_as_skeleton_bones=false
+nodes/import_as_skeleton_bones=true
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true

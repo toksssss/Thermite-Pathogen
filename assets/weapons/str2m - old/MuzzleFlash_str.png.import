@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i2fcl2werop4"
-path="res://.godot/imported/MainFramePixelated.png-dc5b385d9d817925b292fbe16bb78b09.ctex"
+uid="uid://djqnrv28s45u4"
+path="res://.godot/imported/MuzzleFlash_str.png-ecaa53fbda5fe6222cd945e85f3bc834.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/str2m-old/MainFramePixelated.png"
-dest_files=["res://.godot/imported/MainFramePixelated.png-dc5b385d9d817925b292fbe16bb78b09.ctex"]
+source_file="res://assets/weapons/str2m - old/MuzzleFlash_str.png"
+dest_files=["res://.godot/imported/MuzzleFlash_str.png-ecaa53fbda5fe6222cd945e85f3bc834.ctex"]
 
 [params]
 

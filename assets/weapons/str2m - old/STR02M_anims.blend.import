@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bmrk0wi8qcbkq"
-path="res://.godot/imported/STR02M_anims.blend-42b8e74a9ed711f908afee29be2564d4.scn"
+path="res://.godot/imported/STR02M_anims.blend-ab161ddb8dcf97a634f34fa686a49c4d.scn"
 
 [deps]
 
-source_file="res://assets/weapons/str2m/STR02M_anims.blend"
-dest_files=["res://.godot/imported/STR02M_anims.blend-42b8e74a9ed711f908afee29be2564d4.scn"]
+source_file="res://assets/weapons/str2m - old/STR02M_anims.blend"
+dest_files=["res://.godot/imported/STR02M_anims.blend-ab161ddb8dcf97a634f34fa686a49c4d.scn"]
 
 [params]
 

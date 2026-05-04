@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
-[ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
+[ext_resource type="Script" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
 [ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
 
@@ -91,7 +91,7 @@ player = NodePath("../..")
 script = ExtResource("2_h6syq")
 
 [node name="Visuals" parent="." unique_id=314601792 instance=ExtResource("2_tb4ck")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0018717, 0)
 
 [node name="Model" type="Node3D" parent="." unique_id=1361034799 node_paths=PackedStringArray("head_checker", "states_group")]
 script = ExtResource("2_v2miy")
@@ -225,15 +225,15 @@ script = ExtResource("12_vlpqo")
 
 [node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
 script = ExtResource("15_d61i2")
-weapon_animation = "str_reload"
+weapon_animation = "str_anim_reload"
 
 [node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
 script = ExtResource("16_yx3jh")
-weapon_animation = "str_shoot_anim"
+weapon_animation = "str_anim_shoot"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
-weapon_animation = "str_melee_text_anim"
+weapon_animation = "str_anim_melee"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
 script = ExtResource("26_h1x7r")

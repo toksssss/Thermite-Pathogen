@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djqnrv28s45u4"
-path="res://.godot/imported/MuzzleFlash_str.png-9f316c19b6214916506134742a3ac937.ctex"
+uid="uid://f2bqaqnw8te3"
+path="res://.godot/imported/HandsMeshUVv.png-86186a41a078ddd496e4133b2d88f2d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/str2m/MuzzleFlash_str.png"
-dest_files=["res://.godot/imported/MuzzleFlash_str.png-9f316c19b6214916506134742a3ac937.ctex"]
+source_file="res://assets/weapons/str2m/HandsMeshUVv.png"
+dest_files=["res://.godot/imported/HandsMeshUVv.png-86186a41a078ddd496e4133b2d88f2d5.ctex"]
 
 [params]
 

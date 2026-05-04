@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhh81om5rvksd"
-path="res://.godot/imported/BarrelpaintedPixelated.png-6883265763ca0def1afea20d0bfd71a4.ctex"
+uid="uid://cxks62uiusjxl"
+path="res://.godot/imported/BarrelpaintedPixelated.jpg-a3201bdd04b17ba1ea93c8e7ab4252d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/str2m-old/BarrelpaintedPixelated.png"
-dest_files=["res://.godot/imported/BarrelpaintedPixelated.png-6883265763ca0def1afea20d0bfd71a4.ctex"]
+source_file="res://assets/weapons/str2m - old/BarrelpaintedPixelated.jpg"
+dest_files=["res://.godot/imported/BarrelpaintedPixelated.jpg-a3201bdd04b17ba1ea93c8e7ab4252d8.ctex"]
 
 [params]
 

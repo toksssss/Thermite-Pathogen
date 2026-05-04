@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b3jirbki2y4ym"
-path="res://.godot/imported/str2m.gltf-578cd9da76177d8fd9e1d964e42a2cb8.scn"
+uid="uid://cktlhmj063vib"
+path="res://.godot/imported/STR02M_anims.gltf-9a87c148c516306c4d003e94b7045e24.scn"
 
 [deps]
 
-source_file="res://assets/weapons/str2m-old/str2m.gltf"
-dest_files=["res://.godot/imported/str2m.gltf-578cd9da76177d8fd9e1d964e42a2cb8.scn"]
+source_file="res://assets/weapons/str2m - old/STR02M_anims.gltf"
+dest_files=["res://.godot/imported/STR02M_anims.gltf-9a87c148c516306c4d003e94b7045e24.scn"]
 
 [params]
 

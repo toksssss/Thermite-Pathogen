@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://dgandf74eclau"]
 
-[ext_resource type="Texture2D" uid="uid://cxks62uiusjxl" path="res://assets/weapons/str2m/BarrelpaintedPixelated.jpg" id="1_xt7u4"]
-[ext_resource type="Texture2D" uid="uid://ccqf058t6wca7" path="res://assets/weapons/str2m/Mag_painter.jpg" id="2_1pjxi"]
-[ext_resource type="Texture2D" uid="uid://q8haxbcephmm" path="res://assets/weapons/str2m/Barrel Roof Pixelated.jpg" id="3_jb31s"]
-[ext_resource type="Texture2D" uid="uid://qd71r2wtqp1w" path="res://assets/weapons/str2m/MainFramePixelated.jpg" id="4_ns05e"]
+[ext_resource type="Texture2D" uid="uid://cxks62uiusjxl" path="res://assets/weapons/str2m - old/BarrelpaintedPixelated.jpg" id="1_xt7u4"]
+[ext_resource type="Texture2D" uid="uid://ccqf058t6wca7" path="res://assets/weapons/str2m - old/Mag_painter.jpg" id="2_1pjxi"]
+[ext_resource type="Texture2D" uid="uid://q8haxbcephmm" path="res://assets/weapons/str2m - old/Barrel Roof Pixelated.jpg" id="3_jb31s"]
+[ext_resource type="Texture2D" uid="uid://qd71r2wtqp1w" path="res://assets/weapons/str2m - old/MainFramePixelated.jpg" id="4_ns05e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ub8j5"]
 resource_name = "Material.004"
