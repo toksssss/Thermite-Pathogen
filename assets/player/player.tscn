@@ -22,15 +22,35 @@
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
 [ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
+[ext_resource type="Script" uid="uid://mh31ga6rwmnb" path="res://src/weapon_resources_store.gd" id="21_awgyn"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
-[ext_resource type="Script" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
+[ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
 [ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_vibpd"]
+font_size = 99
+
+[sub_resource type="GDScript" id="GDScript_xhr4e"]
+resource_name = "hud_label"
+script/source = "extends Label
+
+@export var model : WeaponModel
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"%2f / %2f\" % [model.weapon_resources._current_bullets, model.weapon_resources.max_bullets]
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
 size = Vector3(0.65618896, 0.4678192, 1)
@@ -86,6 +106,21 @@ script = ExtResource("22_5bqul")
 model = NodePath("../../Model")
 weapon = NodePath("../../Weapon/Model")
 player = NodePath("../..")
+
+[node name="HudLabel" type="Label" parent="CanvasLayer" unique_id=240567308 node_paths=PackedStringArray("model")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_vibpd")
+script = SubResource("GDScript_xhr4e")
+model = NodePath("../../Weapon/Model")
 
 [node name="Input" type="Node" parent="." unique_id=1637412369]
 script = ExtResource("2_h6syq")
@@ -215,6 +250,9 @@ marker = NodePath("../../Head/Camera3D/Marker3D")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Weapon/Model" unique_id=944144812]
 
+[node name="WeaponResources" type="Node" parent="Weapon/Model" unique_id=960511942]
+script = ExtResource("21_awgyn")
+
 [node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
 script = ExtResource("18_i44by")
 
@@ -229,6 +267,7 @@ weapon_animation = "str_anim_reload"
 
 [node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
 script = ExtResource("16_yx3jh")
+ammo_cost = 1
 weapon_animation = "str_anim_shoot"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]

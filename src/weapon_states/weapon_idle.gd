@@ -1,8 +1,7 @@
 extends WeaponState
 
 func check_relevance(input: InputPackage) -> String:
-	input.combat_actions.sort_custom(moves_priority_sort)
-	return input.combat_actions[0]
+	return best_input_that_can_be_paid(input)
 
 #func update(input: InputPackage, delta: float) -> void:
 	#pass

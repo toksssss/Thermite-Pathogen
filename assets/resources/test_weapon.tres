@@ -10,6 +10,7 @@ script = ExtResource("3_2jbk6")
 name = "STR2-M"
 weapon_scene = ExtResource("4_tltf5")
 damage = 10.0
+bullet_capacity = 30
 bullet_speed = 100.0
 position = Vector3(0.195, -0.155, -0.255)
 scale = Vector3(0.1, 0.1, 0.1)
