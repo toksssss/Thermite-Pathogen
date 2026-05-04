@@ -86,6 +86,7 @@ func _setup_weapon() -> void:
 	current_weapon_strategy = initial_weapon_strategy
 	
 	weapon_resources.max_bullets = current_weapon_strategy.weapon_resource.bullet_capacity
+	weapon_resources._current_bullets = current_weapon_strategy.weapon_resource.bullet_capacity
 	
 	current_weapon_viewmodel = current_weapon_strategy.weapon_resource.weapon_scene.instantiate()
 	current_weapon_viewmodel.position = current_weapon_strategy.weapon_resource.position

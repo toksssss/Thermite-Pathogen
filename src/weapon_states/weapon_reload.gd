@@ -8,13 +8,8 @@ func check_relevance(input: InputPackage) -> String:
 		return best_input_that_can_be_paid(input)
 	return "okay"
 
-@warning_ignore("unused_parameter")
-func update(input: InputPackage, delta: float) -> void:
-	print("Reloading")
-
 func on_enter_state() -> void:
-	print("Start Reload")
+	pass
 
 func on_exit_state() -> void:
-	print("End reloading")
-	
+	resources.reload()
