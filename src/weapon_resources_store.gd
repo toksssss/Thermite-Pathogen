@@ -4,9 +4,6 @@ class_name WeaponResourcesStore
 @export var max_bullets : int
 var _current_bullets : int
 
-func _ready() -> void:
-	_current_bullets = max_bullets
-
 func pay_resource(state: WeaponState) -> void:
 	lose_bullets(state.ammo_cost)
 

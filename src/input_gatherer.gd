@@ -65,6 +65,7 @@ func gather_input() -> InputPackage:
 	if Input.is_action_just_pressed("btn_melee"):
 		new_input.combat_actions.append("melee")
 	
+	# Проще просто всегда добавлять Idle, в ином случае выбивает ошибку в resource_that_can_be_paid
 	#if new_input.combat_actions.is_empty():
 		#new_input.combat_actions.append("idle")
 	new_input.combat_actions.append("idle")

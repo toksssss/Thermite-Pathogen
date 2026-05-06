@@ -3,12 +3,6 @@ extends EnemiesState
 func enter() -> void:
 	_randomize_wander()
 
-func exit() -> void:
-	pass
-
-func update(delta: float) -> void:
-	pass
-
 func physics_update(_delta: float) -> void:
 	if !npc:
 		return

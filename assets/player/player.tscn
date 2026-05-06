@@ -18,11 +18,11 @@
 [ext_resource type="Resource" uid="uid://cuq08t1huothi" path="res://assets/resources/test_weapon.tres" id="12_d61i2"]
 [ext_resource type="Script" uid="uid://w1ndsb27ivpu" path="res://src/player_moves/slide.gd" id="12_q1ug7"]
 [ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
-[ext_resource type="Script" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
+[ext_resource type="Script" uid="uid://ci1nyrm8s2jht" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
 [ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
-[ext_resource type="Script" path="res://src/weapon_resources_store.gd" id="21_awgyn"]
+[ext_resource type="Script" uid="uid://mh31ga6rwmnb" path="res://src/weapon_resources_store.gd" id="21_awgyn"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
@@ -42,13 +42,8 @@ script/source = "extends Label
 
 @export var model : WeaponModel
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	text = \"%2d / %2d\" % [model.weapon_resources._current_bullets, model.weapon_resources.max_bullets]
 "
 

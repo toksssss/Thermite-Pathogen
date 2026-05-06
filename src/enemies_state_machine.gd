@@ -10,6 +10,7 @@ var current_state : EnemiesState
 var states: Dictionary[String, EnemiesState] = {}
 
 func _ready() -> void:
+	@warning_ignore("unsafe_property_access", "unsafe_call_argument")
 	navigation_agent.velocity_computed.connect(npc._on_velocity_computed)
 	
 	for child in get_children():
