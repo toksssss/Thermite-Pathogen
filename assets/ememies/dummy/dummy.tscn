@@ -17,7 +17,7 @@ script/source = "extends Label3D
 @export var health_component : HealthComponent
 
 func _physics_process(_delta: float) -> void:
-	text = \"%3.3f\" % health_component.health
+	text = \"%3.1f\" % health_component.health
 "
 
 [node name="Dummy" type="StaticBody3D" unique_id=452110114]
