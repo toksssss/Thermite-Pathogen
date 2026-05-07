@@ -63,7 +63,7 @@ func best_input_that_can_be_paid(input: InputPackage) -> String:
 				return "okay"
 			else:
 				return action
-	return "error, smh even idle weapon state is not implemented"
+	return "error, even idle state is not presented"
 
 # General States heir usage guide.
 

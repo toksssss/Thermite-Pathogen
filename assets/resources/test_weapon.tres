@@ -14,7 +14,7 @@ bullet_capacity = 10
 bullet_speed = 100.0
 position = Vector3(0.195, -0.155, -0.255)
 scale = Vector3(0.1, 0.1, 0.1)
-sway_amount_position = 0.3
+sway_amount_position = 0.15
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 
 [resource]

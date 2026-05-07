@@ -5,7 +5,7 @@ var mouse_motion : Vector2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		mouse_motion = (event as InputEventMouseMotion).relative
+		mouse_motion = (event as InputEventMouseMotion).screen_relative
 
 func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
