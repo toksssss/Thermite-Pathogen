@@ -3,7 +3,7 @@ extends Node3D
 class_name WeaponModel
 
 @onready var player : Player = $"../.."
-@onready var weapon_resources : WeaponResourcesStore = $WeaponResources
+#@onready var weapon_resources : WeaponResourcesStore = $WeaponResources
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
@@ -50,7 +50,6 @@ func _ready() -> void:
 		state.current_weapon = current_weapon_strategy
 		state.weapon_model = self
 		state.melee_hurtbox = melee_hurtbox
-		state.resources = weapon_resources
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -85,14 +84,12 @@ func _setup_weapon_animator() -> void:
 func _setup_weapon() -> void:
 	current_weapon_strategy = initial_weapon_strategy
 	
-	weapon_resources.max_bullets = current_weapon_strategy.weapon_resource.bullet_capacity
-	weapon_resources._current_bullets = current_weapon_strategy.weapon_resource.bullet_capacity
-	current_weapon_strategy.kill_count_changed.connect(weapon_resources.update_kill_count)
+	current_weapon_strategy._current_bullets = current_weapon_strategy.weapon_data.bullet_capacity
 	
-	current_weapon_viewmodel = current_weapon_strategy.weapon_resource.weapon_scene.instantiate()
-	current_weapon_viewmodel.position = current_weapon_strategy.weapon_resource.position
-	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_resource.rotation
-	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_resource.scale
+	current_weapon_viewmodel = current_weapon_strategy.weapon_data.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = current_weapon_strategy.weapon_data.position
+	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_data.rotation
+	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_data.scale
 	
 	viewmodel_rig.add_child(current_weapon_viewmodel)
 

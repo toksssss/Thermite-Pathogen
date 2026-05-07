@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponDataResource" format=3 uid="uid://b0mgp20sk3amq"]
+
+[ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_resource.gd" id="1_tfi5e"]
+[ext_resource type="PackedScene" uid="uid://ce31ns5cwj4a5" path="res://assets/weapons/str2m/str2m.tscn" id="2_ct877"]
+
+[resource]
+script = ExtResource("1_tfi5e")
+name = "str2m"
+weapon_scene = ExtResource("2_ct877")
+damage = 20.0
+bullet_capacity = 10
+bullet_speed = 100.0
+position = Vector3(0.195, -0.155, -0.255)
+scale = Vector3(0.1, 0.1, 0.1)
+metadata/_custom_type_script = "uid://dutvrqf2cf0be"

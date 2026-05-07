@@ -12,4 +12,4 @@ func on_enter_state() -> void:
 	pass
 
 func on_exit_state() -> void:
-	resources.reload()
+	current_weapon.reload()

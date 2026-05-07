@@ -1,5 +1,5 @@
 extends Resource
-class_name WeaponResource
+class_name WeaponDataResource
 
 @export var name : String
 @export var weapon_scene : PackedScene

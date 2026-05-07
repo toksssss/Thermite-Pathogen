@@ -15,7 +15,7 @@ func update(input: InputPackage, delta: float) -> void:
 
 func on_enter_state() -> void:
 	current_weapon.attack(weapon_model)
-	resources.pay_resource(self)
+	current_weapon.pay_resource(self)
 
 func on_exit_state() -> void:
 	pass

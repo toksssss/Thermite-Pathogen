@@ -58,7 +58,7 @@ func mark_enter_state() -> void:
 func best_input_that_can_be_paid(input: InputPackage) -> String:
 	input.combat_actions.sort_custom(moves_priority_sort)
 	for action in input.combat_actions:
-		if resources.can_be_paid(weapon_model.states[action]):
+		if current_weapon.can_be_paid(weapon_model.states[action]):
 			if weapon_model.states[action] == self:
 				return "okay"
 			else:
