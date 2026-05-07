@@ -24,7 +24,7 @@ func on_enter_state() -> void:
 	timer = _base_timer
 	
 	var attack_data : AttackData = AttackData.new()
-	attack_data.damage = 10
+	attack_data.damage = 20.0
 	melee_hurtbox.attack_data = attack_data
 	melee_hurtbox.monitoring = true
 

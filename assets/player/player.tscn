@@ -254,6 +254,7 @@ script = ExtResource("12_vlpqo")
 
 [node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
 script = ExtResource("15_d61i2")
+speed_multiplier = 1.5
 weapon_animation = "str_anim_reload"
 
 [node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
