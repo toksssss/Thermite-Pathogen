@@ -12,6 +12,9 @@ func pay_resource(state: WeaponState) -> void:
 func reset_kill_count() -> void:
 	kill_count = 0
 
+func update_kill_count(count : int) -> void:
+	kill_count = count
+
 func lose_bullets(cost : int) -> void:
 	if _current_bullets - cost >= 0:
 		_current_bullets -= cost

@@ -3,9 +3,13 @@ class_name AttackData
 
 # Информация
 
-enum SOURCE_TYPE {PLAYER, ENEMIE, NPC}
+enum OWNER_TYPE {PLAYER, ENEMIE, NPC}
 
-var source : SOURCE_TYPE
+var owner : OWNER_TYPE
+
+var source : WeaponStrategy
+
+var kill_count : int
 
 # Статы
 
