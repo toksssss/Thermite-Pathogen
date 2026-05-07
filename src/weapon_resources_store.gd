@@ -4,8 +4,13 @@ class_name WeaponResourcesStore
 @export var max_bullets : int
 var _current_bullets : int
 
+var kill_count : int
+
 func pay_resource(state: WeaponState) -> void:
 	lose_bullets(state.ammo_cost)
+
+func reset_kill_count() -> void:
+	kill_count = 0
 
 func lose_bullets(cost : int) -> void:
 	if _current_bullets - cost >= 0:

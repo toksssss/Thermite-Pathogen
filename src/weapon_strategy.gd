@@ -9,6 +9,7 @@ func attack(_source : WeaponModel) -> void:
 	
 	var attack_data : AttackData = AttackData.new()
 	attack_data.damage = weapon_resource.damage
+	attack_data.source = attack_data.SOURCE_TYPE.PLAYER
 	spawned_bullet.attack_data = attack_data
 	
 	spawned_bullet.speed = weapon_resource.bullet_speed
