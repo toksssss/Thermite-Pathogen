@@ -1,13 +1,13 @@
 extends WeaponState
 
-const ANIMATION_END : float = 1.375
+const DEFAULT_ANIMATION_END : float = 1.375
 
 var _base_timer : float = 0.1
 var timer : float
 
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
-	if works_longer_than(ANIMATION_END):		# Change to current_weapon.is_cooldown
+	if works_longer_than(animation_duration):		# Change to current_weapon.is_cooldown
 		return best_input_that_can_be_paid(input)
 	return "okay"
 
@@ -19,6 +19,8 @@ func update(input: InputPackage, delta: float) -> void:
 		melee_hurtbox.monitoring = false
 
 func on_enter_state() -> void:
+	animation_duration = DEFAULT_ANIMATION_END / speed_multiplier
+	
 	timer = _base_timer
 	
 	var attack_data : AttackData = AttackData.new()

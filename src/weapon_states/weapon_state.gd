@@ -5,11 +5,14 @@ class_name WeaponState
 #all move flags and variables here
 @export_category("Stats")
 @export var ammo_cost : int
+@export var speed_multiplier : float = 1.0
 
 @export_category("Animations")
 @export var weapon_animation : String
 @export var arms_animation : String
 
+
+var animation_duration : float
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
 var melee_hurtbox : Hurtbox

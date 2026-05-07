@@ -12,6 +12,7 @@ var kill_count : int :
 		kill_count_changed.emit(v)
 
 var _current_bullets : int
+var is_charged : bool
 
 func attack(_source : WeaponModel) -> void:
 	var spawned_bullet : WeaponBullet = bullet_scene.instantiate()

@@ -72,9 +72,7 @@ func switch_to(new_state: String) -> void:
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
 	if weapon_animator and current_state.weapon_animation:
-		weapon_animator.play(current_state.weapon_animation)
-	if current_state.arms_animation:
-		melee_animator.play(current_state.arms_animation)
+		weapon_animator.play(current_state.weapon_animation, -1, current_state.speed_multiplier)
 
 func _setup_weapon_animator() -> void:
 	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
