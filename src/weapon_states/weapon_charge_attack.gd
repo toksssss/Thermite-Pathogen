@@ -3,7 +3,7 @@ extends WeaponState
 const ANIMATION_END : float = 3.6334
 
 func check_relevance(input: InputPackage) -> String:
-	if current_weapon.is_charged:
+	#if current_weapon.is_charged:
 		
 	
 	
