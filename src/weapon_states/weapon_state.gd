@@ -5,6 +5,7 @@ class_name WeaponState
 #all move flags and variables here
 @export_category("Stats")
 @export var ammo_cost : int
+@export var kill_cost : int
 @export var speed_multiplier : float = 1.0
 
 @export_category("Animations")
@@ -22,6 +23,7 @@ var resources : WeaponResourcesStore
 static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,
 	"fire" : 2,
+	"charged_attack" : 3,
 	"reload" : 10,
 	"melee" : 20
 }

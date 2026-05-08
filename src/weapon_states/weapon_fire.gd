@@ -9,10 +9,6 @@ func check_relevance(input: InputPackage) -> String:
 		return best_input_that_can_be_paid(input)
 	return "okay"
 
-@warning_ignore("unused_parameter")
-func update(input: InputPackage, delta: float) -> void:
-	pass
-
 func on_enter_state() -> void:
 	animation_duration = ANIMATION_END / speed_multiplier
 	

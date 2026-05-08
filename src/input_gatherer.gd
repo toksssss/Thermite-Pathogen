@@ -1,3 +1,6 @@
+# NOTE: Можно заменить строки на enum
+# Добавить static class ACTIONS и туда закинуть COMBAT_ACTIONS, ABILITY_ACTIONS и т.д
+
 extends Node
 class_name InputGatherer
 
@@ -12,6 +15,7 @@ func gather_input() -> InputPackage:
 	
 	# Mouse movement:
 	new_input.mouse_motion = mouse_motion
+	# Если не обнулять, то появляется дрифт
 	mouse_motion = Vector2(0, 0)
 	
 	# Move actions:
@@ -58,6 +62,9 @@ func gather_input() -> InputPackage:
 
 	if Input.is_action_just_pressed("btn_attack"):
 		new_input.combat_actions.append("fire")
+	
+	if Input.is_action_pressed("btn_alt_attack"):
+		new_input.combat_actions.append("charged_attack")
 	
 	if Input.is_action_just_pressed("btn_reload"):
 		new_input.combat_actions.append("reload")

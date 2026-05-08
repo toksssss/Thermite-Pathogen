@@ -2,8 +2,9 @@ extends WeaponState
 
 func check_relevance(input: InputPackage) -> String:
 	# Хардкод, но бля, мне похуй
+	# Можно сделать комбо
 	
-	if input.combat_actions.has("fire") and current_weapon._current_bullets == 0:
+	if input.combat_actions.has("fire")  and current_weapon._current_bullets == 0:
 		return "reload"
 	
 	if input.combat_actions.has("reload") and (current_weapon._current_bullets == 

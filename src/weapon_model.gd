@@ -32,7 +32,8 @@ var weapon_animator : AnimationPlayer
 	"idle" : $States/Idle,
 	"reload" : $States/Reload,
 	"fire" : $States/Fire,
-	"melee" : $States/Melee
+	"melee" : $States/Melee,
+	"charged_attack" : $States/ChargedAttack
 }
 
 func _ready() -> void:
