@@ -3,6 +3,7 @@ extends Node3D
 class_name WeaponModel
 
 @onready var player : Player = $"../.."
+#@onready var weapon_resources : WeaponResourcesStore = $WeaponResources
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
@@ -31,7 +32,8 @@ var weapon_animator : AnimationPlayer
 	"idle" : $States/Idle,
 	"reload" : $States/Reload,
 	"fire" : $States/Fire,
-	"melee" : $States/Melee
+	"melee" : $States/Melee,
+	"charged_attack" : $States/ChargedAttack
 }
 
 func _ready() -> void:
@@ -71,9 +73,7 @@ func switch_to(new_state: String) -> void:
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
 	if weapon_animator and current_state.weapon_animation:
-		weapon_animator.play(current_state.weapon_animation)
-	if current_state.arms_animation:
-		melee_animator.play(current_state.arms_animation)
+		weapon_animator.play(current_state.weapon_animation, -1, current_state.speed_multiplier)
 
 func _setup_weapon_animator() -> void:
 	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
@@ -82,10 +82,13 @@ func _setup_weapon_animator() -> void:
 
 func _setup_weapon() -> void:
 	current_weapon_strategy = initial_weapon_strategy
-	current_weapon_viewmodel = current_weapon_strategy.weapon_resource.weapon_scene.instantiate()
-	current_weapon_viewmodel.position = current_weapon_strategy.weapon_resource.position
-	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_resource.rotation
-	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_resource.scale
+	
+	current_weapon_strategy._current_bullets = current_weapon_strategy.weapon_data.bullet_capacity
+	
+	current_weapon_viewmodel = current_weapon_strategy.weapon_data.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = current_weapon_strategy.weapon_data.position
+	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_data.rotation
+	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_data.scale
 	
 	viewmodel_rig.add_child(current_weapon_viewmodel)
 

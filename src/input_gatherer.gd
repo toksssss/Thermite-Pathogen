@@ -1,3 +1,6 @@
+# NOTE: Можно заменить строки на enum
+# Добавить static class ACTIONS и туда закинуть COMBAT_ACTIONS, ABILITY_ACTIONS и т.д
+
 extends Node
 class_name InputGatherer
 
@@ -5,13 +8,14 @@ var mouse_motion : Vector2
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		mouse_motion = (event as InputEventMouseMotion).relative
+		mouse_motion = (event as InputEventMouseMotion).screen_relative
 
 func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
 	
 	# Mouse movement:
 	new_input.mouse_motion = mouse_motion
+	# Если не обнулять, то появляется дрифт
 	mouse_motion = Vector2(0, 0)
 	
 	# Move actions:
@@ -59,13 +63,17 @@ func gather_input() -> InputPackage:
 	if Input.is_action_just_pressed("btn_attack"):
 		new_input.combat_actions.append("fire")
 	
+	if Input.is_action_pressed("btn_alt_attack"):
+		new_input.combat_actions.append("charged_attack")
+	
 	if Input.is_action_just_pressed("btn_reload"):
 		new_input.combat_actions.append("reload")
 	
 	if Input.is_action_just_pressed("btn_melee"):
 		new_input.combat_actions.append("melee")
 	
-	if new_input.combat_actions.is_empty():
-		new_input.combat_actions.append("idle")
-	
+	# Проще просто всегда добавлять Idle, в ином случае выбивает ошибку в resource_that_can_be_paid
+	#if new_input.combat_actions.is_empty():
+		#new_input.combat_actions.append("idle")
+	new_input.combat_actions.append("idle")
 	return new_input

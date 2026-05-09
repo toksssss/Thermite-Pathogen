@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qd71r2wtqp1w"
-path="res://.godot/imported/MainFramePixelated.jpg-f23ef69a0bde9ce5abc6070b343d11ab.ctex"
+uid="uid://bpdppdj4fek2o"
+path="res://.godot/imported/AltFireReady_str.png-13abb46546bf412c2c36de2ecc2bc3ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/str2m - old/MainFramePixelated.jpg"
-dest_files=["res://.godot/imported/MainFramePixelated.jpg-f23ef69a0bde9ce5abc6070b343d11ab.ctex"]
+source_file="res://assets/weapons/str2m/AltFireReady_str.png"
+dest_files=["res://.godot/imported/AltFireReady_str.png-13abb46546bf412c2c36de2ecc2bc3ac.ctex"]
 
 [params]
 

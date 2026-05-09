@@ -3,6 +3,7 @@ extends Label
 @export var model : PlayerModel
 @export var weapon : WeaponModel
 @export var player : Player
+@export var sway : WeaponSway
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,3 +19,5 @@ func _physics_process(_delta: float) -> void:
 	text += "StandCollisionShape is enabled: %s\n" % !player.stand_collision.disabled
 	text += "CrouchCollisionShape is enabled: %s\n" % !player.crouch_collision.disabled
 	text += "HeadRayCast is colliding: %s\n" % model.head_checker.is_colliding()
+	text += "Sway MouseMovement: %s\n" % sway.mouse_movement
+	text += "Weapon Kill_count: %s\n" % weapon.current_weapon_strategy.kill_count

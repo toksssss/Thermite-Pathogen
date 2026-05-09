@@ -3,17 +3,27 @@ extends Node
 class_name WeaponState
 
 #all move flags and variables here
+@export_category("Stats")
+@export var ammo_cost : int
+@export var kill_cost : int
+@export var speed_multiplier : float = 1.0
+
+@export_category("Animations")
 @export var weapon_animation : String
 @export var arms_animation : String
 
+
+var animation_duration : float
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
 var melee_hurtbox : Hurtbox
 var enter_state_time : float
+var resources : WeaponResourcesStore
 
 static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,
 	"fire" : 2,
+	"charged_attack" : 3,
 	"reload" : 10,
 	"melee" : 20
 }
@@ -50,7 +60,15 @@ func get_progress() -> float:
 func mark_enter_state() -> void:
 	enter_state_time = Time.get_unix_time_from_system()
 
-
+func best_input_that_can_be_paid(input: InputPackage) -> String:
+	input.combat_actions.sort_custom(moves_priority_sort)
+	for action in input.combat_actions:
+		if current_weapon.can_be_paid(weapon_model.states[action]):
+			if weapon_model.states[action] == self:
+				return "okay"
+			else:
+				return action
+	return "error, even idle state is not presented"
 
 # General States heir usage guide.
 

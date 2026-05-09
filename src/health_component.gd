@@ -7,4 +7,6 @@ func damage(attack: AttackData) -> void:
 	health -= attack.damage
 	
 	if health <= 0:
+		if attack.source:
+			attack.source.kill_count += 1
 		get_parent().queue_free()

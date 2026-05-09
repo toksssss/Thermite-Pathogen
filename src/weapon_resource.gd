@@ -1,5 +1,5 @@
 extends Resource
-class_name WeaponResource
+class_name WeaponDataResource
 
 @export var name : String
 @export var weapon_scene : PackedScene
@@ -8,6 +8,7 @@ class_name WeaponResource
 @export var damage : float
 @export var bullet_capacity : int
 @export var bullet_speed : float
+@export var is_chargable : bool
 
 @export_group("Transform")
 @export var position : Vector3

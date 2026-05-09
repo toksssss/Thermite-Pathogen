@@ -22,10 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
 [ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
+[ext_resource type="Script" uid="uid://mh31ga6rwmnb" path="res://src/weapon_resources_store.gd" id="21_awgyn"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
-[ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
 [ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
 [ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
@@ -44,8 +44,7 @@ script/source = "extends Label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	text = \"%2d / %2d\" % [model.current_weapon_strategy._current_bullets, 
-	model.current_weapon_strategy.weapon_data.bullet_capacity]
+	text = \"%2d / %2d\" % [model.weapon_resources._current_bullets, model.weapon_resources.max_bullets]
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
@@ -239,11 +238,16 @@ weapon_sway = NodePath("Model/WeaponSway")
 script = ExtResource("11_hai6l")
 initial_weapon_strategy = ExtResource("12_d61i2")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
-melee_animator = NodePath("EffectsAnimator")
+melee_animator = NodePath("ArmsAnimator")
 melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
 marker = NodePath("../../Head/Camera3D/Marker3D")
 
-[node name="EffectsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
+[node name="ArmsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Weapon/Model" unique_id=944144812]
+
+[node name="WeaponResources" type="Node" parent="Weapon/Model" unique_id=960511942]
+script = ExtResource("21_awgyn")
 
 [node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
 script = ExtResource("18_i44by")
@@ -264,14 +268,7 @@ weapon_animation = "str_anim_shoot"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
-speed_multiplier = 1.5
 weapon_animation = "str_anim_melee"
-
-[node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
-script = ExtResource("26_awgyn")
-ammo_cost = 1
-kill_cost = 3
-weapon_animation = "str_anim_shoot"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
 script = ExtResource("26_h1x7r")
