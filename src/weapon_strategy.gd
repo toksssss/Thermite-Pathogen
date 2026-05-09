@@ -10,14 +10,15 @@ class_name WeaponStrategy
 # func secondary_action(): charged_behavior.apply_behavior() 
 
 #signal kill_count_changed(count: int)
+signal weapon_charged
 
 var kill_count : int : 
 	set(v):
 		kill_count = v
-		#on_kill_count_changed()
+		on_kill_count_changed()
 
 var _current_bullets : int
-#var is_charged : bool
+var is_charged : bool
 
 func attack(_source : WeaponModel) -> void:
 	var spawned_bullet : WeaponBullet = bullet_scene.instantiate()
@@ -57,9 +58,11 @@ func reset_kill_count() -> void:
 func update_kill_count(count : int) -> void:
 	kill_count = count
 
-#func on_kill_count_changed() -> void:
-	#if kill_count >= 15:
-		#is_charged = true
+func on_kill_count_changed() -> void:
+	# Пока хардкодим бля
+	if kill_count >= 3:
+		is_charged = true
+		weapon_charged.emit()
 
 func lose_bullets(cost : int) -> void:
 	if _current_bullets - cost >= 0:

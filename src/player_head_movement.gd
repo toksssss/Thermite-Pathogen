@@ -32,11 +32,9 @@ func check_crouching(delta: float) -> void:
 	player.head.position.y = temp_head_height
 
 func calculate_view_offset(_delta: float) -> void:
-	var velocity : Vector3 = player.velocity
-	
 	var angles : Vector3 = Vector3.ZERO
-	
 	if enable_tilt:
+		var velocity : Vector3 = player.velocity
 		var forward : Vector3 = camera.global_transform.basis.z
 		var right : Vector3 = camera.global_transform.basis.x
 		

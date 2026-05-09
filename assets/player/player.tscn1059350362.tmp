@@ -1,0 +1,279 @@
+[gd_scene format=3 uid="uid://cp70mx5feo7pe"]
+
+[ext_resource type="Script" uid="uid://d1m68rj0ryquw" path="res://src/player.gd" id="1_d6veg"]
+[ext_resource type="Script" uid="uid://d3bo7cu2k0wyv" path="res://src/input_gatherer.gd" id="2_h6syq"]
+[ext_resource type="PackedScene" uid="uid://dvf4x8vhwnv7v" path="res://assets/player/visuals.tscn" id="2_tb4ck"]
+[ext_resource type="Script" uid="uid://bu6y214ty2ajd" path="res://src/model.gd" id="2_v2miy"]
+[ext_resource type="Script" uid="uid://sbtfqounnf5b" path="res://src/player_moves/idle.gd" id="3_toylo"]
+[ext_resource type="Script" uid="uid://dwn0vjoyqbpfc" path="res://src/player_moves/walk.gd" id="4_tb4ck"]
+[ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="5_4t7cd"]
+[ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="5_apuko"]
+[ext_resource type="Script" uid="uid://d0qqpdubytpkw" path="res://src/player_moves/jump.gd" id="5_kwvpd"]
+[ext_resource type="Script" uid="uid://dbi71ulls0bl7" path="res://src/player_head_movement.gd" id="7_q1ug7"]
+[ext_resource type="Script" uid="uid://baate7hm6jw5i" path="res://src/player_moves/falling.gd" id="8_op4fd"]
+[ext_resource type="Script" uid="uid://dp4rvfvl08oiv" path="res://src/camera.gd" id="10_m2mll"]
+[ext_resource type="Script" uid="uid://cclehtjojp1od" path="res://src/player_weapon.gd" id="11_0eov8"]
+[ext_resource type="Script" uid="uid://vysm6isgpm67" path="res://src/weapon_model.gd" id="11_hai6l"]
+[ext_resource type="Script" uid="uid://dsfsqu14raudx" path="res://src/player_moves/crouch.gd" id="11_n8qm5"]
+[ext_resource type="Resource" uid="uid://cuq08t1huothi" path="res://assets/resources/test_weapon.tres" id="12_d61i2"]
+[ext_resource type="Script" uid="uid://w1ndsb27ivpu" path="res://src/player_moves/slide.gd" id="12_q1ug7"]
+[ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
+[ext_resource type="Script" uid="uid://ci1nyrm8s2jht" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
+[ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
+[ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
+[ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
+[ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
+[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
+[ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
+[ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
+[ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
+[ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
+[ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
+font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_vibpd"]
+font_size = 99
+
+[sub_resource type="GDScript" id="GDScript_xhr4e"]
+resource_name = "hud_label"
+script/source = "extends Label
+
+@export var model : WeaponModel
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = \"%2d / %2d\" % [model.current_weapon_strategy._current_bullets, 
+	model.current_weapon_strategy.weapon_data.bullet_capacity]
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
+size = Vector3(0.65618896, 0.4678192, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y54wj"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bqul"]
+height = 1.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
+height = 1.9985352
+
+[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision", "abilities_manager") groups=["player"]]
+collision_mask = 49
+script = ExtResource("1_d6veg")
+input_gatherer = NodePath("Input")
+model = NodePath("Model")
+weapon = NodePath("Weapon")
+head = NodePath("Head")
+stand_collision = NodePath("StandCollider")
+crouch_collision = NodePath("CrouchCollider")
+abilities_manager = NodePath("Abilities")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=454614360]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_4t7cd")
+stretch_mode = 2
+
+[node name="DevLabel" type="Label" parent="CanvasLayer" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player", "sway")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Velocity"
+label_settings = SubResource("LabelSettings_q1ug7")
+script = ExtResource("22_5bqul")
+model = NodePath("../../Model")
+weapon = NodePath("../../Weapon/Model")
+player = NodePath("../..")
+sway = NodePath("../../Weapon/Model/WeaponSway")
+
+[node name="HudLabel" type="Label" parent="CanvasLayer" unique_id=240567308 node_paths=PackedStringArray("model")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_vibpd")
+script = SubResource("GDScript_xhr4e")
+model = NodePath("../../Weapon/Model")
+
+[node name="Input" type="Node" parent="." unique_id=1637412369]
+script = ExtResource("2_h6syq")
+
+[node name="Visuals" parent="." unique_id=314601792 instance=ExtResource("2_tb4ck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0018717, 0)
+
+[node name="Model" type="Node3D" parent="." unique_id=1361034799 node_paths=PackedStringArray("head_checker", "states_group")]
+script = ExtResource("2_v2miy")
+head_checker = NodePath("../HeadCollidingRaycast")
+states_group = NodePath("States")
+base_speed = 15.0
+slide_speed_multiplier = 1.5
+
+[node name="GeneralSkeleton" type="Skeleton3D" parent="Model" unique_id=672514241]
+unique_name_in_owner = true
+
+[node name="SkeletonAnimator" type="AnimationPlayer" parent="Model" unique_id=520151888]
+
+[node name="States" type="Node" parent="Model" unique_id=527235609]
+
+[node name="Idle" type="Node" parent="Model/States" unique_id=1859298100]
+script = ExtResource("3_toylo")
+animation = "idle"
+
+[node name="Walk" type="Node" parent="Model/States" unique_id=1940717438]
+script = ExtResource("4_tb4ck")
+animation = "walk"
+
+[node name="Jump" type="Node" parent="Model/States" unique_id=1696793814]
+script = ExtResource("5_kwvpd")
+animation = "jump"
+
+[node name="Falling" type="Node" parent="Model/States" unique_id=426560067]
+script = ExtResource("8_op4fd")
+animation = "falling"
+
+[node name="Crouch" type="Node" parent="Model/States" unique_id=971591384]
+script = ExtResource("11_n8qm5")
+
+[node name="Slide" type="Node" parent="Model/States" unique_id=681648213]
+script = ExtResource("12_q1ug7")
+
+[node name="Head" type="Marker3D" parent="." unique_id=1377328552 node_paths=PackedStringArray("player", "marker")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+gizmo_extents = 0.51
+script = ExtResource("10_m2mll")
+player = NodePath("..")
+marker = NodePath("Camera3D/Marker3D")
+sensetivity = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1680930214]
+current = true
+fov = 90.0
+
+[node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]
+
+[node name="MeleeHurtbox" type="Area3D" parent="Head/Camera3D" unique_id=541473590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("22_y54wj")
+metadata/_custom_type_script = "uid://dr25kpbbuggri"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=643993144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028381348, 1.6575379, -1.0966349)
+shape = SubResource("BoxShape3D_bvphe")
+debug_color = Color(0.81, 0, 0.013499794, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=1985783658]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6669056, -1.0182828)
+visible = false
+mesh = SubResource("BoxMesh_y54wj")
+
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, -0.76993966)
+
+[node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
+target_position = Vector3(0, 2, 0)
+collision_mask = 255
+debug_shape_custom_color = Color(1, 0, 0.016666412, 1)
+debug_shape_thickness = 1
+
+[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_q1ug7")
+camera = NodePath("../Head/Camera3D")
+
+[node name="StandCollider" type="CollisionShape3D" parent="." unique_id=1917109621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_j84mu")
+
+[node name="CrouchCollider" type="CollisionShape3D" parent="." unique_id=690505481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649, 0)
+shape = SubResource("CapsuleShape3D_5bqul")
+disabled = true
+debug_color = Color(0.9727394, 0, 0.44225875, 0.41960785)
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1363708466 node_paths=PackedStringArray("health")]
+collision_mask = 2
+script = ExtResource("5_apuko")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://br8duwo3s26f0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1388031248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9973947, 0)
+shape = SubResource("CapsuleShape3D_u5y8p")
+
+[node name="Health" type="Node" parent="." unique_id=904618511]
+script = ExtResource("5_4t7cd")
+
+[node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
+script = ExtResource("11_0eov8")
+weapon_model = NodePath("Model")
+weapon_sway = NodePath("Model/WeaponSway")
+
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
+script = ExtResource("11_hai6l")
+initial_weapon_strategy = ExtResource("12_d61i2")
+viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
+melee_animator = NodePath("EffectsAnimator")
+melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
+marker = NodePath("../../Head/Camera3D/Marker3D")
+
+[node name="EffectsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
+
+[node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
+script = ExtResource("18_i44by")
+
+[node name="States" type="Node" parent="Weapon/Model" unique_id=650061942]
+
+[node name="Idle" type="Node" parent="Weapon/Model/States" unique_id=1156865502]
+script = ExtResource("12_vlpqo")
+
+[node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
+script = ExtResource("15_d61i2")
+weapon_animation = "str_anim_reload"
+
+[node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
+script = ExtResource("16_yx3jh")
+ammo_cost = 1
+weapon_animation = "str_anim_shoot"
+
+[node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
+script = ExtResource("23_bvphe")
+speed_multiplier = 1.5
+weapon_animation = "str_anim_melee"
+
+[node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
+script = ExtResource("26_awgyn")
+ammo_cost = 1
+kill_cost = 3
+weapon_animation = "str_anim_shoot"
+
+[node name="Abilities" type="Node" parent="." unique_id=1692119669]
+script = ExtResource("26_h1x7r")
+starting_ability = ExtResource("27_v1qdb")
+abilities = Array[ExtResource("27_82wjp")]([null, null, null, null])

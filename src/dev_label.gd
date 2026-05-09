@@ -20,3 +20,4 @@ func _physics_process(_delta: float) -> void:
 	text += "CrouchCollisionShape is enabled: %s\n" % !player.crouch_collision.disabled
 	text += "HeadRayCast is colliding: %s\n" % model.head_checker.is_colliding()
 	text += "Sway MouseMovement: %s\n" % sway.mouse_movement
+	text += "Weapon Kill_count: %s\n" % weapon.current_weapon_strategy.kill_count

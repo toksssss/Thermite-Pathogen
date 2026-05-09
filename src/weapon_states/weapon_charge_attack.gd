@@ -16,5 +16,5 @@ func on_enter_state() -> void:
 	current_weapon.pay_resource(self)
 	
 
-#func on_exit_state() -> void:
-	#current_weapon.is_charged = false
+func on_exit_state() -> void:
+	current_weapon.is_charged = false
