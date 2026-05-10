@@ -6,6 +6,7 @@ class_name PlayerModel
 @export var head_checker : RayCast3D
 #@onready var animator : AnimationPlayer = $SkeletonAnimator
 @export var states_group : Node
+@export var velocity_component : VelocityComponent
 
 var current_move : Move
 var movement_upgrades : ReactiveArray
@@ -35,8 +36,7 @@ func _ready() -> void:
 		move.walk_speed_multiplier = walk_speed_multiplier
 		move.crouch_speed_multiplier = crouch_speed_multiplier
 		move.slide_speed_multiplier = slide_speed_multiplier
-		move.acceleration = acceleration
-		move.deccelartion = deccelartion
+		move.vel_comp = velocity_component
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades

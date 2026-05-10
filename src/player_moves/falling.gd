@@ -10,12 +10,8 @@ func check_relevance(input: InputPackage) -> String:
 
 @warning_ignore("unused_parameter")
 func update(input: InputPackage, delta: float) -> void:
-	player.velocity = velocity_by_input(input, delta)
-	player.move_and_slide()
+	velocity_by_input(input, delta)
 
 @warning_ignore("unused_parameter")
-func velocity_by_input(input : InputPackage, delta: float) -> Vector3:
-	var new_velocity : Vector3 = player.velocity
-	new_velocity.y -= gravity * delta
-
-	return new_velocity
+func velocity_by_input(input : InputPackage, delta: float) -> void:
+	vel_comp.apply_gravity(delta)
