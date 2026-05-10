@@ -6,15 +6,13 @@ class_name Move
 var player : Player
 @export var animation : String
 var head_raycast : RayCast3D
+var vel_comp : VelocityComponent
 
 var base_speed : float
 
 var crouch_speed_multiplier : float
 var walk_speed_multiplier : float
 var slide_speed_multiplier : float
-
-var acceleration : float
-var deccelartion : float
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,

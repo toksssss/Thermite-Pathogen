@@ -8,6 +8,7 @@ class_name Player
 @export var stand_collision : CollisionShape3D
 @export var crouch_collision : CollisionShape3D
 @export var abilities_manager : PlayerAbilitiesManager
+@export var velocity_component : VelocityComponent
 
 # flags
 var is_crouching : bool = false
@@ -17,3 +18,4 @@ func _physics_process(delta: float) -> void:
 	model.update(input, delta)
 	weapon.update(input, delta)
 	abilities_manager.try_to_use_ability(input)
+	velocity_component.move_and_slide()
