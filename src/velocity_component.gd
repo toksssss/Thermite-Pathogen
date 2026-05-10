@@ -29,6 +29,14 @@ func accelerate_to_zero(delta: float) -> void:
 	velocity.x = lerp(velocity.x, 0.0, delta * deacceleration)
 	velocity.z = lerp(velocity.z, 0.0, delta * deacceleration)
 
+func force_accelerate(new_vel: Vector3, delta: float) -> void:
+	velocity.x = lerp(velocity.x, new_vel.x, delta * acceleration)
+	velocity.z = lerp(velocity.z, new_vel.z, delta * acceleration)
+
+func custom_accelerate(new_vel: Vector3, delta: float, accel: float) -> void:
+	velocity.x = lerp(velocity.x, new_vel.x, delta * accel)
+	velocity.z = lerp(velocity.z, new_vel.z, delta * accel)
+
 func apply_gravity(delta: float) -> void:
 	velocity.y -= gravity * delta
 
