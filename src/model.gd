@@ -35,7 +35,7 @@ func _ready() -> void:
 		move.base_speed = base_speed
 		move.walk_speed_multiplier = walk_speed_multiplier
 		move.crouch_speed_multiplier = crouch_speed_multiplier
-		move.slide_speed_multiplier = slide_speed_multiplier
+		move.slide_boost_speed_multiplier = slide_speed_multiplier
 		move.vel_comp = velocity_component
 
 func update(input: InputPackage, delta: float) -> void:

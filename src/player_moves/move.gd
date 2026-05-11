@@ -12,7 +12,7 @@ var base_speed : float
 
 var crouch_speed_multiplier : float
 var walk_speed_multiplier : float
-var slide_speed_multiplier : float
+var slide_boost_speed_multiplier : float
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,
