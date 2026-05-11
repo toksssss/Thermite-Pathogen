@@ -4,7 +4,6 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const CROUCH_THRESHOLD : float = 7.5
 
-
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
@@ -32,9 +31,10 @@ func velocity_by_input(input: InputPackage, delta: float) -> void:
 	var direction : Vector3 = (player.global_transform.basis * 
 	Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
 	
-	var target : Vector3 = direction * vel_comp.velocity.length()
+	var speed : float = vel_comp.velocity.length()
+	speed = lerp(speed, 0.0, delta * 4)
+	var target : Vector3 = direction * speed
 	vel_comp.accelerate_to(target, direction, delta)
-	vel_comp.velocity = vel_comp.velocity.limit_length(vel_comp.velocity.length() - delta * 9)
 
 
 func on_enter_state() -> void:
@@ -49,5 +49,9 @@ func on_exit_state() -> void:
 
 
 func boost() -> void:
-	var slide_vel : Vector3 = vel_comp.velocity.normalized() * base_speed * slide_boost_speed_multiplier
+	var slide_vel : Vector3 = (
+		vel_comp.velocity.normalized() * 
+		base_speed * 
+		slide_boost_speed_multiplier
+	)
 	vel_comp.velocity = slide_vel
