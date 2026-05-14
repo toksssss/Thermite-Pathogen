@@ -64,10 +64,11 @@ func best_input_that_can_be_paid(input: InputPackage) -> String:
 	input.combat_actions.sort_custom(moves_priority_sort)
 	for action in input.combat_actions:
 		if current_weapon.can_be_paid(weapon_model.states[action]):
-			if weapon_model.states[action] == self:
-				return "okay"
-			else:
-				return action
+			#if weapon_model.states[action] == self:
+				#return "okay"
+			#else:
+				#return action
+			return action
 	return "error, even idle state is not presented"
 
 # General States heir usage guide.
