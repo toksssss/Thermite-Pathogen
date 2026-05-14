@@ -60,7 +60,7 @@ func gather_input() -> InputPackage:
 
 	# Combat actions (Main weapon):
 
-	if Input.is_action_just_pressed("btn_attack"):
+	if Input.is_action_pressed("btn_attack"):
 		new_input.combat_actions.append("fire")
 	
 	if Input.is_action_pressed("btn_alt_attack"):
