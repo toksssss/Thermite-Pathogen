@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="1_wrak5"]
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="2_kqou2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wrak5"]
-size = Vector3(1.2979126, 2.0920105, 1.4157715)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wrak5"]
+radius = 0.5732422
+height = 2.1486816
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3htdy"]
 
@@ -32,8 +33,8 @@ health = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://br8duwo3s26f0"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=122113808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029693604, 0.053848267, -0.0052490234)
-shape = SubResource("BoxShape3D_wrak5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014667511, 0.018081665, -0.0002670288)
+shape = SubResource("CapsuleShape3D_wrak5")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1252709132]
 script = ExtResource("2_kqou2")

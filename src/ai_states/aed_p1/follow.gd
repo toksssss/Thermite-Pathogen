@@ -16,8 +16,7 @@ func check_transition(delta: float) -> String:
 
 func update(delta: float) -> void:
 	follow_target(delta)
-	
- 
+
 
 func on_enter() -> void:
 	pass
@@ -25,6 +24,7 @@ func on_enter() -> void:
 
 func on_exit() -> void:
 	nav_agent.velocity = Vector3.ZERO
+
 
 func follow_target(delta: float) -> void:
 	nav_agent.target_position = player.global_position
@@ -37,13 +37,8 @@ func follow_target(delta: float) -> void:
 	var direction := (destination - character.global_position).normalized()
 	nav_agent.velocity = direction * speed
 
-	rotate_character(delta)
+	rotate_character(player.global_position, rotate_speed, delta)
 	
 
 func shoot() -> void:
 	pass
-
-func rotate_character(delta: float) -> void:
-	var target := character.transform.looking_at(player.global_position)
-	var weight : float = 1 - exp(-rotate_speed * delta)
-	character.transform = lerp(character.transform, target, weight)

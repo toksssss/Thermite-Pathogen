@@ -56,3 +56,8 @@ func works_between(start : float, finish : float) -> bool:
 	if progress >= start and progress <= finish:
 		return true
 	return false
+
+func rotate_character(position : Vector3, speed: float, delta: float) -> void:
+	var target := character.transform.looking_at(position)
+	var weight : float = 1 - exp(-speed * delta)
+	character.transform = lerp(character.transform, target, weight)

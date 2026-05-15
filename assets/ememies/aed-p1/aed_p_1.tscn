@@ -726,6 +726,7 @@ libraries/ = SubResource("AnimationLibrary_dbyr0")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2102936678 node_paths=PackedStringArray("fsm")]
 script = ExtResource("1_1thp7")
+health = 1000.0
 fsm = NodePath("../StateMachine")
 metadata/_custom_type_script = "uid://cioxphk6xyju1"
 
