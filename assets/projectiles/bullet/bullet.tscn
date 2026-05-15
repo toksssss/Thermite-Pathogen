@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="2_ap2xi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ap2xi"]
-size = Vector3(0.15100098, 0.1373291, 0.2881317)
+size = Vector3(0.10258484, 0.096832275, 0.2881317)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ap2xi"]
 albedo_color = Color(1, 0.98333335, 0, 1)
@@ -17,7 +17,7 @@ material = SubResource("StandardMaterial3D_ap2xi")
 height = 4.041
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4o67q"]
-size = Vector3(0.07025, 0.087, 0.21547632)
+size = Vector3(0.13401759, 0.1323457, 0.28684026)
 
 [node name="Bullet" type="CharacterBody3D" unique_id=735246860 node_paths=PackedStringArray("hurtbox")]
 collision_layer = 2
@@ -26,7 +26,7 @@ script = ExtResource("1_4s76n")
 hurtbox = NodePath("Hurtbox")
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=364714291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00015568733, 0.00080907345, 7.6293945e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013840199, 0.0013736486, 7.6293945e-06)
 shape = SubResource("BoxShape3D_ap2xi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2028879588]
@@ -39,5 +39,5 @@ collision_mask = 4
 script = ExtResource("2_ap2xi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=606666969]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0.0011029039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00086230226, -0.0026513673, -0.0005935896)
 shape = SubResource("BoxShape3D_4o67q")
