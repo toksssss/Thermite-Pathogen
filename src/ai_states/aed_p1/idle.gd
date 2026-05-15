@@ -1,10 +1,10 @@
 extends AIMove
 
-@export var trigger_distance : int = 30
+@export var follow_trigger : int = 30
 
 func check_transition(delta: float) -> String:
 	var distance : float = character.global_position.distance_to(player.global_position)
-	if distance <= trigger_distance:
+	if distance <= follow_trigger:
 		return "follow"
 	return "okay"
 
@@ -14,7 +14,7 @@ func update(delta: float) -> void:
  
 
 func on_enter() -> void:
-	nav_agent.velocity = Vector3.ZERO
+	pass
 
 
 func on_exit() -> void:

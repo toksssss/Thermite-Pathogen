@@ -4,6 +4,7 @@ class_name AIStateMachine
 @export var animation_player : AnimationPlayer
 @export var character : CharacterBody3D
 @export var navigation_agent : NavigationAgent3D
+@export var weapon : WeaponStrategy
 
 var moves : Dictionary[String, AIMove] # { String : AIMove }
 var current_move : AIMove
@@ -43,6 +44,7 @@ func accept_states() -> void:
 			move.character = character
 			move.player = get_tree().get_first_node_in_group("player")
 			move.nav_agent = navigation_agent
+			move.weapon = weapon
 
 func _on_velocity_computed(safe_vel: Vector3) -> void:
 	character.velocity = safe_vel
