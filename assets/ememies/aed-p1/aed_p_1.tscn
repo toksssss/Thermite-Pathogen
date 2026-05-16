@@ -344,6 +344,7 @@ tracks/14/keys = PackedFloat32Array(0, 1, 5.820766e-11, 5.820766e-11, 0, 1)
 [sub_resource type="Animation" id="Animation_b00vl"]
 resource_name = "stunned_cicle"
 length = 1.5
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true

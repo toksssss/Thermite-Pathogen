@@ -6,6 +6,8 @@ class_name AIStateMachine
 @export var navigation_agent : NavigationAgent3D
 @export var weapon : WeaponStrategy
 
+const BLENDING_TIME : float = 0.85
+
 var moves : Dictionary[String, AIMove] # { String : AIMove }
 var current_move : AIMove
 
@@ -34,7 +36,7 @@ func switch_to(next_state_name : String) -> void:
 	current_move = moves[next_state_name]
 	current_move.mark_enter_state()
 	current_move.on_enter()
-	animation_player.play(current_move.animation)
+	animation_player.play(current_move.animation, BLENDING_TIME)
 
 
 func accept_states() -> void:
