@@ -11,7 +11,9 @@ var current_move : AIMove
 
 
 func _ready() -> void:
-	navigation_agent.velocity_computed.connect(_on_velocity_computed)
+	navigation_agent.velocity_computed.connect(
+		func(v: Vector3) -> void: character.velocity = v
+		)
 	accept_states()
 	current_move = moves["idle"]
 	switch_to("idle")
@@ -45,6 +47,3 @@ func accept_states() -> void:
 			move.player = get_tree().get_first_node_in_group("player")
 			move.nav_agent = navigation_agent
 			move.weapon = weapon
-
-func _on_velocity_computed(safe_vel: Vector3) -> void:
-	character.velocity = safe_vel

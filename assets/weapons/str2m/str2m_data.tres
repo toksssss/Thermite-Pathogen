@@ -7,9 +7,9 @@
 script = ExtResource("1_tfi5e")
 name = "str2m"
 weapon_scene = ExtResource("2_ct877")
-damage = 50.0
-bullet_capacity = 10
-bullet_speed = 10.0
+damage = 10.0
+bullet_capacity = 100
+bullet_speed = 50.0
 position = Vector3(0.195, -0.155, -0.255)
 scale = Vector3(0.1, 0.1, 0.1)
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
