@@ -17,4 +17,6 @@ var ignore_list : Array[Node3D]
 
 var damage : float
 
+var is_stunned : bool
+
 # knockback, fire, ice etc.

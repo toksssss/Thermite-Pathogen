@@ -9,6 +9,7 @@ class_name WeaponDataResource
 @export var bullet_capacity : int
 @export var bullet_speed : float
 @export var is_chargable : bool
+@export var is_stunned : bool
 
 @export_group("Transform")
 @export var position : Vector3
@@ -25,7 +26,6 @@ class_name WeaponDataResource
 
 @export_group("TBD")
 @export var input_to_state : Dictionary[String, String]
-
 
 
 # animations, icons, model, speed, penetration, sound etc.

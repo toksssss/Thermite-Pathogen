@@ -38,7 +38,8 @@ func charged_attack(_source : WeaponModel) -> void:
 	var spawned_bullet : WeaponBullet = bullet_scene.instantiate()
 	
 	var attack_data : AttackData = AttackData.new()
-	attack_data.damage = weapon_data.damage * 2
+	attack_data.damage = weapon_data.damage * 2.0
+	attack_data.is_stunned = weapon_data.is_stunned
 	attack_data.source = self
 	
 	spawned_bullet.attack_data = attack_data
@@ -85,3 +86,7 @@ func can_be_paid(state: WeaponState) -> bool:
 		if kill_count - state.kill_cost >= 0:
 			return true
 	return false
+
+#func form_hit_data() -> AttackData:
+	#var data: AttackData = AttackData.new()
+	#return data
