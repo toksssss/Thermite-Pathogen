@@ -11,6 +11,8 @@ var source : WeaponStrategy
 
 var kill_count : int
 
+var ignore_list : Array[Node3D]
+
 # Статы
 
 var damage : float
