@@ -1,9 +1,5 @@
 extends AIMove
 
-@export var melee_trigger : float = 10.0
-@export var idle_trigger : float = 30.0
-@export var speed : float = 2.0
-@export var rotate_speed : float = 6.0
 
 var cooldown : float = 0.5
 var is_cooldown : bool
@@ -16,16 +12,16 @@ func _ready() -> void:
 
 func check_transition(delta: float) -> String:
 	var distance : float = character.global_position.distance_to(player.global_position)
-	if distance <= melee_trigger:
+	if distance <= character.melee_trigger:
 		return "melee"
-	if distance >= idle_trigger:
+	if distance >= character.idle_trigger:
 		return "idle"
 	return "okay"
 
 
 func update(delta: float) -> void:
 	follow_target(delta)
-	rotate_character(player.global_position, rotate_speed, delta)
+	rotate_character(player.global_position, character.rotate_speed, delta)
 	shoot()
 
 
@@ -45,7 +41,7 @@ func follow_target(delta: float) -> void:
 	
 	var destination := nav_agent.get_next_path_position()
 	var direction := (destination - character.global_position).normalized()
-	nav_agent.velocity = direction * speed
+	nav_agent.velocity = direction * character.speed
 
 func shoot() -> void:
 	if is_cooldown:

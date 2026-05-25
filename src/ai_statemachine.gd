@@ -6,6 +6,7 @@ class_name AIStateMachine
 @export var navigation_agent : NavigationAgent3D
 @export var weapon : AIWeaponStrategy
 @export var marker : Marker3D
+@export var collider : CollisionShape3D
 
 const BLENDING_TIME : float = 0.5
 
@@ -51,3 +52,4 @@ func accept_states() -> void:
 			move.nav_agent = navigation_agent
 			move.weapon = weapon
 			move.marker = marker
+			move.collider = collider

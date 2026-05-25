@@ -279,7 +279,7 @@ weapon_animation = "str_anim_shoot"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
-speed_multiplier = 1.5
+speed_multiplier = 10.0
 weapon_animation = "str_anim_melee"
 
 [node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://2vfqmo0oispt"]
 
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="1_1thp7"]
+[ext_resource type="Script" uid="uid://dmgs6qbu8eabq" path="res://src/ai_aed_p1.gd" id="1_dbyr0"]
 [ext_resource type="Texture2D" uid="uid://dy0jiy40qjvc7" path="res://assets/ememies/aed-p1/Sphere.png" id="1_wwlhp"]
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="2_cdojj"]
 [ext_resource type="Texture2D" uid="uid://c2p612rnw3kd5" path="res://assets/ememies/aed-p1/BodyPixelated.png" id="2_t6k0f"]
@@ -723,6 +724,7 @@ metadata/_custom_type_script = "uid://n2kjuykk8c38"
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 collision_layer = 4
 collision_mask = 17
+script = ExtResource("1_dbyr0")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1346133187]
 avoidance_enabled = true
@@ -918,13 +920,14 @@ external_skeleton = NodePath("../GeneralSkeleton")
 [node name="GunMarker" type="Marker3D" parent="Gun_bone" unique_id=1434694682]
 transform = Transform3D(0.32553926, 1.9731249, 0.028326735, -0.15689427, -0.002738591, 1.9938346, 1.9670812, -0.32675788, 0.15434024, 0.021716595, 1.6508019, 0.045899153)
 
-[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("animation_player", "character", "navigation_agent", "marker")]
+[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("animation_player", "character", "navigation_agent", "marker", "collider")]
 script = ExtResource("4_s53uv")
 animation_player = NodePath("../AnimationPlayer")
 character = NodePath("..")
 navigation_agent = NodePath("../NavigationAgent3D")
 weapon = SubResource("Resource_5wrg4")
 marker = NodePath("../Gun_bone/GunMarker")
+collider = NodePath("../Collider")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=2112809179]
 script = ExtResource("5_54vpb")
@@ -933,7 +936,6 @@ animation = "idle_cicle"
 
 [node name="Follow" type="Node" parent="StateMachine" unique_id=169253962]
 script = ExtResource("6_s53uv")
-melee_trigger = 2.0
 move_name = "follow"
 animation = "walk_cicle"
 
@@ -947,8 +949,7 @@ script = ExtResource("11_b00vl")
 move_name = "stunned"
 animation = "stunned_cicle"
 
-[node name="Death" type="Node" parent="StateMachine" unique_id=1800552864 node_paths=PackedStringArray("collider")]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1800552864]
 script = ExtResource("11_2yk3d")
-collider = NodePath("../../Collider")
 move_name = "death"
 animation = "death_cicle"
