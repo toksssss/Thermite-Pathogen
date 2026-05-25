@@ -13,8 +13,8 @@ func attack(_source : Node, marker : Marker3D) -> void:
 	spawned_bullet.speed = weapon_data.bullet_speed
 	spawned_bullet.position = marker.global_position
 	spawned_bullet.rotation = marker.global_rotation
-	spawned_bullet.set_collision_layer_value(4, 1)
-	spawned_bullet.set_collision_mask_value(1, 1)
+	spawned_bullet.hurtbox.set_collision_layer_value(4, 1)
+	spawned_bullet.hurtbox.set_collision_mask_value(1, 1)
 	_source.get_tree().root.add_child(spawned_bullet)
 	
 	

@@ -49,6 +49,21 @@ func _process(_delta: float) -> void:
 	model.current_weapon_strategy.weapon_data.bullet_capacity]
 "
 
+[sub_resource type="LabelSettings" id="LabelSettings_xhr4e"]
+font_size = 55
+
+[sub_resource type="GDScript" id="GDScript_bky8f"]
+resource_name = "hp_label"
+script/source = "extends Label
+
+
+@export var hp : HealthComponent
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = \"HP: %2d\" % hp.health
+"
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lqaot"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
@@ -77,9 +92,9 @@ crouch_collision = NodePath("CrouchCollider")
 abilities_manager = NodePath("Abilities")
 velocity_component = NodePath("Model/VelocityComponent")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=781417395]
+[node name="DevCanvas" type="CanvasLayer" parent="." unique_id=781417395]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=454614360]
+[node name="TextureRect" type="TextureRect" parent="DevCanvas" unique_id=454614360]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -94,7 +109,7 @@ grow_vertical = 2
 texture = ExtResource("16_4t7cd")
 stretch_mode = 2
 
-[node name="DevLabel" type="Label" parent="CanvasLayer" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player", "sway", "vel_comp")]
+[node name="DevLabel" type="Label" parent="DevCanvas" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player", "sway", "vel_comp")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -109,7 +124,7 @@ player = NodePath("../..")
 sway = NodePath("../../Weapon/Model/WeaponSway")
 vel_comp = NodePath("../../Model/VelocityComponent")
 
-[node name="HudLabel" type="Label" parent="CanvasLayer" unique_id=240567308 node_paths=PackedStringArray("model")]
+[node name="HudLabel" type="Label" parent="DevCanvas" unique_id=240567308 node_paths=PackedStringArray("model")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -123,6 +138,18 @@ text = "0 / 0"
 label_settings = SubResource("LabelSettings_vibpd")
 script = SubResource("GDScript_xhr4e")
 model = NodePath("../../Weapon/Model")
+
+[node name="HpLabel" type="Label" parent="DevCanvas" unique_id=58047679 node_paths=PackedStringArray("hp")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "HEALTH: 0"
+label_settings = SubResource("LabelSettings_xhr4e")
+script = SubResource("GDScript_bky8f")
+hp = NodePath("../../Health")
 
 [node name="Input" type="Node" parent="." unique_id=1637412369]
 script = ExtResource("2_h6syq")
