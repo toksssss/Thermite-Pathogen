@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://c2p612rnw3kd5" path="res://assets/ememies/aed-p1/BodyPixelated.png" id="2_t6k0f"]
 [ext_resource type="Script" uid="uid://dllyff3dbpy3x" path="res://src/ai_statemachine.gd" id="4_s53uv"]
 [ext_resource type="Script" uid="uid://b2vly0j3aubvc" path="res://src/ai_states/aed_p1/idle.gd" id="5_54vpb"]
-[ext_resource type="Script" uid="uid://c1fgobbs18xn1" path="res://src/weapon_strategy.gd" id="6_2yk3d"]
+[ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="6_p7nre"]
 [ext_resource type="Script" uid="uid://d1ja3pqb3556e" path="res://src/ai_states/aed_p1/follow.gd" id="6_s53uv"]
 [ext_resource type="Script" uid="uid://dtq6xjhs6ckel" path="res://src/ai_states/aed_p1/melee.gd" id="7_54vpb"]
 [ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_data_resource.gd" id="7_b00vl"]
+[ext_resource type="Script" uid="uid://n2kjuykk8c38" path="res://src/ai_weapon_strategy.gd" id="7_p7nre"]
 [ext_resource type="Script" uid="uid://b6eev1i1s2tfp" path="res://src/ai_states/aed_p1/death.gd" id="11_2yk3d"]
 [ext_resource type="Script" uid="uid://bcn3mrhn5ehaj" path="res://src/ai_states/aed_p1/stunned.gd" id="11_b00vl"]
 
@@ -705,17 +706,18 @@ radius = 1.3183727
 height = 2.2443848
 radius = 1.2456055
 
-[sub_resource type="Resource" id="Resource_p7nre"]
+[sub_resource type="Resource" id="Resource_dbyr0"]
 script = ExtResource("7_b00vl")
 name = "machine-gun"
-damage = 15.0
-bullet_speed = 30.0
+damage = 10.0
+bullet_speed = 50.0
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 
-[sub_resource type="Resource" id="Resource_dbyr0"]
-script = ExtResource("6_2yk3d")
-weapon_data = SubResource("Resource_p7nre")
-metadata/_custom_type_script = "uid://c1fgobbs18xn1"
+[sub_resource type="Resource" id="Resource_5wrg4"]
+script = ExtResource("7_p7nre")
+weapon_data = SubResource("Resource_dbyr0")
+bullet_scene = ExtResource("6_p7nre")
+metadata/_custom_type_script = "uid://n2kjuykk8c38"
 
 [node name="AED-P1" type="CharacterBody3D" unique_id=1116745758]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -757,28 +759,28 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, -8.742278e-08, -1.3200472e-14, 1, -1.509958e-07, 8.742278e-08, 1.509958e-07, 1, -1.4520515e-14, 1.1000001, 1.8119496e-07)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.4520515e-14, 1.1000001, 1.8119496e-07)
-bones/2/rotation = Quaternion(3.328668e-08, -1.7255917e-07, 0.6087614, 0.7933534)
+bones/2/rotation = Quaternion(0.0008954245, 0.0006001124, 0.609435, 0.7928353)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "saw_bone"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, -3.2584137e-07, 3.2584137e-07, 1.7881393e-07, 0.99999994, 5.684342e-14, -0.99999994, 1.7881393e-07, 1.110223e-16, 1.4000001, 2.5510553e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(1.110223e-16, 1.4000001, 2.5510553e-07)
-bones/3/rotation = Quaternion(-0.70710665, -1.1520232e-07, 1.152023e-07, 0.7071069)
+bones/3/rotation = Quaternion(-0.0019640774, -0.70710415, 0.707104, 0.0019640774)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/name = "gun_bone"
 bones/4/parent = 0
 bones/4/rest = Transform3D(0, -1, -1.4901163e-07, 1, 0, 1.947072e-07, -1.947072e-07, -1.4901163e-07, 1, -0.91630495, 1.2317119, -0.33285886)
 bones/4/enabled = true
 bones/4/position = Vector3(-0.91630495, 1.2317119, -0.33285886)
-bones/4/rotation = Quaternion(0.19463453, 0.03899324, 0.6302272, 0.75060683)
+bones/4/rotation = Quaternion(-1.22112e-07, 1.0839689e-08, 0.6755902, 0.7372773)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Fish_bone"
 bones/5/parent = 0
 bones/5/rest = Transform3D(0, -1, 3.5527137e-15, 1, 0, 7.549791e-08, -7.549791e-08, -3.5527137e-15, 1, 0.5752966, 2.3540754, -0.014503226)
 bones/5/enabled = true
-bones/5/position = Vector3(0.6080222, 2.3771412, 0.18743393)
-bones/5/rotation = Quaternion(0.2021537, 0.15074751, 0.68425477, 0.68425477)
+bones/5/position = Vector3(0.60806173, 2.37784, 0.16006564)
+bones/5/rotation = Quaternion(0.21934412, 0.1658081, 0.6797689, 0.6799339)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Fish_bone001"
 bones/6/parent = 5
@@ -792,7 +794,7 @@ bones/7/parent = 6
 bones/7/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0949632e-09, 0.41, 3.3537617e-12)
 bones/7/enabled = true
 bones/7/position = Vector3(1.0949632e-09, 0.41, 3.3537617e-12)
-bones/7/rotation = Quaternion(-0.29371572, 0.0427848, -2.8770566e-08, 0.95493484)
+bones/7/rotation = Quaternion(0.37467855, -0.03739219, -0.0001260004, 0.9264004)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "left_rotor_bone"
 bones/8/parent = 0
@@ -806,7 +808,7 @@ bones/9/parent = 8
 bones/9/rest = Transform3D(1, 1.509958e-07, -2.1316282e-14, 0, 1.7881393e-07, 0.99999994, 1.5099582e-07, -0.99999994, 1.7881393e-07, -6.653798e-09, 1.2136981, 0.044065803)
 bones/9/enabled = true
 bones/9/position = Vector3(-6.653798e-09, 1.2136981, 0.044065803)
-bones/9/rotation = Quaternion(-0.707041, -0.00028434047, 0.00023835684, 0.7071725)
+bones/9/rotation = Quaternion(-0.7071067, -5.3385083e-08, -5.3385072e-08, 0.7071068)
 bones/9/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/10/name = "right_rotor_bone"
 bones/10/parent = 0
@@ -820,7 +822,7 @@ bones/11/parent = 10
 bones/11/rest = Transform3D(1, 2.3841855e-07, 2.1316282e-14, -7.1054274e-15, 1.7881393e-07, -0.99999994, -2.3841855e-07, 0.99999994, 1.7881393e-07, -1.0506109e-08, 1.2367685, -0.044065807)
 bones/11/enabled = true
 bones/11/position = Vector3(-1.0506109e-08, 1.2367685, -0.044065807)
-bones/11/rotation = Quaternion(0.49964508, -0.49966446, -0.50033534, 0.5003547)
+bones/11/rotation = Quaternion(0.7071724, -0.00023832603, -0.00028437137, 0.70704114)
 bones/11/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/12/name = "Sphere_bone"
 bones/12/parent = 0
@@ -906,12 +908,23 @@ transform = Transform3D(1, -1.4901161e-08, 0, 1.4901161e-08, 1, 0, 0, 8.881784e-
 shape = SubResource("CylinderShape3D_0qvbw")
 debug_color = Color(0.9499782, 2.4065375e-06, 0.57324946, 0.41960785)
 
-[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("animation_player", "character", "navigation_agent")]
+[node name="Gun_bone" type="BoneAttachment3D" parent="." unique_id=444041245]
+transform = Transform3D(9.1743e-08, 1.0452695e-07, -0.5, 0.49917704, -0.02867606, 8.559716e-08, -0.02867606, -0.49917704, -1.0961655e-07, 0.16642946, 1.9889352, -0.54214096)
+bone_name = "gun_bone"
+bone_idx = 4
+use_external_skeleton = true
+external_skeleton = NodePath("../GeneralSkeleton")
+
+[node name="GunMarker" type="Marker3D" parent="Gun_bone" unique_id=1434694682]
+transform = Transform3D(0.32553926, 1.9731249, 0.028326735, -0.15689427, -0.002738591, 1.9938346, 1.9670812, -0.32675788, 0.15434024, 0.021716595, 1.6508019, 0.045899153)
+
+[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("animation_player", "character", "navigation_agent", "marker")]
 script = ExtResource("4_s53uv")
 animation_player = NodePath("../AnimationPlayer")
 character = NodePath("..")
 navigation_agent = NodePath("../NavigationAgent3D")
-weapon = SubResource("Resource_dbyr0")
+weapon = SubResource("Resource_5wrg4")
+marker = NodePath("../Gun_bone/GunMarker")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=2112809179]
 script = ExtResource("5_54vpb")

@@ -7,7 +7,7 @@ enum OWNER_TYPE {PLAYER, ENEMIE, NPC}
 
 var owner : OWNER_TYPE
 
-var source : WeaponStrategy
+var source : BaseWeaponStrategy
 
 var kill_count : int
 

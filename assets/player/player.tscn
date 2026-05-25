@@ -285,7 +285,6 @@ weapon_animation = "str_anim_melee"
 [node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
 script = ExtResource("26_awgyn")
 ammo_cost = 1
-kill_cost = 3
 weapon_animation = "str_anim_shoot"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]

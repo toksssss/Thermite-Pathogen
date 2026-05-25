@@ -8,6 +8,7 @@ class_name WeaponDataResource
 @export var damage : float
 @export var bullet_capacity : int
 @export var bullet_speed : float
+@export var fire_rate : float = 60.0 # rounds per minute
 @export var is_chargable : bool
 @export var is_stunned : bool
 

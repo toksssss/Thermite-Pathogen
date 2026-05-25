@@ -12,7 +12,7 @@ func check_relevance(input: InputPackage) -> String:
 func on_enter_state() -> void:
 	animation_duration = ANIMATION_END / speed_multiplier
 	
-	current_weapon.attack(weapon_model)
+	current_weapon.attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
 
 func on_exit_state() -> void:

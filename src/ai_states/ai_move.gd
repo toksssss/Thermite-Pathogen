@@ -8,7 +8,8 @@ var player: Player
 var character : CharacterBody3D
 var animator : AnimationPlayer
 var nav_agent : NavigationAgent3D
-var weapon : WeaponStrategy
+var weapon : AIWeaponStrategy
+var marker : Marker3D
 
 var enter_state_time : float
 

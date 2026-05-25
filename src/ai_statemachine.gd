@@ -4,9 +4,10 @@ class_name AIStateMachine
 @export var animation_player : AnimationPlayer
 @export var character : CharacterBody3D
 @export var navigation_agent : NavigationAgent3D
-@export var weapon : WeaponStrategy
+@export var weapon : AIWeaponStrategy
+@export var marker : Marker3D
 
-const BLENDING_TIME : float = 0.85
+const BLENDING_TIME : float = 0.5
 
 var moves : Dictionary[String, AIMove] # { String : AIMove }
 var current_move : AIMove
@@ -49,3 +50,4 @@ func accept_states() -> void:
 			move.player = get_tree().get_first_node_in_group("player")
 			move.nav_agent = navigation_agent
 			move.weapon = weapon
+			move.marker = marker

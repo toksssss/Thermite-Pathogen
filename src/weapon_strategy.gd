@@ -1,8 +1,5 @@
-extends Resource
 class_name WeaponStrategy
-
-@export var weapon_data : WeaponDataResource
-@export var bullet_scene : PackedScene
+extends BaseWeaponStrategy
 
 # Добавить сюда attack behavior и charged attack behavior
 # И делать через: 
@@ -20,7 +17,7 @@ var kill_count : int :
 var _current_bullets : int
 var is_charged : bool
 
-func attack(_source : WeaponModel) -> void:
+func attack(_source : Node, marker : Marker3D) -> void:
 	var spawned_bullet : WeaponBullet = bullet_scene.instantiate()
 	
 	var attack_data : AttackData = AttackData.new()
@@ -30,11 +27,13 @@ func attack(_source : WeaponModel) -> void:
 	spawned_bullet.attack_data = attack_data
 	
 	spawned_bullet.speed = weapon_data.bullet_speed
-	spawned_bullet.position = _source.marker.global_position
-	spawned_bullet.rotation = _source.marker.global_rotation
+	spawned_bullet.position = marker.global_position
+	spawned_bullet.rotation = marker.global_rotation
+	spawned_bullet.set_collision_layer_value(2, 1)
+	spawned_bullet.set_collision_mask_value(3, 1)
 	_source.get_tree().root.add_child(spawned_bullet)
 
-func charged_attack(_source : WeaponModel) -> void:
+func alternative_attack(_source : Node, marker : Marker3D) -> void:
 	var spawned_bullet : WeaponBullet = bullet_scene.instantiate()
 	
 	var attack_data : AttackData = AttackData.new()
@@ -45,8 +44,8 @@ func charged_attack(_source : WeaponModel) -> void:
 	spawned_bullet.attack_data = attack_data
 	
 	spawned_bullet.speed = weapon_data.bullet_speed
-	spawned_bullet.position = _source.marker.global_position
-	spawned_bullet.rotation = _source.marker.global_rotation
+	spawned_bullet.position = marker.global_position
+	spawned_bullet.rotation = marker.global_rotation
 	_source.get_tree().root.add_child(spawned_bullet)
 
 func pay_resource(state: WeaponState) -> void:
