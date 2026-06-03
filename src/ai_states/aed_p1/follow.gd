@@ -32,8 +32,8 @@ func on_exit() -> void:
 	nav_agent.velocity = Vector3.ZERO
 
 
-func follow_target(delta: float) -> void:
 	nav_agent.target_position = player.global_position
+func follow_target(delta: float) -> void:
 	
 	if nav_agent.is_navigation_finished():
 		character.velocity = Vector3.ZERO

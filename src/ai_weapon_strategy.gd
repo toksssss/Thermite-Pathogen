@@ -15,6 +15,8 @@ func attack(_source : Node, marker : Marker3D) -> void:
 	spawned_bullet.rotation = marker.global_rotation
 	spawned_bullet.hurtbox.set_collision_layer_value(4, 1)
 	spawned_bullet.hurtbox.set_collision_mask_value(1, 1)
-	_source.get_tree().root.add_child(spawned_bullet)
 	
+	var player : Player = _source.get_tree().get_first_node_in_group("player")
+	spawned_bullet.look_at_from_position(spawned_bullet.position, player.global_position)
+	_source.get_tree().root.add_child(spawned_bullet)
 	
