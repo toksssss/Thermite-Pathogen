@@ -7,6 +7,7 @@ class_name AIStateMachine
 @export var weapon : AIWeaponStrategy
 @export var marker : Marker3D
 @export var collider : CollisionShape3D
+@export var raycast : RayCast3D
 
 const BLENDING_TIME : float = 0.5
 
@@ -53,3 +54,4 @@ func accept_states() -> void:
 			move.weapon = weapon
 			move.marker = marker
 			move.collider = collider
+			move.raycast = raycast

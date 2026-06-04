@@ -11,6 +11,7 @@ var nav_agent : NavigationAgent3D
 var weapon : AIWeaponStrategy
 var marker : Marker3D
 var collider : CollisionShape3D
+var raycast : RayCast3D
 
 var enter_state_time : float
 
