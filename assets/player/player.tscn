@@ -270,6 +270,7 @@ shape = SubResource("CapsuleShape3D_u5y8p")
 
 [node name="Health" type="Node" parent="." unique_id=904618511]
 script = ExtResource("5_4t7cd")
+health = 1000.0
 
 [node name="Weapon" type="Node3D" parent="." unique_id=1952491836 node_paths=PackedStringArray("weapon_model", "weapon_sway")]
 script = ExtResource("11_0eov8")

@@ -1,6 +1,9 @@
 extends AIMove
 
 func check_transition(delta: float) -> String:
+	if !player:
+		return "okay"
+	
 	var distance : float = character.global_position.distance_to(player.global_position)
 	if distance <= character.follow_trigger:
 		return "follow"

@@ -1,6 +1,5 @@
 extends AIMove
 
-
 var cooldown : float = 0.5
 var is_cooldown : bool
 var timer : Timer
@@ -11,6 +10,9 @@ func _ready() -> void:
 	add_child.call_deferred(timer)
 
 func check_transition(delta: float) -> String:
+	if !player:
+		return "idle"
+	
 	var distance : float = character.global_position.distance_to(player.global_position)
 	if distance <= character.melee_trigger:
 		return "melee"
@@ -26,19 +28,20 @@ func update(delta: float) -> void:
 
 
 func on_enter() -> void:
+	#if player:
+		#nav_agent.target_position = player.global_position
 	pass
 
 func on_exit() -> void:
 	nav_agent.velocity = Vector3.ZERO
+	#if player:
+		#nav_agent.target_position = player.global_position
 
-
-	nav_agent.target_position = player.global_position
 func follow_target(delta: float) -> void:
-	
 	if nav_agent.is_navigation_finished():
 		character.velocity = Vector3.ZERO
-		return
-	
+
+	nav_agent.target_position = player.global_position
 	var destination := nav_agent.get_next_path_position()
 	var direction := (destination - character.global_position).normalized()
 	nav_agent.velocity = direction * character.speed

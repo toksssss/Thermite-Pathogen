@@ -6,7 +6,6 @@ class_name WeaponSway
 @onready var model : WeaponModel = $".." 
 var mouse_movement : Vector2
 
-# Called when the node enters the scene tree for the first time.
 
 func sway(strategy: WeaponStrategy, input: InputPackage, delta: float) -> void:
 	var stats : WeaponDataResource = strategy.weapon_data
