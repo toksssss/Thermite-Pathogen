@@ -15,7 +15,7 @@ class_name WeaponModel
 @export var viewmodel_rig : Node3D
 @export_group("Melee")
 @export var melee_animator : AnimationPlayer
-@export var melee_hurtbox : Hurtbox
+@export var melee_hurtbox : ManualHurtbox
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
@@ -43,7 +43,6 @@ func _ready() -> void:
 	_setup_weapon()
 	_setup_weapon_animator()
 	
-	melee_hurtbox.monitoring = false
 	#marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
 	
 	

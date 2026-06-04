@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0vef6jxiao6j"]
 
 [ext_resource type="Script" uid="uid://cnhw0t3mqx6jj" path="res://src/grenade.gd" id="1_7h17y"]
-[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="2_12tq6"]
+[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox/hurtbox.gd" id="2_12tq6"]
 [ext_resource type="PackedScene" uid="uid://cto55cbxhmfpk" path="res://assets/abilities/throwable/grenade/mesh/grenade_mesh.tscn" id="2_es8fi"]
 [ext_resource type="Shader" uid="uid://131ucs6qalu5" path="res://assets/materials/shaders/texture.gdshader" id="3_tnyal"]
 

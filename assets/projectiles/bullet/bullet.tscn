@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ekk5ve1r28ee"]
 
 [ext_resource type="Script" uid="uid://cjei33pka4d1s" path="res://src/weapon_bullet.gd" id="1_4s76n"]
-[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="2_ap2xi"]
+[ext_resource type="Script" uid="uid://d0sa41aqutxvw" path="res://src/hurtbox/auto_hurtbox.gd" id="2_ap2xi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ap2xi"]
 size = Vector3(0.10258484, 0.096832275, 0.2881317)

@@ -1,9 +1,5 @@
-extends Area3D
-class_name Hurtbox
-
-var attack_data : AttackData
-
-signal hit_enemy
+extends Hurtbox
+class_name AutoHurtbox
 
 func _ready() -> void:
 	area_entered.connect(on_area_entered)

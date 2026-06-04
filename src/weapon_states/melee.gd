@@ -2,8 +2,6 @@ extends WeaponState
 
 const DEFAULT_ANIMATION_END : float = 1.375
 
-var _base_timer : float = 0.1
-var timer : float
 
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
@@ -13,20 +11,17 @@ func check_relevance(input: InputPackage) -> String:
 
 @warning_ignore("unused_parameter")
 func update(input: InputPackage, delta: float) -> void:
-	if timer > 0:
-		timer -= delta
-	else:
-		melee_hurtbox.monitoring = false
+	pass
 
 func on_enter_state() -> void:
 	animation_duration = DEFAULT_ANIMATION_END / speed_multiplier
 	
-	timer = _base_timer
-	
 	var attack_data : AttackData = AttackData.new()
 	attack_data.damage = 20.0
 	melee_hurtbox.attack_data = attack_data
-	melee_hurtbox.monitoring = true
+	
+	melee_hurtbox.damage()
+
 
 #func on_exit_state() -> void:
 	# Delete later

@@ -20,11 +20,11 @@
 [ext_resource type="Script" uid="uid://w1ndsb27ivpu" path="res://src/player_moves/slide.gd" id="12_q1ug7"]
 [ext_resource type="Script" uid="uid://b2ofha7xc0sud" path="res://src/weapon_states/weapon_idle.gd" id="12_vlpqo"]
 [ext_resource type="Script" uid="uid://ci1nyrm8s2jht" path="res://src/weapon_states/weapon_reload.gd" id="15_d61i2"]
+[ext_resource type="Script" uid="uid://ljhjybykfqfo" path="res://src/hurtbox/manual_hurtbox.gd" id="15_vibpd"]
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
 [ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
-[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox.gd" id="22_y54wj"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
 [ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
 [ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
@@ -68,9 +68,6 @@ func _process(_delta: float) -> void:
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
 size = Vector3(0.65618896, 0.4678192, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y54wj"]
-size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j84mu"]
 
@@ -220,20 +217,12 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
 collision_layer = 2
 collision_mask = 4
-monitoring = false
-script = ExtResource("22_y54wj")
-metadata/_custom_type_script = "uid://dr25kpbbuggri"
+script = ExtResource("15_vibpd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=643993144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028381348, 1.6575379, -1.0966349)
 shape = SubResource("BoxShape3D_bvphe")
 debug_color = Color(0.81, 0, 0.013499794, 0.41960785)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=1985783658]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6669056, -1.0182828)
-visible = false
-mesh = SubResource("BoxMesh_y54wj")
 
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76993966)

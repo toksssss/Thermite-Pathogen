@@ -16,7 +16,7 @@ class_name WeaponState
 var animation_duration : float
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
-var melee_hurtbox : Hurtbox
+var melee_hurtbox : ManualHurtbox
 var enter_state_time : float
 var resources : WeaponResourcesStore
 
