@@ -9,8 +9,9 @@ func damage(attack: AttackData) -> void:
 	
 	if health <= 0:
 		if attack.source:
-			attack.source.kill_count += 1
+			#attack.source.kill_count += 1
+			pass
 		if fsm:
 			fsm.switch_to("death")
 		else:
-			get_parent().queue_free()
+			get_parent().queue_free.call_deferred()

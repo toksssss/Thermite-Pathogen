@@ -15,7 +15,7 @@ func _ready() -> void:
 	hurtbox.attack_data = attack_data
 
 func _physics_process(delta: float) -> void:
-	velocity = transform.basis * Vector3(0, 0, speed)
+	velocity = transform.basis * Vector3(0, 0, -speed)
 	
 	var collision : KinematicCollision3D = move_and_collide(velocity*delta)
 	

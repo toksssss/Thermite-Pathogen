@@ -22,6 +22,7 @@ var weapon_upgrades : ReactiveArray
 var current_weapon_strategy : WeaponStrategy
 var current_weapon_viewmodel : Node3D
 #var marker : Marker3D
+@export_category("Marker")
 @export var marker : Marker3D
 var weapon_animator : AnimationPlayer
 

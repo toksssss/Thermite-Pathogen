@@ -2,7 +2,6 @@ extends AIMove
 
 const ANIMATION_LENGTH : float = 2.0
 
-@export var collider : CollisionShape3D
 
 func check_transition(delta: float) -> String:
 	if works_longer_than(ANIMATION_LENGTH):

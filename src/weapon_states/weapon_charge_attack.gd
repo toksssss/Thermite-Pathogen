@@ -12,7 +12,7 @@ func on_enter_state() -> void:
 	
 	animation_duration = ANIMATION_END / speed_multiplier
 	
-	current_weapon.charged_attack(weapon_model)
+	current_weapon.alternative_attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
 	
 
