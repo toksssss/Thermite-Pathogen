@@ -1,11 +1,10 @@
 extends AIMove
 
-const ANIMATION_LENGTH : float = 2.0
-
+const ANIMATION_LENGTH : float = 1.5
 
 func check_transition(delta: float) -> String:
 	if works_longer_than(ANIMATION_LENGTH):
-		return "idle"
+		return "standing"
 	return "okay"
 
 
@@ -14,8 +13,8 @@ func update(delta: float) -> void:
  
 
 func on_enter() -> void:
-	collider.disabled = true
+	pass
 
 
 func on_exit() -> void:
-	character.queue_free.call_deferred()
+	pass

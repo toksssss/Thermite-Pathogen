@@ -18,6 +18,7 @@ func attack(_source : Node, marker : Marker3D) -> void:
 	spawned_bullet.hurtbox.set_collision_layer_value(4, 1)
 	spawned_bullet.hurtbox.set_collision_mask_value(1, 1)
 	
+	# TODO: Переделать
 	var player : Player = _source.get_tree().get_first_node_in_group("player")
 	var position := calculate_final_pos(player.global_position, player.velocity, player.model.acceleration)
 	position.y -= 0.3

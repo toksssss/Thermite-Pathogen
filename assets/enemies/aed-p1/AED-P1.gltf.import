@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://di6way83j3xr6"
-path="res://.godot/imported/AED-P1.gltf-004423586472395399a618ac9c910eea.scn"
+path="res://.godot/imported/AED-P1.gltf-84eb26eebfed40b33874d7106ef694e9.scn"
 
 [deps]
 
-source_file="res://assets/ememies/aed-p1/AED-P1.gltf"
-dest_files=["res://.godot/imported/AED-P1.gltf-004423586472395399a618ac9c910eea.scn"]
+source_file="res://assets/enemies/aed-p1/AED-P1.gltf"
+dest_files=["res://.godot/imported/AED-P1.gltf-84eb26eebfed40b33874d7106ef694e9.scn"]
 
 [params]
 

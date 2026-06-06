@@ -64,3 +64,15 @@ func rotate_character(position : Vector3, speed: float, delta: float) -> void:
 	var target := character.transform.looking_at(position)
 	var weight : float = 1 - exp(-speed * delta)
 	character.transform = lerp(character.transform, target, weight)
+
+func distance_to_player() -> float:
+	return character.global_position.distance_to(player.global_position)
+
+func follow_target(speed: float, delta: float) -> void:
+	if nav_agent.is_navigation_finished():
+		character.velocity = Vector3.ZERO
+
+	nav_agent.target_position = player.global_position
+	var destination := nav_agent.get_next_path_position()
+	var direction := (destination - character.global_position).normalized()
+	nav_agent.velocity = direction * speed

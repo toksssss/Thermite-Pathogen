@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://2vfqmo0oispt"]
 
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="1_1thp7"]
-[ext_resource type="Script" uid="uid://dmgs6qbu8eabq" path="res://src/ai_aed_p1.gd" id="1_dbyr0"]
-[ext_resource type="Texture2D" uid="uid://dy0jiy40qjvc7" path="res://assets/ememies/aed-p1/Sphere.png" id="1_wwlhp"]
+[ext_resource type="Script" uid="uid://dmgs6qbu8eabq" path="res://src/ai/ai_aed_p1.gd" id="1_dbyr0"]
+[ext_resource type="Texture2D" uid="uid://dy0jiy40qjvc7" path="res://assets/enemies/aed-p1/Sphere.png" id="1_wwlhp"]
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="2_cdojj"]
-[ext_resource type="Texture2D" uid="uid://c2p612rnw3kd5" path="res://assets/ememies/aed-p1/BodyPixelated.png" id="2_t6k0f"]
-[ext_resource type="Script" uid="uid://dllyff3dbpy3x" path="res://src/ai_statemachine.gd" id="4_s53uv"]
+[ext_resource type="Texture2D" uid="uid://c2p612rnw3kd5" path="res://assets/enemies/aed-p1/BodyPixelated.png" id="2_t6k0f"]
+[ext_resource type="Script" uid="uid://dllyff3dbpy3x" path="res://src/aed_statemachine.gd" id="4_s53uv"]
 [ext_resource type="Script" uid="uid://b2vly0j3aubvc" path="res://src/ai_states/aed_p1/idle.gd" id="5_54vpb"]
 [ext_resource type="Script" uid="uid://ljhjybykfqfo" path="res://src/hurtbox/manual_hurtbox.gd" id="6_5wrg4"]
 [ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="6_p7nre"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://dtq6xjhs6ckel" path="res://src/ai_states/aed_p1/melee.gd" id="7_54vpb"]
 [ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_data_resource.gd" id="7_b00vl"]
 [ext_resource type="Script" uid="uid://n2kjuykk8c38" path="res://src/ai_weapon_strategy.gd" id="7_p7nre"]
-[ext_resource type="Script" uid="uid://b6eev1i1s2tfp" path="res://src/ai_states/aed_p1/death.gd" id="11_2yk3d"]
+[ext_resource type="Script" uid="uid://b6eev1i1s2tfp" path="res://src/ai_states/general/death.gd" id="11_2yk3d"]
 [ext_resource type="Script" uid="uid://bcn3mrhn5ehaj" path="res://src/ai_states/aed_p1/stunned.gd" id="11_b00vl"]
 
 [sub_resource type="Animation" id="Animation_5wrg4"]
@@ -640,7 +640,7 @@ shadow_mesh = SubResource("ArrayMesh_hgr8i")
 [sub_resource type="GDScript" id="GDScript_s53uv"]
 script/source = "extends Label3D
 
-@export var fsm : AIStateMachine
+@export var fsm : StateMachine
 @export var hp : HealthComponent
 
 func _physics_process(delta: float) -> void:
@@ -894,14 +894,14 @@ mesh = SubResource("ArrayMesh_rbrqh")
 skin = SubResource("Skin_pqrh4")
 skeleton = NodePath("../../GeneralSkeleton")
 
-[node name="Sphere_bone2" type="BoneAttachment3D" parent="." unique_id=1275239884]
+[node name="Head_bone" type="BoneAttachment3D" parent="." unique_id=1275239884]
 transform = Transform3D(-2.1569234e-08, 3.0922056e-09, -0.5, 0.07207306, 0.49477822, -4.920936e-11, 0.49477822, -0.07207306, -2.1789704e-08, 9.1361985e-09, 2.8804088, -0.20901187)
 bone_name = "Sphere_bone"
 bone_idx = 12
 use_external_skeleton = true
 external_skeleton = NodePath("../GeneralSkeleton")
 
-[node name="Hitbox" type="Area3D" parent="Sphere_bone2" unique_id=757115217 node_paths=PackedStringArray("parent", "health", "fsm")]
+[node name="Hitbox" type="Area3D" parent="Head_bone" unique_id=757115217 node_paths=PackedStringArray("parent", "health", "fsm")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_cdojj")
@@ -912,7 +912,7 @@ is_crit_hitbox = true
 crit_damage_multiplier = 2.0
 metadata/_custom_type_script = "uid://br8duwo3s26f0"
 
-[node name="Head" type="CollisionShape3D" parent="Sphere_bone2/Hitbox" unique_id=1952049428]
+[node name="Head" type="CollisionShape3D" parent="Head_bone/Hitbox" unique_id=1952049428]
 transform = Transform3D(1, -1.4901161e-08, -7.1054274e-15, 1.4901161e-08, 1, 4.440892e-16, 7.1054274e-15, -2.9398706e-13, 1, 0.036203682, -0.7406988, -0.04605104)
 shape = SubResource("SphereShape3D_2yk3d")
 debug_color = Color(0.9490196, 0, 0.57254905, 0.41960785)
@@ -957,15 +957,15 @@ external_skeleton = NodePath("../GeneralSkeleton")
 [node name="GunMarker" type="Marker3D" parent="Gun_bone" unique_id=1434694682]
 transform = Transform3D(0.32553926, 1.9731249, 0.028326735, -0.15689427, -0.002738591, 1.9938346, 1.9670812, -0.32675788, 0.15434024, 0.021716595, 1.6508019, 0.045899153)
 
-[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("animation_player", "character", "navigation_agent", "marker", "collider", "raycast")]
+[node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("navigation_agent", "marker", "collider", "raycast", "animation_player", "character")]
 script = ExtResource("4_s53uv")
-animation_player = NodePath("../AnimationPlayer")
-character = NodePath("..")
 navigation_agent = NodePath("../NavigationAgent3D")
 weapon = SubResource("Resource_5wrg4")
 marker = NodePath("../Gun_bone/GunMarker")
 collider = NodePath("../Collider")
 raycast = NodePath("../MeleeCast")
+animation_player = NodePath("../AnimationPlayer")
+character = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=2112809179]
 script = ExtResource("5_54vpb")

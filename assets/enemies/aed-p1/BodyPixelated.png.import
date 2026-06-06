@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2p612rnw3kd5"
-path="res://.godot/imported/BodyPixelated.png-34f7e655fd696b484daa11dd2e3df5ef.ctex"
+path="res://.godot/imported/BodyPixelated.png-ecc2b3701df41c1b9a57c61d8139b548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ememies/aed-p1/BodyPixelated.png"
-dest_files=["res://.godot/imported/BodyPixelated.png-34f7e655fd696b484daa11dd2e3df5ef.ctex"]
+source_file="res://assets/enemies/aed-p1/BodyPixelated.png"
+dest_files=["res://.godot/imported/BodyPixelated.png-ecc2b3701df41c1b9a57c61d8139b548.ctex"]
 
 [params]
 

@@ -1,8 +1,10 @@
 extends AIMove
 
-var cooldown : float = 0.5
-var is_cooldown : bool
-var timer : Timer
+const ANIMATION_LENGTH : float = 1.0
+
+var timer: Timer
+var cooldown : float = 3.0
+var is_cooldown: bool
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -11,27 +13,30 @@ func _ready() -> void:
 
 func check_transition(delta: float) -> String:
 	if !player:
-		return "idle"
+		return "okay"
 	
-	var distance : float = distance_to_player()
+	var distance := distance_to_player()
 	if distance <= character.melee_trigger:
-		if raycast.is_colliding():
-			return "melee"
-	if distance >= character.idle_trigger:
-		return "idle"
+		return "melee"
+	if distance >= character.follow_trigger:
+		return "follow"
+	
+	if raycast.is_colliding():
+		return "follow"
+
 	return "okay"
 
 
 func update(delta: float) -> void:
-	follow_target(character.speed, delta)
-	rotate_character(player.global_position, character.rotate_speed, delta)
+	rotate_character(player.global_position, character.rotate_speed * 2.0, delta)
 	shoot()
 
 func on_enter() -> void:
 	pass
 
+
 func on_exit() -> void:
-	nav_agent.velocity = Vector3.ZERO
+	pass
 
 func shoot() -> void:
 	if is_cooldown:

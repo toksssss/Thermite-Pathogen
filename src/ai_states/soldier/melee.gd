@@ -1,13 +1,17 @@
 extends AIMove
 
-const ANIMATION_LENGTH : float = 1.5
+const ANIMATION_LENGTH : float = 0.75
 
-func _ready() -> void:
-	move_name = "stunned"
 
 func check_transition(delta: float) -> String:
 	if works_longer_than(ANIMATION_LENGTH):
-		return "idle"
+		var distance := distance_to_player()
+		if distance >= character.melee_trigger:
+			return "standing"
+		elif distance >= character.follow_trigger:
+			return "follow"
+		else:
+			return "melee"
 	return "okay"
 
 
