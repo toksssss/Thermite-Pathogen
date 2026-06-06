@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy0jiy40qjvc7"
-path="res://.godot/imported/Sphere.png-a84200099b37470dfc29fb4a1f86e21c.ctex"
+uid="uid://bnhmlcq0odanb"
+path="res://.godot/imported/123123.png-500fe20b75dcbfab0b145d95102bbd36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ememies/aed-p1/Sphere.png"
-dest_files=["res://.godot/imported/Sphere.png-a84200099b37470dfc29fb4a1f86e21c.ctex"]
+source_file="res://assets/enemies/soldier/123123.png"
+dest_files=["res://.godot/imported/123123.png-500fe20b75dcbfab0b145d95102bbd36.ctex"]
 
 [params]
 

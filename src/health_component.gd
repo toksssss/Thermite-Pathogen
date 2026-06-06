@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 @export var health : float = 100.0
-@export var fsm : AIStateMachine
+@export var fsm : StateMachine
 
 func damage(attack: AttackData) -> void:
 	health -= attack.damage

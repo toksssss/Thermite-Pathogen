@@ -4,7 +4,7 @@ class_name Hitbox
 @export var parent : Node3D
 
 @export var health : HealthComponent
-@export var fsm : AIStateMachine
+@export var fsm : StateMachine
 
 
 @export_category("Crit")

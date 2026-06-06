@@ -1,13 +1,11 @@
 extends AIMove
 
-const ANIMATION_LENGTH : float = 1.5
+const ANIMATION_LENGTH : float = 1.0
 
-func _ready() -> void:
-	move_name = "stunned"
 
 func check_transition(delta: float) -> String:
 	if works_longer_than(ANIMATION_LENGTH):
-		return "idle"
+		return ""
 	return "okay"
 
 
