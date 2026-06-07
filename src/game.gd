@@ -7,6 +7,8 @@ var scene_container : RootSceneContainer
 
 var preload_manager : PreloadManager
 
+var loading_screen : LoadingScreen
+
 var main_level_node : MainLevel:
 	get:
 		return scene_container.current_scene as MainLevel
@@ -21,6 +23,7 @@ func _ready() -> void:
 	instance = self
 	preload_manager = %PreloadManager
 	scene_container = %RootSceneContainer
+	loading_screen = %LoadingScreen
 	game_startup_wrapper()
 
 # В идеале запихивать на каждую стадию загрузки свою инициализацию систем 
@@ -37,8 +40,10 @@ func launch_main_menu() -> void:
 
 func load_level() -> void:
 	scene_container.set_current_scene(await MainLevel.create())
+	await loading_screen.fade_out()
 
 func start_loading_level() -> void:
+	await loading_screen.fade_in()
 	await load_level()
 
 func quit() -> void:

@@ -1,6 +1,10 @@
 extends Node
 class_name PreloadManager
 
+static var instance : PreloadManager :
+	get:
+		return GameManager.instance.preload_manager
+
 signal resource_loading_complete
 
 var use_sub_threads : bool = true
