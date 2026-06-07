@@ -8,6 +8,6 @@ static var instance : MainLevel:
 		return GameManager.instance.main_level_node
 
 static func create() -> MainLevel:
-	var _level : PackedScene = load(SCENE_PATH)
+	var _level : PackedScene = await PreloadManager.instance.load_scene_to_cache("res://assets/main/main_level.tscn")
 	var level : MainLevel = _level.instantiate()
 	return level
