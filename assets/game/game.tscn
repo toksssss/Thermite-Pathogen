@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ig35f53rh73d"]
+
+[ext_resource type="Script" uid="uid://7f6if3suveta" path="res://src/game.gd" id="1_skg13"]
+[ext_resource type="Script" uid="uid://cs1sjqv7vdpmh" path="res://src/root_scene_container.gd" id="2_5g6sn"]
+
+[node name="Game" type="Node3D" unique_id=1443932959]
+script = ExtResource("1_skg13")
+
+[node name="RootSceneContainer" type="Node3D" parent="." unique_id=1827554243]
+unique_name_in_owner = true
+script = ExtResource("2_5g6sn")
+
+[node name="SoundManager" type="Node" parent="." unique_id=990689482]
