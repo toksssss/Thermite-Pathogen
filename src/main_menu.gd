@@ -21,7 +21,7 @@ static func create() -> MainMenu:
 	return menu
 
 func _on_start_game_pressed() -> void:
-	GameManager.instance.load_level()
+	await GameManager.instance.start_loading_level()
 
 func _on_settings_pressed() -> void:
 	pass

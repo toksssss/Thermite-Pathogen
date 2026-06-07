@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7f6if3suveta" path="res://src/game.gd" id="1_skg13"]
 [ext_resource type="Script" uid="uid://cs1sjqv7vdpmh" path="res://src/root_scene_container.gd" id="2_5g6sn"]
+[ext_resource type="Script" uid="uid://3umdrr0p3y5u" path="res://src/preload_manager.gd" id="3_r2xrw"]
 
 [node name="Game" type="Node3D" unique_id=1443932959]
 script = ExtResource("1_skg13")
@@ -10,4 +11,9 @@ script = ExtResource("1_skg13")
 unique_name_in_owner = true
 script = ExtResource("2_5g6sn")
 
+[node name="PreloadManager" type="Node" parent="." unique_id=274407721]
+unique_name_in_owner = true
+script = ExtResource("3_r2xrw")
+
 [node name="SoundManager" type="Node" parent="." unique_id=990689482]
+unique_name_in_owner = true

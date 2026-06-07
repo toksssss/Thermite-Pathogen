@@ -5,6 +5,8 @@ static var instance : GameManager
 
 var scene_container : RootSceneContainer
 
+var preload_manager : PreloadManager
+
 var main_level_node : MainLevel:
 	get:
 		return scene_container.current_scene as MainLevel
@@ -17,6 +19,7 @@ var main_menu_node : MainMenu:
 
 func _ready() -> void:
 	instance = self
+	preload_manager = %PreloadManager
 	scene_container = %RootSceneContainer
 	game_startup_wrapper()
 
@@ -33,7 +36,10 @@ func launch_main_menu() -> void:
 	scene_container.set_current_scene(_menu) 
 
 func load_level() -> void:
-	scene_container.set_current_scene(MainLevel.create())
+	scene_container.set_current_scene(await MainLevel.create())
+
+func start_loading_level() -> void:
+	await load_level()
 
 func quit() -> void:
 	get_tree().quit()
