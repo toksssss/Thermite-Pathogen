@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://j4c077nv27qt"]
+
+[ext_resource type="Script" uid="uid://yrh5553nhkc0" path="res://src/main_menu.gd" id="1_hvp7p"]
+[ext_resource type="FontFile" uid="uid://dpihm45v03tyw" path="res://addons/special_elite/SpecialElite-Regular.ttf" id="2_o7ot1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8ye4"]
+font = ExtResource("2_o7ot1")
+font_size = 95
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4.74, 1)
+
+[sub_resource type="Theme" id="Theme_i261q"]
+default_font_size = 41
+Button/font_sizes/font_size = 63
+Button/fonts/font = ExtResource("2_o7ot1")
+
+[node name="MainMenu" type="Control" unique_id=1838641080]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hvp7p")
+
+[node name="Panel" type="Panel" parent="." unique_id=1500401]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLabel" type="Label" parent="." unique_id=808922768]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -289.0
+offset_right = 853.0
+offset_bottom = -198.0
+grow_vertical = 2
+text = "Thermite 
+   Pathogen"
+label_settings = SubResource("LabelSettings_g8ye4")
+autowrap_trim_flags = 64
+
+[node name="Buttons" type="Control" parent="." unique_id=229879846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=484482599]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 658.0
+offset_bottom = 544.0
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="StartGame" type="Button" parent="Buttons/VBoxContainer" unique_id=586581443]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_i261q")
+text = "Start game"
+flat = true
+alignment = 0
+
+[node name="Settings" type="Button" parent="Buttons/VBoxContainer" unique_id=276545618]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_i261q")
+text = "Settings
+"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="Buttons/VBoxContainer" unique_id=1668735516]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_i261q")
+text = "Exit"
+flat = true
+alignment = 0
