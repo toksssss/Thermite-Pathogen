@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dy0jiy40qjvc7" path="res://assets/enemies/aed-p1/Sphere.png" id="1_wwlhp"]
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="2_cdojj"]
 [ext_resource type="Texture2D" uid="uid://c2p612rnw3kd5" path="res://assets/enemies/aed-p1/BodyPixelated.png" id="2_t6k0f"]
-[ext_resource type="Script" uid="uid://dllyff3dbpy3x" path="res://src/aed_statemachine.gd" id="4_s53uv"]
+[ext_resource type="Script" path="res://src/aed_statemachine.gd" id="4_s53uv"]
 [ext_resource type="Script" uid="uid://b2vly0j3aubvc" path="res://src/ai_states/aed_p1/idle.gd" id="5_54vpb"]
 [ext_resource type="Script" uid="uid://ljhjybykfqfo" path="res://src/hurtbox/manual_hurtbox.gd" id="6_5wrg4"]
 [ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="6_p7nre"]
@@ -640,8 +640,12 @@ shadow_mesh = SubResource("ArrayMesh_hgr8i")
 [sub_resource type="GDScript" id="GDScript_s53uv"]
 script/source = "extends Label3D
 
-@export var fsm : StateMachine
-@export var hp : HealthComponent
+var fsm : StateMachine
+var hp : HealthComponent
+
+func _ready() -> void:
+	hp = %HealthComponent
+	fsm = %StateMachine
 
 func _physics_process(delta: float) -> void:
 	text = \"\"
@@ -732,7 +736,6 @@ size = Vector3(2.5195313, 4.25058, 4.373413)
 [sub_resource type="Resource" id="Resource_dbyr0"]
 script = ExtResource("7_b00vl")
 name = "machine-gun"
-damage = 10.0
 bullet_speed = 50.0
 metadata/_custom_type_script = "uid://dutvrqf2cf0be"
 
@@ -756,6 +759,7 @@ debug_enabled = true
 libraries/ = SubResource("AnimationLibrary_dbyr0")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2102936678 node_paths=PackedStringArray("fsm")]
+unique_name_in_owner = true
 script = ExtResource("1_1thp7")
 health = 1000.0
 fsm = NodePath("../StateMachine")
@@ -880,13 +884,11 @@ external_skeleton = NodePath("../../GeneralSkeleton")
 transform = Transform3D(1, -2.9569492e-08, -2.7939677e-09, 2.9569492e-08, 1, -3.7252903e-09, 2.7939677e-09, 3.7252903e-09, 1, -2.1606684e-07, -0.900002, -3.7252903e-08)
 mesh = SubResource("ArrayMesh_xv7vr")
 
-[node name="Label3D" type="Label3D" parent="Visuals/Sphere_bone" unique_id=1465980390 node_paths=PackedStringArray("fsm", "hp")]
+[node name="Label3D" type="Label3D" parent="Visuals/Sphere_bone" unique_id=1465980390]
 transform = Transform3D(-8.6742595e-08, 0.28829223, -1.9791129, 1.2834484e-08, 1.9791129, 0.28829223, 2, -1.9683846e-10, -8.768675e-08, 0.3423971, 0.5802479, 7.0904025e-09)
 billboard = 1
 text = "STATE"
 script = SubResource("GDScript_s53uv")
-fsm = NodePath("../../../StateMachine")
-hp = NodePath("../../../HealthComponent")
 
 [node name="Body" type="MeshInstance3D" parent="Visuals" unique_id=1616707542]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5306797, 0)
@@ -958,6 +960,7 @@ external_skeleton = NodePath("../GeneralSkeleton")
 transform = Transform3D(0.32553926, 1.9731249, 0.028326735, -0.15689427, -0.002738591, 1.9938346, 1.9670812, -0.32675788, 0.15434024, 0.021716595, 1.6508019, 0.045899153)
 
 [node name="StateMachine" type="Node" parent="." unique_id=150099481 node_paths=PackedStringArray("navigation_agent", "marker", "collider", "raycast", "animation_player", "character")]
+unique_name_in_owner = true
 script = ExtResource("4_s53uv")
 navigation_agent = NodePath("../NavigationAgent3D")
 weapon = SubResource("Resource_5wrg4")
