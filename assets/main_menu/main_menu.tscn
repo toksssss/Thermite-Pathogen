@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yrh5553nhkc0" path="res://src/main_menu.gd" id="1_hvp7p"]
 [ext_resource type="FontFile" uid="uid://dpihm45v03tyw" path="res://addons/special_elite/SpecialElite-Regular.ttf" id="2_o7ot1"]
+[ext_resource type="PackedScene" uid="uid://cqad3gf2rqe4y" path="res://assets/ui/settings/settings.tscn" id="3_o7ot1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g8ye4"]
 font = ExtResource("2_o7ot1")
@@ -89,3 +90,16 @@ theme = SubResource("Theme_i261q")
 text = "Exit"
 flat = true
 alignment = 0
+
+[node name="Submenus" type="Control" parent="." unique_id=136945235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingsMenu" parent="Submenus" unique_id=1760847845 instance=ExtResource("3_o7ot1")]
+visible = false
+layout_mode = 1

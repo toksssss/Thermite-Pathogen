@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://38kxcnj3lxsj"]
+
+[ext_resource type="Theme" uid="uid://dwfiaokhr4y0m" path="res://assets/ui/settings/themes/base_ui_theme.tres" id="1_fld00"]
+
+[node name="SettingCheckBox" type="Control" unique_id=499696233]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="." unique_id=738741544]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.19
+offset_top = -10.0
+offset_right = 5.8100014
+offset_bottom = 62.0
+grow_horizontal = 2
+theme = ExtResource("1_fld00")

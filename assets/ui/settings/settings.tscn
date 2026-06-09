@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cqad3gf2rqe4y"]
+
+[ext_resource type="Script" uid="uid://djx0071oa6teb" path="res://src/ui/settings_menu.gd" id="1_2nolj"]
+[ext_resource type="PackedScene" uid="uid://38kxcnj3lxsj" path="res://assets/ui/settings/setting_check_box.tscn" id="2_72jqs"]
+[ext_resource type="Script" uid="uid://cx0rk1fdi37ah" path="res://src/ui/settings_checkbox/fullscreen_checkbox.gd" id="3_6lpr7"]
+[ext_resource type="Script" uid="uid://utpn4tqg1kq" path="res://src/ui/settings_checkbox/vsync_checkbox.gd" id="3_gverg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jilhd"]
+bg_color = Color(0, 0, 0.1897483, 0.349)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2nolj"]
+font_size = 37
+
+[node name="SettingsMenu" type="Control" unique_id=1760847845]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2nolj")
+
+[node name="Panel" type="Panel" parent="." unique_id=1891176525]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jilhd")
+
+[node name="Settings" type="VBoxContainer" parent="." unique_id=5977498]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.5
+offset_top = -204.0
+offset_right = 473.5
+offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 45
+
+[node name="Parameter" type="HBoxContainer" parent="Settings" unique_id=2057173435]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Parameter" unique_id=911272015]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "V-sync enable"
+label_settings = SubResource("LabelSettings_2nolj")
+
+[node name="Vsync" parent="Settings/Parameter" unique_id=499696233 instance=ExtResource("2_72jqs")]
+layout_mode = 2
+script = ExtResource("3_gverg")
+
+[node name="Parameter2" type="HBoxContainer" parent="Settings" unique_id=63726880]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Parameter2" unique_id=1937605466]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_2nolj")
+
+[node name="Fscreen" parent="Settings/Parameter2" unique_id=1227729839 instance=ExtResource("2_72jqs")]
+layout_mode = 2
+script = ExtResource("3_6lpr7")
+
+[node name="Button" type="Button" parent="." unique_id=252197567]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -272.0
+offset_right = 119.0
+offset_bottom = -205.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 43
+text = "BACK"
