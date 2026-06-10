@@ -30,3 +30,4 @@ func _process(delta: float) -> void:
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
 			resource_loading_complete.emit()
+			set_process(false)
