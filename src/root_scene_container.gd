@@ -7,7 +7,6 @@ static var instance : RootSceneContainer:
 	get:
 		return GameManager.instance.scene_container
 
-
 var current_scene: Node :
 	get:
 		if current_scene == null:

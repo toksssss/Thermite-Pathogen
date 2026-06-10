@@ -9,6 +9,8 @@ var preload_manager : PreloadManager
 
 var loading_screen : LoadingScreen
 
+var gameplay_scene : GameplayManager
+
 var main_level_node : MainLevel:
 	get:
 		return scene_container.current_scene as MainLevel
@@ -38,13 +40,13 @@ func launch_main_menu() -> void:
 	var _menu : MainMenu = MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
-func load_level() -> void:
-	scene_container.set_current_scene(await MainLevel.create())
-	await loading_screen.fade_out()
-
 func start_loading_level() -> void:
 	await loading_screen.fade_in()
-	await load_level()
+	await start_gameplay()
+
+func start_gameplay() -> void:
+	scene_container.set_current_scene(await GameplayManager.create())
+	await loading_screen.fade_out()
 
 func quit() -> void:
 	get_tree().quit()
