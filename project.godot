@@ -39,6 +39,10 @@ movie_writer/movie_file="test.avi"
 movie_writer/disable_vsync=true
 script/templates_search_path="res://src/templates"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

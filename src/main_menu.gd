@@ -6,6 +6,8 @@ const SCENE_PATH : String = "res://assets/main_menu/main_menu.tscn"
 var start_game : Button
 var settings : Button
 var exit : Button
+var settings_menu : SettingsMenu
+var submenus : Control
 
 func _ready() -> void:
 	start_game = %StartGame
@@ -14,6 +16,7 @@ func _ready() -> void:
 	settings.button_down.connect(_on_settings_pressed)
 	exit = %Exit
 	exit.button_down.connect(_on_exit_pressed)
+	settings_menu = $Submenus/SettingsMenu
 
 static func create() -> MainMenu:
 	var _menu : PackedScene = load(SCENE_PATH)
@@ -24,7 +27,7 @@ func _on_start_game_pressed() -> void:
 	await GameManager.instance.start_loading_level()
 
 func _on_settings_pressed() -> void:
-	pass
+	settings_menu.visible = true
 
 func _on_exit_pressed() -> void:
 	GameManager.instance.quit()
