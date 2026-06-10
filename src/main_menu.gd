@@ -19,7 +19,7 @@ func _ready() -> void:
 	settings_menu = $Submenus/SettingsMenu
 
 static func create() -> MainMenu:
-	var _menu : PackedScene = load(SCENE_PATH)
+	var _menu : PackedScene = await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
 	var menu : MainMenu = _menu.instantiate()
 	return menu
 

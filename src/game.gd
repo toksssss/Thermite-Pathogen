@@ -9,11 +9,9 @@ var preload_manager : PreloadManager
 
 var loading_screen : LoadingScreen
 
-var gameplay_scene : GameplayManager
-
-var main_level_node : MainLevel:
+var gameplay_scene : GameplayManager:
 	get:
-		return scene_container.current_scene as MainLevel
+		return scene_container.current_scene as GameplayManager
 
 var main_menu_node : MainMenu:
 	get:
@@ -37,7 +35,7 @@ func game_startup() -> void:
 	launch_main_menu()
 
 func launch_main_menu() -> void:
-	var _menu : MainMenu = MainMenu.create()
+	var _menu : MainMenu = await MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
 func start_loading_level() -> void:

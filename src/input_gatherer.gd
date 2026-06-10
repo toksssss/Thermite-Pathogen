@@ -6,12 +6,23 @@ class_name InputGatherer
 
 var mouse_motion : Vector2
 
+var is_disabled : bool
+
+func _ready() -> void:
+	GameplayManager.instance.game_paused.connect(func() -> void: is_disabled = true)
+	GameplayManager.instance.game_unpaused.connect(func() -> void: is_disabled = false)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_motion = (event as InputEventMouseMotion).screen_relative
 
 func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
+	
+	if is_disabled:
+		new_input.actions.append("idle")
+		new_input.combat_actions.append("idle")
+		return new_input
 	
 	# Mouse movement:
 	new_input.mouse_motion = mouse_motion

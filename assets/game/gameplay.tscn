@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://q1hvt4ay5xpt" path="res://src/gameplay.gd" id="1_01ikb"]
 [ext_resource type="Script" uid="uid://bpo2628haq0so" path="res://src/level_container.gd" id="2_8jkfc"]
+[ext_resource type="Script" uid="uid://dnvtfcto60qnx" path="res://src/ui/game_ui.gd" id="3_fvsqn"]
+[ext_resource type="PackedScene" uid="uid://bvlxk0l51plt4" path="res://src/ui/pause_menu.tscn" id="3_nyl4f"]
 
 [node name="Gameplay" type="Node3D" unique_id=1491618204]
 script = ExtResource("1_01ikb")
@@ -12,17 +14,17 @@ script = ExtResource("2_8jkfc")
 
 [node name="GameUI" type="Control" parent="." unique_id=164716804]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_fvsqn")
 
-[node name="PauseMenu" type="Control" parent="GameUI" unique_id=1469592766]
+[node name="PauseMenu" parent="GameUI" unique_id=1710387630 instance=ExtResource("3_nyl4f")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
