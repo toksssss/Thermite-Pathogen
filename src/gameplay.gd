@@ -45,4 +45,6 @@ func close_pause_menu() -> void:
 	 #get_tree().paused = false
 
 func start_main_level() -> void:
+	await LoadingScreen.instance.fade_in()
 	level_container.set_current_level(await MainLevel.create())
+	await LoadingScreen.instance.fade_out()

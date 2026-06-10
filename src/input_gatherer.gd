@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
 	
+	# TODO: Как-то переписать по красивому бы это, а то хуйня какая-то
 	if is_disabled:
 		new_input.actions.append("idle")
 		new_input.combat_actions.append("idle")

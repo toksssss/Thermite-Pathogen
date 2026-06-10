@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://djx0071oa6teb" path="res://src/ui/settings_menu.gd" id="1_2nolj"]
 [ext_resource type="PackedScene" uid="uid://38kxcnj3lxsj" path="res://assets/ui/settings/setting_check_box.tscn" id="2_72jqs"]
+[ext_resource type="Shader" uid="uid://cjt3hn47kc4ui" path="res://assets/materials/shaders/blur.gdshader" id="2_xs1x2"]
 [ext_resource type="Script" uid="uid://cx0rk1fdi37ah" path="res://src/ui/settings_checkbox/fullscreen_checkbox.gd" id="3_6lpr7"]
 [ext_resource type="Script" uid="uid://utpn4tqg1kq" path="res://src/ui/settings_checkbox/vsync_checkbox.gd" id="3_gverg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_auv33"]
+shader = ExtResource("2_xs1x2")
+shader_parameter/lod = 2.000000095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jilhd"]
 bg_color = Color(0, 0, 0.1897483, 0.349)
@@ -21,6 +26,7 @@ grow_vertical = 2
 script = ExtResource("1_2nolj")
 
 [node name="Panel" type="Panel" parent="." unique_id=1891176525]
+material = SubResource("ShaderMaterial_auv33")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

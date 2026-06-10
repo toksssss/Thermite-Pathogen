@@ -38,12 +38,12 @@ func launch_main_menu() -> void:
 	var _menu : MainMenu = await MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
-func start_loading_level() -> void:
+func start_load_scene(level: Node3D) -> void:
 	await loading_screen.fade_in()
-	await start_gameplay()
+	await load_scene(level)
 
-func start_gameplay() -> void:
-	scene_container.set_current_scene(await GameplayManager.create())
+func load_scene(level: Node3D) -> void:
+	scene_container.set_current_scene(level)
 	await loading_screen.fade_out()
 
 func quit() -> void:
