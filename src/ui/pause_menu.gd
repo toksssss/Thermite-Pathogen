@@ -7,8 +7,11 @@ var settings_button : Button
 
 var exit_button : Button
 
+var settings_menu : SettingsMenu
+
 func _ready() -> void:
 	visible = false
+	settings_menu = %SettingsMenu
 	continue_button = %BContinue
 	continue_button.pressed.connect(_on_continue_pressed)
 	settings_button = %BSettings
@@ -30,7 +33,7 @@ func _on_continue_pressed() -> void:
 	GameplayManager.instance.close_pause_menu()
 
 func _on_settings_pressed() -> void:
-	pass
+	settings_menu.visible = true
 
 func _on_exit_pressed() -> void:
 	RootSceneContainer.instance.set_current_scene(await MainMenu.create())
