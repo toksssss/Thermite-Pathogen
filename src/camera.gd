@@ -16,6 +16,7 @@ func _ready() -> void:
 	actual_rotation.y = player.rotation.y
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+# BUG: При замене на _unhandled_input невозможно управлять персонажем.
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_head((event as InputEventMouseMotion).screen_relative)

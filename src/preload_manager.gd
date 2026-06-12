@@ -7,7 +7,7 @@ static var instance : PreloadManager :
 
 signal resource_loading_complete
 
-var use_sub_threads : bool = true
+var use_sub_threads : bool = false
 var resource_to_load : String
 
 func _ready() -> void:
@@ -30,4 +30,3 @@ func _process(delta: float) -> void:
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
 			resource_loading_complete.emit()
-			set_process(false)

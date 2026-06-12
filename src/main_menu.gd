@@ -19,12 +19,12 @@ func _ready() -> void:
 	settings_menu = $Submenus/SettingsMenu
 
 static func create() -> MainMenu:
-	var _menu : PackedScene = load(SCENE_PATH)
+	var _menu : PackedScene = await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
 	var menu : MainMenu = _menu.instantiate()
 	return menu
 
 func _on_start_game_pressed() -> void:
-	await GameManager.instance.start_loading_level()
+	await GameManager.instance.start_load_scene(await GameplayManager.create())
 
 func _on_settings_pressed() -> void:
 	settings_menu.visible = true

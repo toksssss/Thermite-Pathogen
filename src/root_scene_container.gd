@@ -7,7 +7,6 @@ static var instance : RootSceneContainer:
 	get:
 		return GameManager.instance.scene_container
 
-
 var current_scene: Node :
 	get:
 		if current_scene == null:
@@ -25,6 +24,6 @@ func set_current_scene(node: Node) -> void:
 		child.queue_free.call_deferred()
 	current_scene = node
 	if node.get_parent() == null:
-		add_child(node)
+		add_child.call_deferred(node)
 	else:
 		node.reparent(self)
