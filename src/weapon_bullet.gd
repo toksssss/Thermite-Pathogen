@@ -25,8 +25,9 @@ func _physics_process(delta: float) -> void:
 		var pt : Vector3 = collision.get_position()
 		var material : Material
 		if obj is StaticBody3D:
-			var mesh : MeshInstance3D = (obj as Node).get_node("MeshInstance3D")
-			material = mesh.material_override
+			var mesh : MeshInstance3D = (obj as Node).get_node_or_null("MeshInstance3D")
+			if mesh != null:
+				material = mesh.material_override
 		BulletDecalPool.spawn_bullet_decal(pt, nrml, obj as Node3D, global_basis, material)
 		
 		# Или делать допольнительные проверки, или оставлять как есть

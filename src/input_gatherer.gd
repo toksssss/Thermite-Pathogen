@@ -9,8 +9,9 @@ var mouse_motion : Vector2
 var is_disabled : bool
 
 func _ready() -> void:
-	GameplayManager.instance.game_paused.connect(func() -> void: is_disabled = true)
-	GameplayManager.instance.game_unpaused.connect(func() -> void: is_disabled = false)
+	if GameplayManager.instance != null:
+		GameplayManager.instance.game_paused.connect(func() -> void: is_disabled = true)
+		GameplayManager.instance.game_unpaused.connect(func() -> void: is_disabled = false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
