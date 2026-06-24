@@ -48,5 +48,3 @@ func _on_child_transition(state: EnemiesState, new_state_name: String) -> void:
 		
 	new_state.enter()
 	current_state = new_state
-	
-	

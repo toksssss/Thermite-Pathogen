@@ -2,12 +2,34 @@
 
 [ext_resource type="Script" uid="uid://corrhk3vcxgnj" path="res://src/main_level.gd" id="1_roo2t"]
 [ext_resource type="Environment" uid="uid://cx23gvsuxc585" path="res://assets/main/sky_environment.tres" id="2_k2f0c"]
+[ext_resource type="Script" uid="uid://ceioxmjyq6a4h" path="res://src/level_stage/stage_machine.gd" id="2_v0qge"]
+[ext_resource type="Script" uid="uid://q7kk8mw71y7r" path="res://src/level_timer.gd" id="2_w4qlu"]
+[ext_resource type="Script" uid="uid://bkiqrh53qxsy1" path="res://src/level_stage/stages/none_stage.gd" id="3_3xa85"]
+[ext_resource type="Script" uid="uid://c8kbn2a7ivcr2" path="res://src/level_stage/stages/first_stage.gd" id="3_rl37l"]
 [ext_resource type="PackedScene" uid="uid://cp70mx5feo7pe" path="res://assets/player/player.tscn" id="3_w4qlu"]
 [ext_resource type="PackedScene" uid="uid://2vfqmo0oispt" path="res://assets/enemies/aed-p1/aed_p_1.tscn" id="4_v0qge"]
+[ext_resource type="Script" uid="uid://cl28hbaqxu712" path="res://src/level_stage/stages/second_stage.gd" id="5_nikn1"]
 [ext_resource type="PackedScene" uid="uid://c78rs0vtke5md" path="res://assets/enemies/soldier/soldier.tscn" id="5_rl37l"]
 [ext_resource type="Material" uid="uid://c5vxwutydahin" path="res://assets/materials/dev_orange.tres" id="6_nikn1"]
 [ext_resource type="Texture2D" uid="uid://dlgi1bfntdryo" path="res://addons/kenney_prototype-textures/PNG/Dark/texture_09.png" id="7_3xa85"]
 [ext_resource type="PackedScene" uid="uid://td1pq7fpxsln" path="res://assets/enemies/dummy/dummy.tscn" id="8_s8dal"]
+[ext_resource type="Script" uid="uid://4j3w2h41x6p" path="res://src/level_stage/spawning_manager.gd" id="9_k2f0c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rux81"]
+font_size = 64
+
+[sub_resource type="GDScript" id="GDScript_w4qlu"]
+resource_name = "timer_label"
+script/source = "extends Label
+
+var level_timer : LevelTimer
+
+func _ready() -> void:
+	level_timer = %LevelTimer
+
+func _physics_process(delta: float) -> void:
+	text = \"%d:%d\" % [level_timer.current_level_min, level_timer.current_level_sec]
+"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg683"]
 vertices = PackedVector3Array(-10.327148, 1, 0, -10.327148, 1, 19.25, 9.922852, 1, 19.25, 9.922852, 1, 0)
@@ -45,13 +67,113 @@ agent_radius = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_6sv45"]
 size = Vector3(19.084259, 4.527466, 24.35614)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_rux81"]
+vertices = PackedVector3Array(-21.233871, 1, -22.12302, -21.233871, 1, 22.12698, 21.266129, 1, 22.12698, 21.266129, 1, -22.12302)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sv45"]
 albedo_texture = ExtResource("7_3xa85")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_rux81"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_rux81"]
+size = Vector3(1, 2.2265015, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7yu4"]
+
+[sub_resource type="GDScript" id="GDScript_7gh1c"]
+resource_name = "stage_one_button"
+script/source = "extends Area3D
+
+@export var stage_machine: StageMachine
+
+func _ready() -> void:
+	area_entered.connect(_on_area_entered)
+
+func _on_area_entered(area: Area3D) -> void:
+	if area is Hurtbox:
+		stage_machine.force_new_state(\"one\")
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rux81"]
+size = Vector3(0.8521118, 0.76275635, 0.17675781)
+
+[sub_resource type="ImageTexture" id="ImageTexture_q0qll"]
+
+[sub_resource type="FontFile" id="FontFile_rux81"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
 [node name="Main" type="Node3D" unique_id=1934239975]
 script = ExtResource("1_roo2t")
+
+[node name="LevelTimer" type="Node" parent="." unique_id=682386702]
+unique_name_in_owner = true
+script = ExtResource("2_w4qlu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=364932141]
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=731114703]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_rux81")
+script = SubResource("GDScript_w4qlu")
+
+[node name="StageMachine" type="Node" parent="." unique_id=1925013489 node_paths=PackedStringArray("initial_state", "s_timer")]
+script = ExtResource("2_v0qge")
+initial_state = NodePath("None")
+s_timer = NodePath("STimer")
+
+[node name="STimer" type="Timer" parent="StageMachine" unique_id=968099954]
+
+[node name="None" type="Node" parent="StageMachine" unique_id=1200206893]
+script = ExtResource("3_3xa85")
+
+[node name="One" type="Node" parent="StageMachine" unique_id=1709274208]
+script = ExtResource("3_rl37l")
+enemie_scenes = Array[PackedScene]([ExtResource("4_v0qge")])
+spawning_rate = 10.0
+
+[node name="Two" type="Node" parent="StageMachine" unique_id=1166562254]
+script = ExtResource("5_nikn1")
+enemie_scenes = Array[PackedScene]([ExtResource("5_rl37l")])
+spawning_rate = 10.0
+threshold_min = 2
+
+[node name="SpawningManager" type="Node" parent="." unique_id=1662537121]
+unique_name_in_owner = true
+script = ExtResource("9_k2f0c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=342840713]
 transform = Transform3D(0.8910065, -0.39316735, 0.22699524, 0, 0.49999997, 0.86602545, -0.45399052, -0.77163434, 0.44550323, 0, 0, 0)
@@ -76,7 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.800224, 0.4947733, -4.1484
 [node name="World" type="Node3D" parent="." unique_id=366614922]
 
 [node name="AedNavRegion" type="NavigationRegion3D" parent="World" unique_id=2056917355]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.866276, 0, 27)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.866276, 0, 27)
 navigation_mesh = SubResource("NavigationMesh_dg683")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="World/AedNavRegion" unique_id=1836954740]
@@ -131,6 +253,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5710793, 1.5, 1.1699457)
 size = Vector3(1, 2, 1)
 material = ExtResource("6_nikn1")
 
+[node name="SpawnTest" type="NavigationRegion3D" parent="World" unique_id=2113564342]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.469585, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_rux81")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/SpawnTest" unique_id=655024244]
+use_collision = true
+collision_layer = 16
+collision_mask = 31
+size = Vector3(43.467743, 1, 45.24604)
+material = ExtResource("6_nikn1")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="World" unique_id=1046485917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.475899, -0.57662344, -0.5516548)
 use_collision = true
@@ -155,3 +290,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -4)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1321210081]
 transform = Transform3D(0.0627905, 0, -0.9980267, 0, 1, 0, 0.9980267, 0, 0.0627905, -0.165, 1.77, 0.245)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2094140727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.703, 1, -22.123)
+mesh = SubResource("CylinderMesh_rux81")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=573636770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.703, 1, 22.127)
+mesh = SubResource("CylinderMesh_rux81")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=677608457]
+mesh = SubResource("CylinderMesh_rux81")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1158229700]
+mesh = SubResource("CylinderMesh_rux81")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=315876307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4099817, 0.44281816, -7.945874)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1088552376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61325073, 0)
+mesh = SubResource("BoxMesh_rux81")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1785222730]
+shape = SubResource("BoxShape3D_u7yu4")
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=96584173 node_paths=PackedStringArray("stage_machine")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3661077, 0)
+collision_layer = 20
+collision_mask = 18
+script = SubResource("GDScript_7gh1c")
+stage_machine = NodePath("../../StageMachine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1236761116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012359619, -0.19082642, 0.56667566)
+shape = SubResource("BoxShape3D_rux81")
+
+[node name="Decal" type="Decal" parent="StaticBody3D" unique_id=1736240164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03466797, 1.1622772, 0)
+size = Vector3(0.9013672, 0.8015442, 2)
+texture_albedo = SubResource("ImageTexture_q0qll")
+
+[node name="Label3D" type="Label3D" parent="StaticBody3D" unique_id=202324954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5495906)
+text = "SHOOT
+TO 
+STAGE ONE"
+font = SubResource("FontFile_rux81")
