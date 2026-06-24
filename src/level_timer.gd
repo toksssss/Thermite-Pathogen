@@ -1,10 +1,26 @@
 extends Node
 class_name LevelTimer
 
-var start_level_msec : float
-var current_level_msec : float:
+static var instance : LevelTimer:
+	get:
+		return MainLevel.instance.level_timer
+
+var start_level_msec : int
+var current_level_msec : int:
 	get:
 		return Time.get_ticks_msec() - start_level_msec
+	set(v):
+		pass
+
+var current_level_sec : int:
+	get:
+		return (current_level_msec / 1000) % 60
+	set(v):
+		pass
+
+var current_level_min : int:
+	get:
+		return (current_level_msec / 60000) % 60
 	set(v):
 		pass
 
