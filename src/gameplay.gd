@@ -9,6 +9,8 @@ signal game_unpaused
 
 static var instance : GameplayManager:
 	get:
+		if GameManager.instance == null:
+			return null
 		return GameManager.instance.gameplay_scene
 
 var level_container : LevelContainer
