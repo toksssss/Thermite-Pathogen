@@ -7,7 +7,7 @@ var timer : Timer
 func _ready() -> void:
 	timer = Timer.new()
 	timer.timeout.connect(func() -> void: is_cooldown = false)
-	add_child.call_deferred(timer)
+	add_child(timer)
 
 func check_transition(delta: float) -> String:
 	if !player:
