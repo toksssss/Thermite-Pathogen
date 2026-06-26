@@ -11,11 +11,11 @@ var command_history_index : int = -1
 
 var console : DevConsole
 	
-func add_command(cmd_name: String, cmd: ConsoleCommand) -> void:
-	if command_dict.has(cmd_name):
-		print_debug("Command %s is already exists. Skipping" % cmd_name)
+func add_command(cmd: ConsoleCommand) -> void:
+	if command_dict.has(cmd.name):
+		print_debug("Command %s is already exists. Skipping" % cmd.name)
 		return
-	command_dict[cmd_name] = cmd
+	command_dict[cmd.name] = cmd
 
 func run_command(raw_cmd : String) -> void:
 	command_history.insert(0, raw_cmd)
@@ -23,7 +23,7 @@ func run_command(raw_cmd : String) -> void:
 	var command_split := raw_cmd.split(" ", false)
 	if command_dict.has(command_split[0]):
 		console.console_print_log(">%s\n" % raw_cmd)
-		var output_string := command_dict[command_split[0]].run_command(command_split.slice(1))
+		var output_string := await command_dict[command_split[0]].run_command(command_split.slice(1))
 		console.console_print_log(output_string)
 		
 	else:

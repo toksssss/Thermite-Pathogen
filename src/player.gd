@@ -19,3 +19,6 @@ func _physics_process(delta: float) -> void:
 	weapon.update(input, delta)
 	abilities_manager.try_to_use_ability(input)
 	velocity_component.move_and_slide()
+
+func _exit_tree() -> void:
+	remove_from_group("player")

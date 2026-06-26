@@ -33,14 +33,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	start_main_level()
 
-#func _ready() -> void:
-	#level_container = %LevelContainer
-	#game_ui = %GameUI
-	#stage_machine = %StageMachine
-	#spawning_manager = %SpawningManager
-	#level_timer = %LevelTimer
-	#start_main_level()
-
 static func create() -> GameplayManager:
 	var _scene := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
 	var scene := _scene.instantiate()
@@ -65,7 +57,15 @@ func close_pause_menu() -> void:
 	 #GameManager.instance.set_pause(false)
 	 #get_tree().paused = false
 
+#func start_main_level() -> void:
+	#await LoadingScreen.instance.fade_in()
+	#level_container.set_current_level(await MainLevel.create())
+	#await LoadingScreen.instance.fade_out()
+
 func start_main_level() -> void:
+	await set_current_level(await MainLevel.create())
+
+func set_current_level(level: Node) -> void:
 	await LoadingScreen.instance.fade_in()
-	level_container.set_current_level(await MainLevel.create())
+	level_container.set_current_level(level)
 	await LoadingScreen.instance.fade_out()

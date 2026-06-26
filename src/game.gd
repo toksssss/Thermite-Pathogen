@@ -41,11 +41,12 @@ func launch_main_menu() -> void:
 	var _menu : MainMenu = await MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
-func start_load_scene(level: Node3D) -> void:
+func start_load_scene(level: Node) -> void:
 	await loading_screen.fade_in()
 	await load_scene(level)
+	#load_scene(level)
 
-func load_scene(level: Node3D) -> void:
+func load_scene(level: Node) -> void:
 	scene_container.set_current_scene(level)
 	await loading_screen.fade_out()
 

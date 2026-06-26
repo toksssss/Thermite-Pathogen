@@ -54,7 +54,7 @@ folder_colors={
 
 [global_group]
 
-player=""
+player="player's group"
 
 [importer_defaults]
 

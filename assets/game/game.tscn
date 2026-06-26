@@ -22,6 +22,7 @@ unique_name_in_owner = true
 
 [node name="LoadingScreen" parent="." unique_id=187447983 instance=ExtResource("4_7bsg1")]
 unique_name_in_owner = true
+z_index = 10
 
 [node name="DevConsole" parent="." unique_id=976879045 instance=ExtResource("5_83hap")]
 unique_name_in_owner = true
