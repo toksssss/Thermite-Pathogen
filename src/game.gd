@@ -17,13 +17,16 @@ var main_menu_node : MainMenu:
 	get:
 		return scene_container.current_scene as MainMenu
 
-#var soundManager : SoundManager
+#var sound_manager : SoundManager
+
+var dev_console : DevConsole
 
 func _ready() -> void:
 	instance = self
 	preload_manager = %PreloadManager
 	scene_container = %RootSceneContainer
 	loading_screen = %LoadingScreen
+	dev_console = %DevConsole
 	game_startup_wrapper()
 
 # В идеале запихивать на каждую стадию загрузки свою инициализацию систем 

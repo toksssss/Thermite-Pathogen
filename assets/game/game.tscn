@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cs1sjqv7vdpmh" path="res://src/root_scene_container.gd" id="2_5g6sn"]
 [ext_resource type="Script" uid="uid://3umdrr0p3y5u" path="res://src/preload_manager.gd" id="3_r2xrw"]
 [ext_resource type="PackedScene" uid="uid://c35v73txwn5so" path="res://assets/ui/loading_screen.tscn" id="4_7bsg1"]
+[ext_resource type="PackedScene" uid="uid://di0ugxkxsygnk" path="res://assets/game/dev_console.tscn" id="5_83hap"]
 
 [node name="Game" type="Node3D" unique_id=1443932959]
 script = ExtResource("1_skg13")
@@ -21,3 +22,7 @@ unique_name_in_owner = true
 
 [node name="LoadingScreen" parent="." unique_id=187447983 instance=ExtResource("4_7bsg1")]
 unique_name_in_owner = true
+
+[node name="DevConsole" parent="." unique_id=976879045 instance=ExtResource("5_83hap")]
+unique_name_in_owner = true
+visible = false
