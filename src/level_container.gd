@@ -1,6 +1,8 @@
 extends Node3D
 class_name LevelContainer
 
+signal level_changed
+
 static var instance : LevelContainer:
 	get:
 		return GameplayManager.instance.level_container
@@ -25,3 +27,4 @@ func set_current_level(level: Node) -> void:
 		add_child(level)
 	else:
 		level.reparent(self)
+	level_changed.emit()

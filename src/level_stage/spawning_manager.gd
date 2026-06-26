@@ -3,7 +3,7 @@ class_name SpawningManager
 
 static var instance: SpawningManager:
 	get:
-		return MainLevel.instance.spawning_manager
+		return GameplayManager.instance.spawning_manager
 
 #var terrain : Terrain3D
 
@@ -14,9 +14,7 @@ var p2 : Vector3
 
 func _ready() -> void:
 	#terrain = %Terrain
-	# TODO: передвинуть в MainLevel
-	navigation_region = %SpawnTest
-	_setup_points()
+	LevelContainer.instance.level_changed.connect.call_deferred(_on_level_changed)
 
 func _setup_points() -> void:
 	var bounds : AABB = navigation_region.get_bounds()
@@ -43,3 +41,8 @@ func spawn_mob(mob: Node3D) -> void:
 	
 	mob.position = Vector3(_x, _y, _z)
 	Utils.add_child_safe(mob, owner)
+
+func _on_level_changed() -> void:
+	# as Level
+	navigation_region = (LevelContainer.instance.current_level as MainLevel).navigation_region
+	_setup_points()

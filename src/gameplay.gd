@@ -17,10 +17,29 @@ var level_container : LevelContainer
 
 var game_ui : GameUI
 
-func _ready() -> void:
+var stage_machine : StageMachine
+
+var spawning_manager : SpawningManager
+
+var level_timer : LevelTimer
+
+func _enter_tree() -> void:
 	level_container = %LevelContainer
 	game_ui = %GameUI
+	stage_machine = %StageMachine
+	spawning_manager = %SpawningManager
+	level_timer = %LevelTimer
+
+func _ready() -> void:
 	start_main_level()
+
+#func _ready() -> void:
+	#level_container = %LevelContainer
+	#game_ui = %GameUI
+	#stage_machine = %StageMachine
+	#spawning_manager = %SpawningManager
+	#level_timer = %LevelTimer
+	#start_main_level()
 
 static func create() -> GameplayManager:
 	var _scene := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)

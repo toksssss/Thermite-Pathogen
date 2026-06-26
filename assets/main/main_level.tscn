@@ -2,18 +2,12 @@
 
 [ext_resource type="Script" uid="uid://corrhk3vcxgnj" path="res://src/main_level.gd" id="1_roo2t"]
 [ext_resource type="Environment" uid="uid://cx23gvsuxc585" path="res://assets/main/sky_environment.tres" id="2_k2f0c"]
-[ext_resource type="Script" uid="uid://ceioxmjyq6a4h" path="res://src/level_stage/stage_machine.gd" id="2_v0qge"]
-[ext_resource type="Script" uid="uid://q7kk8mw71y7r" path="res://src/level_timer.gd" id="2_w4qlu"]
-[ext_resource type="Script" uid="uid://bkiqrh53qxsy1" path="res://src/level_stage/stages/none_stage.gd" id="3_3xa85"]
-[ext_resource type="Script" uid="uid://c8kbn2a7ivcr2" path="res://src/level_stage/stages/first_stage.gd" id="3_rl37l"]
 [ext_resource type="PackedScene" uid="uid://cp70mx5feo7pe" path="res://assets/player/player.tscn" id="3_w4qlu"]
 [ext_resource type="PackedScene" uid="uid://2vfqmo0oispt" path="res://assets/enemies/aed-p1/aed_p_1.tscn" id="4_v0qge"]
-[ext_resource type="Script" uid="uid://cl28hbaqxu712" path="res://src/level_stage/stages/second_stage.gd" id="5_nikn1"]
 [ext_resource type="PackedScene" uid="uid://c78rs0vtke5md" path="res://assets/enemies/soldier/soldier.tscn" id="5_rl37l"]
 [ext_resource type="Material" uid="uid://c5vxwutydahin" path="res://assets/materials/dev_orange.tres" id="6_nikn1"]
 [ext_resource type="Texture2D" uid="uid://dlgi1bfntdryo" path="res://addons/kenney_prototype-textures/PNG/Dark/texture_09.png" id="7_3xa85"]
 [ext_resource type="PackedScene" uid="uid://td1pq7fpxsln" path="res://assets/enemies/dummy/dummy.tscn" id="8_s8dal"]
-[ext_resource type="Script" uid="uid://4j3w2h41x6p" path="res://src/level_stage/spawning_manager.gd" id="9_k2f0c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rux81"]
 font_size = 64
@@ -25,7 +19,7 @@ script/source = "extends Label
 var level_timer : LevelTimer
 
 func _ready() -> void:
-	level_timer = %LevelTimer
+	level_timer = LevelTimer.instance
 
 func _physics_process(delta: float) -> void:
 	text = \"%d:%d\" % [level_timer.current_level_min, level_timer.current_level_sec]
@@ -90,9 +84,10 @@ size = Vector3(1, 2.2265015, 1)
 resource_name = "stage_one_button"
 script/source = "extends Area3D
 
-@export var stage_machine: StageMachine
+var stage_machine : StageMachine
 
 func _ready() -> void:
+	stage_machine = StageMachine.instance
 	area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area3D) -> void:
@@ -132,10 +127,6 @@ cache/0/32/0/scale = 1.0
 [node name="Main" type="Node3D" unique_id=1934239975]
 script = ExtResource("1_roo2t")
 
-[node name="LevelTimer" type="Node" parent="." unique_id=682386702]
-unique_name_in_owner = true
-script = ExtResource("2_w4qlu")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=364932141]
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer" unique_id=731114703]
@@ -149,31 +140,6 @@ grow_horizontal = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_rux81")
 script = SubResource("GDScript_w4qlu")
-
-[node name="StageMachine" type="Node" parent="." unique_id=1925013489 node_paths=PackedStringArray("initial_state", "s_timer")]
-script = ExtResource("2_v0qge")
-initial_state = NodePath("None")
-s_timer = NodePath("STimer")
-
-[node name="STimer" type="Timer" parent="StageMachine" unique_id=968099954]
-
-[node name="None" type="Node" parent="StageMachine" unique_id=1200206893]
-script = ExtResource("3_3xa85")
-
-[node name="One" type="Node" parent="StageMachine" unique_id=1709274208]
-script = ExtResource("3_rl37l")
-enemie_scenes = Array[PackedScene]([ExtResource("4_v0qge")])
-spawning_rate = 10.0
-
-[node name="Two" type="Node" parent="StageMachine" unique_id=1166562254]
-script = ExtResource("5_nikn1")
-enemie_scenes = Array[PackedScene]([ExtResource("5_rl37l")])
-spawning_rate = 10.0
-threshold_min = 2
-
-[node name="SpawningManager" type="Node" parent="." unique_id=1662537121]
-unique_name_in_owner = true
-script = ExtResource("9_k2f0c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=342840713]
 transform = Transform3D(0.8910065, -0.39316735, 0.22699524, 0, 0.49999997, 0.86602545, -0.45399052, -0.77163434, 0.44550323, 0, 0, 0)
@@ -315,12 +281,11 @@ mesh = SubResource("BoxMesh_rux81")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1785222730]
 shape = SubResource("BoxShape3D_u7yu4")
 
-[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=96584173 node_paths=PackedStringArray("stage_machine")]
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=96584173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3661077, 0)
 collision_layer = 20
 collision_mask = 18
 script = SubResource("GDScript_7gh1c")
-stage_machine = NodePath("../../StageMachine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1236761116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012359619, -0.19082642, 0.56667566)
