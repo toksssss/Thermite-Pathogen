@@ -3,6 +3,10 @@ class_name GameplayManager
 
 const SCENE_PATH : String = "res://assets/game/gameplay.tscn"
 
+signal ui_opened
+
+signal ui_closed
+
 signal game_paused
 
 signal game_unpaused
@@ -22,6 +26,16 @@ var stage_machine : StageMachine
 var spawning_manager : SpawningManager
 
 var level_timer : LevelTimer
+
+var ui_counter : int:
+	get:
+		return ui_counter
+	set(v):
+		if v == 0:
+			ui_closed.emit()
+		if v > 0:
+			ui_opened.emit()
+		ui_counter = v
 
 func _enter_tree() -> void:
 	level_container = %LevelContainer

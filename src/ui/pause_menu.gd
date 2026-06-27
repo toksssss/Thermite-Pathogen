@@ -23,11 +23,13 @@ func open() -> void:
 	visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	GameplayManager.instance.ui_counter += 1
  
 func close() -> void:
 	visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	GameplayManager.instance.ui_counter -= 1
 
 func _on_continue_pressed() -> void:
 	GameplayManager.instance.close_pause_menu()

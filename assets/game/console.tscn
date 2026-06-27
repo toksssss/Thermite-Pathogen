@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://rxolamgmc8rp"]
+
+[ext_resource type="Script" uid="uid://blpxk57od6odu" path="res://src/dev/console/dev_console.gd" id="1_ae1tb"]
+[ext_resource type="Theme" uid="uid://b4gf5wf0i5glu" path="res://assets/ui/themes/dev_console_theme.tres" id="2_6usso"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rux81"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rux81"]
+font_size = 32
+
+[node name="Console" type="PanelContainer" unique_id=1726359273]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rux81")
+script = ExtResource("1_ae1tb")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1217949852]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1337158411]
+layout_mode = 2
+theme = ExtResource("2_6usso")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=2076919610]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1378109410]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1804750000]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/Top" unique_id=1851788064]
+layout_mode = 2
+text = "Console"
+label_settings = SubResource("LabelSettings_rux81")
+
+[node name="ExitButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/Top" unique_id=1261735601]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("2_6usso")
+text = "X"
+
+[node name="ConsoleOutput" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1829753358]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme = ExtResource("2_6usso")
+text = "Test text
+DSADSADS
+DSADSA
+dfadassd
+/dsadsada#23ddasd
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+"
+scroll_following = true
+selection_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=650990126]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CommandPromt" type="LineEdit" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=96960854]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_6usso")
+keep_editing_on_text_submit = true
+deselect_on_focus_loss_enabled = false
+caret_blink = true
+
+[node name="SubmitButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1929852596]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Submit"

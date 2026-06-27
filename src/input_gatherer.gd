@@ -10,9 +10,11 @@ var is_disabled : bool
 
 func _ready() -> void:
 	if GameplayManager.instance != null:
-		GameplayManager.instance.game_paused.connect(func() -> void: is_disabled = true)
-		GameplayManager.instance.game_unpaused.connect(func() -> void: is_disabled = false)
-		DevConsole.instance.visibility_changed.connect(func() -> void: is_disabled = DevConsole.instance.visible)
+		GameplayManager.instance.ui_opened.connect(func() -> void: is_disabled = true)
+		GameplayManager.instance.ui_closed.connect(func() -> void: is_disabled = false)
+		#GameplayManager.instance.game_paused.connect(func() -> void: is_disabled = true)
+		#GameplayManager.instance.game_unpaused.connect(func() -> void: is_disabled = false)
+		#DevConsole.instance.visibility_changed.connect(func() -> void: is_disabled = DevConsole.instance.visible)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
