@@ -14,12 +14,14 @@ var current_level_msec : int:
 
 var current_level_sec : int:
 	get:
+		@warning_ignore("integer_division")
 		return (current_level_msec / 1000) % 60
 	set(v):
 		pass
 
 var current_level_min : int:
 	get:
+		@warning_ignore("integer_division")
 		return (current_level_msec / 60000) % 60
 	set(v):
 		pass

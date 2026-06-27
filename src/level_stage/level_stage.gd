@@ -4,7 +4,7 @@ class_name LevelStage
 
 @export var enemie_scenes: Array[PackedScene]
 @export var spawning_rate : float = 5.0
-@export var threshold_min : int = 1.0
+@export var threshold_min : int = 1
 
 var timer : Timer
 var is_cooldown: bool

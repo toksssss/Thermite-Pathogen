@@ -23,6 +23,7 @@ func run_command(raw_cmd : String) -> void:
 	var command_split := raw_cmd.split(" ", false)
 	if command_dict.has(command_split[0]):
 		console.console_print_log(">%s\n" % raw_cmd)
+		@warning_ignore("redundant_await")
 		var output_string := await command_dict[command_split[0]].run_command(command_split.slice(1))
 		console.console_print_log(output_string)
 		
