@@ -17,9 +17,20 @@ var level_container : LevelContainer
 
 var game_ui : GameUI
 
-func _ready() -> void:
+var stage_machine : StageMachine
+
+var spawning_manager : SpawningManager
+
+var level_timer : LevelTimer
+
+func _enter_tree() -> void:
 	level_container = %LevelContainer
 	game_ui = %GameUI
+	stage_machine = %StageMachine
+	spawning_manager = %SpawningManager
+	level_timer = %LevelTimer
+
+func _ready() -> void:
 	start_main_level()
 
 static func create() -> GameplayManager:
@@ -46,7 +57,15 @@ func close_pause_menu() -> void:
 	 #GameManager.instance.set_pause(false)
 	 #get_tree().paused = false
 
+#func start_main_level() -> void:
+	#await LoadingScreen.instance.fade_in()
+	#level_container.set_current_level(await MainLevel.create())
+	#await LoadingScreen.instance.fade_out()
+
 func start_main_level() -> void:
+	await set_current_level(await MainLevel.create())
+
+func set_current_level(level: Node) -> void:
 	await LoadingScreen.instance.fade_in()
-	level_container.set_current_level(await MainLevel.create())
+	level_container.set_current_level(level)
 	await LoadingScreen.instance.fade_out()

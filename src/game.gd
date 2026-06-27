@@ -17,13 +17,16 @@ var main_menu_node : MainMenu:
 	get:
 		return scene_container.current_scene as MainMenu
 
-#var soundManager : SoundManager
+#var sound_manager : SoundManager
+
+var dev_console : DevConsole
 
 func _ready() -> void:
 	instance = self
 	preload_manager = %PreloadManager
 	scene_container = %RootSceneContainer
 	loading_screen = %LoadingScreen
+	dev_console = %DevConsole
 	game_startup_wrapper()
 
 # В идеале запихивать на каждую стадию загрузки свою инициализацию систем 
@@ -38,11 +41,12 @@ func launch_main_menu() -> void:
 	var _menu : MainMenu = await MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
-func start_load_scene(level: Node3D) -> void:
+func start_load_scene(level: Node) -> void:
 	await loading_screen.fade_in()
-	await load_scene(level)
+	await _load_scene(level)
+	#load_scene(level)
 
-func load_scene(level: Node3D) -> void:
+func _load_scene(level: Node) -> void:
 	scene_container.set_current_scene(level)
 	await loading_screen.fade_out()
 

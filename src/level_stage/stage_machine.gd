@@ -2,12 +2,19 @@ extends Node
 class_name StageMachine
 
 @export var initial_state : LevelStage
-@export var s_timer : Timer
+
+static var instance : StageMachine:
+	get:
+		return GameplayManager.instance.stage_machine
+
+var s_timer : Timer
 
 var current_state : LevelStage
 var states: Dictionary[String, LevelStage] = {}
 
 func _ready() -> void:
+	s_timer = $STimer
+	
 	for child in get_children():
 		if child is LevelStage:
 			var state: LevelStage = child

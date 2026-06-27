@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ykdmvaiweadm"]
+
+[ext_resource type="Script" uid="uid://ceioxmjyq6a4h" path="res://src/level_stage/stage_machine.gd" id="1_ggggo"]
+
+[node name="StageMachine" type="Node" unique_id=11707437]
+script = ExtResource("1_ggggo")
+metadata/_custom_type_script = "uid://ceioxmjyq6a4h"
+
+[node name="STimer" type="Timer" parent="." unique_id=1918598280]

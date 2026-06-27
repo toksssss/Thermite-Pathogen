@@ -8,6 +8,8 @@ static var instance : LoadingScreen:
 var tween : Tween
 
 func fade_in() -> void:
+	if visible:
+		return
 	visible = true
 	if tween != null:
 		tween.kill()
@@ -16,6 +18,9 @@ func fade_in() -> void:
 	await tween.finished
 
 func fade_out(instant: bool = false) -> void:
+	if !visible:
+		return
+	
 	if instant:
 		modulate.a = 0.0
 		visible = false

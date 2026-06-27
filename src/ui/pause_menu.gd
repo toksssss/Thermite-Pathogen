@@ -36,4 +36,5 @@ func _on_settings_pressed() -> void:
 	settings_menu.visible = true
 
 func _on_exit_pressed() -> void:
-	RootSceneContainer.instance.set_current_scene(await MainMenu.create())
+	#RootSceneContainer.instance.set_current_scene(await MainMenu.create())
+	GameManager.instance.start_load_scene(await MainMenu.create())

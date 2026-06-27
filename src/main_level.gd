@@ -3,8 +3,7 @@ class_name MainLevel
 
 const SCENE_PATH : String = "uid://blovxxcqjxm0o"
 
-var spawning_manager : SpawningManager
-var level_timer : LevelTimer
+var navigation_region : NavigationRegion3D
 
 static var instance : MainLevel:
 	get:
@@ -16,5 +15,4 @@ static func create() -> MainLevel:
 	return level
 
 func _ready() -> void:
-	spawning_manager = %SpawningManager
-	level_timer = %LevelTimer
+	navigation_region = %SpawnTest

@@ -1,0 +1,28 @@
+[gd_resource type="Theme" format=3 uid="uid://b4gf5wf0i5glu"]
+
+[ext_resource type="FontFile" uid="uid://2ofnx27w4sww" path="res://addons/space_mono/SpaceMono-Bold.ttf" id="1_mncvr"]
+[ext_resource type="FontFile" uid="uid://bxjm5c08mvvd6" path="res://addons/space_mono/SpaceMono-Regular.ttf" id="1_n2uue"]
+[ext_resource type="FontFile" uid="uid://dtr11poopnfs" path="res://addons/space_mono/SpaceMono-BoldItalic.ttf" id="2_aqkph"]
+[ext_resource type="FontFile" uid="uid://u502f41nclj6" path="res://addons/space_mono/SpaceMono-Italic.ttf" id="3_xedx7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijhj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2jot"]
+bg_color = Color(0.6484375, 0.61550903, 0.61550903, 0.45882353)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lva7h"]
+bg_color = Color(0, 0, 0, 0.36862746)
+
+[resource]
+Button/colors/font_color = Color(0.87, 0.87, 0.87, 1)
+Button/font_sizes/font_size = 32
+Button/styles/normal = SubResource("StyleBoxEmpty_ijhj5")
+Panel/styles/panel = SubResource("StyleBoxFlat_u2jot")
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/bold_font = ExtResource("1_mncvr")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_aqkph")
+RichTextLabel/fonts/italics_font = ExtResource("3_xedx7")
+RichTextLabel/fonts/mono_font = ExtResource("1_n2uue")
+RichTextLabel/fonts/normal_font = ExtResource("1_n2uue")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_lva7h")

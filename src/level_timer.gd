@@ -3,7 +3,7 @@ class_name LevelTimer
 
 static var instance : LevelTimer:
 	get:
-		return MainLevel.instance.level_timer
+		return GameplayManager.instance.level_timer
 
 var start_level_msec : int
 var current_level_msec : int:
