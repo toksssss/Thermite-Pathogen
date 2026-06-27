@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cl7ehahb1yeri" path="res://loading_screen.gd" id="1_x4nck"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nsi5"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_2agpi"]
 font_size = 100
 
@@ -25,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nsi5")
 
 [node name="Label" type="Label" parent="." unique_id=1712662517]
 layout_mode = 1
