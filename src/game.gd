@@ -3,6 +3,8 @@ class_name GameManager
 
 static var instance : GameManager
 
+signal scene_loaded
+
 var scene_container : RootSceneContainer
 
 var preload_manager : PreloadManager
@@ -41,13 +43,14 @@ func launch_main_menu() -> void:
 	var _menu : MainMenu = await MainMenu.create()
 	scene_container.set_current_scene(_menu) 
 
-func start_load_scene(level: Node) -> void:
+func start_load_scene(scene: Node) -> void:
 	await loading_screen.fade_in()
-	await _load_scene(level)
+	await _load_scene(scene)
 	#load_scene(level)
 
-func _load_scene(level: Node) -> void:
-	scene_container.set_current_scene(level)
+func _load_scene(scene: Node) -> void:
+	scene_container.set_current_scene(scene)
+	scene_loaded.emit()
 	await loading_screen.fade_out()
 
 func quit() -> void:

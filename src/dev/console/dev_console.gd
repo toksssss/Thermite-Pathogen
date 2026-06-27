@@ -38,26 +38,32 @@ func _input(event: InputEvent) -> void:
 		else:
 			close()
 	if visible:
-		if Input.is_action_just_pressed("btn_console_up"):
-			if console_manager.command_history_index < len(console_manager.command_history) - 1:
-				console_manager.command_history_index += 1
-				command_line.text = console_manager.command_history[console_manager.command_history_index]
-		if Input.is_action_just_pressed("btn_console_down"):
-			if console_manager.command_history_index > -1:
-				console_manager.command_history_index -= 1
-				if console_manager.command_history_index == -1:
-					command_line.text = ""
-				else:
+		if event is InputEventAction:
+			get_viewport().set_input_as_handled()
+			if Input.is_action_just_pressed("btn_console_up"):
+				if console_manager.command_history_index < len(console_manager.command_history) - 1:
+					console_manager.command_history_index += 1
 					command_line.text = console_manager.command_history[console_manager.command_history_index]
+			if Input.is_action_just_pressed("btn_console_down"):
+				if console_manager.command_history_index > -1:
+					console_manager.command_history_index -= 1
+					if console_manager.command_history_index == -1:
+						command_line.text = ""
+					else:
+						command_line.text = console_manager.command_history[console_manager.command_history_index]
 
 func open() -> void:
 	visible = true
 	m_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if GameplayManager.instance != null:
+		GameplayManager.instance.ui_counter += 1
  
 func close() -> void:
 	visible = false
 	Input.mouse_mode = m_mode
+	if GameplayManager.instance != null:
+		GameplayManager.instance.ui_counter -= 1
 
 func on_submit_button_down() -> void:
 	var raw_command : String = command_line.text

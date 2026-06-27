@@ -19,7 +19,8 @@ func _apply_passive_abilities() -> void:
 func try_to_use_ability(input: InputPackage) -> void:
 	# Надо бы покрасивше потом сделать
 	if input.ability_actions.has("ability_prime"):
-		starting_ability.apply_strategy(player)
+		if starting_ability:
+			starting_ability.apply_strategy(player)
 	
 	if input.ability_actions.has("ability_1"):
 		abilities[0].apply_strategy(player)
