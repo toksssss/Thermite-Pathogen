@@ -29,7 +29,6 @@
 [ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
 [ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
-[ext_resource type="Resource" uid="uid://dnu1gvujv8iqe" path="res://assets/abilities/throwable/grenade/resource/throw_grenade_ability.tres" id="27_v1qdb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
@@ -307,5 +306,4 @@ weapon_animation = "str_anim_shoot"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
 script = ExtResource("26_h1x7r")
-starting_ability = ExtResource("27_v1qdb")
 abilities = Array[ExtResource("27_82wjp")]([null, null, null, null])
