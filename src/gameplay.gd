@@ -45,6 +45,8 @@ func _enter_tree() -> void:
 	level_timer = %LevelTimer
 
 func _ready() -> void:
+	ui_opened.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
+	ui_closed.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED)
 	start_main_level()
 
 static func create() -> GameplayManager:

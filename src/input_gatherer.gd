@@ -11,6 +11,7 @@ var is_disabled : bool
 func _ready() -> void:
 
 	if GameplayManager.instance != null:
+		if GameplayManager.instance.ui_counter == 0: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		GameplayManager.instance.ui_opened.connect(func() -> void: is_disabled = true)
 		GameplayManager.instance.ui_closed.connect(func() -> void: is_disabled = false)
 

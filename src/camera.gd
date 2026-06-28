@@ -14,7 +14,7 @@ var actual_rotation : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	actual_rotation.y = player.rotation.y
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 # BUG: При замене на _unhandled_input невозможно управлять персонажем.
 func _unhandled_input(event: InputEvent) -> void:

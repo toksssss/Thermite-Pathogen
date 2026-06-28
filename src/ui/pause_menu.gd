@@ -21,13 +21,13 @@ func _ready() -> void:
 
 func open() -> void:
 	visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	GameplayManager.instance.ui_counter += 1
  
 func close() -> void:
 	visible = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	GameplayManager.instance.ui_counter -= 1
 
