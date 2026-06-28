@@ -6,6 +6,7 @@ class_name AIMove
 
 var player: Player
 var character : CharacterBody3D
+var params : NPCParameters
 var animator : AnimationPlayer
 var nav_agent : NavigationAgent3D
 var weapon : AIWeaponStrategy

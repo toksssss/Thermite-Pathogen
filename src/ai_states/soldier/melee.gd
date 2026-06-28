@@ -3,12 +3,15 @@ extends AIMove
 const ANIMATION_LENGTH : float = 0.75
 
 
+# trigger 1 = melee
+# trigger 2 = follow
+
 func check_transition(delta: float) -> String:
 	if works_longer_than(ANIMATION_LENGTH):
 		var distance := distance_to_player()
-		if distance >= character.melee_trigger:
+		if distance <= params.follow_trigger:
 			return "standing"
-		elif distance >= character.follow_trigger:
+		elif distance >= params.melee_trigger:
 			return "follow"
 		else:
 			return "melee"

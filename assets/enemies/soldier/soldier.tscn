@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c78rs0vtke5md"]
 
-[ext_resource type="Script" uid="uid://b075g2qcb5swy" path="res://src/ai/ai_soldier.gd" id="1_68lvd"]
+[ext_resource type="Script" uid="uid://d0r1nu8lesw86" path="res://src/npc_parameters.gd" id="1_hew67"]
 [ext_resource type="Texture2D" uid="uid://bnhmlcq0odanb" path="res://assets/enemies/soldier/123123.png" id="1_irlf7"]
 [ext_resource type="AnimationLibrary" uid="uid://cj7mf870827bl" path="res://assets/enemies/soldier/animations.res" id="1_m2876"]
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="2_i0nbl"]
@@ -228,11 +228,12 @@ metadata/_custom_type_script = "uid://n2kjuykk8c38"
 [node name="Soldier" type="CharacterBody3D" unique_id=1194826180]
 collision_layer = 4
 collision_mask = 17
-script = ExtResource("1_68lvd")
-follow_trigger = 10
-melee_trigger = 2.0
+
+[node name="NPCParameters" type="Node" parent="." unique_id=356885462]
+script = ExtResource("1_hew67")
+follow_trigger = 20.0
 standing_trigger = 10.0
-speed = 5.0
+speed = 10.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=132909180]
 path_height_offset = 1.0
@@ -672,13 +673,14 @@ bones/48/position = Vector3(8.025694e-09, 2.3891447, 3.8239527e-08)
 bones/48/rotation = Quaternion(8.083756e-09, 7.050113e-07, -1.506493e-08, 1)
 bones/48/scale = Vector3(1, 1, 1)
 
-[node name="StateMachine" type="Node" parent="." unique_id=1038310789 node_paths=PackedStringArray("navigation_agent", "marker", "collider", "raycast", "animation_player", "character")]
+[node name="StateMachine" type="Node" parent="." unique_id=1038310789 node_paths=PackedStringArray("navigation_agent", "marker", "collider", "raycast", "params", "animation_player", "character")]
 script = ExtResource("5_oamvp")
 navigation_agent = NodePath("../NavigationAgent3D")
 weapon = SubResource("Resource_mshws")
 marker = NodePath("../Weapon/Marker3D")
 collider = NodePath("../Collider")
 raycast = NodePath("../RayCast3D")
+params = NodePath("../NPCParameters")
 animation_player = NodePath("../AnimationPlayer")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://pcgyfw528wdw"

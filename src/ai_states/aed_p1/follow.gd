@@ -14,17 +14,17 @@ func check_transition(delta: float) -> String:
 		return "idle"
 	
 	var distance : float = distance_to_player()
-	if distance <= character.melee_trigger:
+	if distance <= params.melee_trigger:
 		if raycast.is_colliding():
 			return "melee"
-	if distance >= character.idle_trigger:
+	if distance >= params.idle_trigger:
 		return "idle"
 	return "okay"
 
 
 func update(delta: float) -> void:
-	follow_target(character.speed, delta)
-	rotate_character(player.global_position, character.rotate_speed, delta)
+	follow_target(params.speed, delta)
+	rotate_character(player.global_position, params.rotate_speed, delta)
 	shoot()
 
 func on_enter() -> void:

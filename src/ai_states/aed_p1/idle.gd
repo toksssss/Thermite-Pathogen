@@ -5,7 +5,7 @@ func check_transition(delta: float) -> String:
 		return "okay"
 	
 	var distance : float = distance_to_player()
-	if distance <= character.follow_trigger:
+	if distance <= params.follow_trigger:
 		return "follow"
 	return "okay"
 

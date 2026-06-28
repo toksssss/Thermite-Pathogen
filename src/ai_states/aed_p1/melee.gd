@@ -16,7 +16,7 @@ func update(delta: float) -> void:
 func on_enter() -> void:
 	var data: AttackData = AttackData.new()
 	
-	data.damage = character.melee_damage
+	data.damage = params.melee_damage
 	hurtbox.attack_data = data
 
 func on_exit() -> void:
