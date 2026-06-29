@@ -40,7 +40,7 @@ func spawn_mob(mob: Node3D) -> void:
 				  #var height: float = img.get_pixel(x, y).r
 	
 	mob.position = Vector3(_x, _y, _z)
-	Utils.add_child_safe(mob, owner)
+	Utils.add_child_safe(mob, LevelContainer.instance.current_level)
 
 func _on_level_changed() -> void:
 	# as Level

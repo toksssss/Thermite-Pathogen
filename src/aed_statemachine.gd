@@ -22,6 +22,7 @@ func accept_states() -> void:
 			moves[move.move_name] = child
 			move.animator = animation_player
 			move.character = character
+			move.params = params
 			var players: Array[Node] = get_tree().get_nodes_in_group("player")
 			move.player = players[-1]
 			move.nav_agent = navigation_agent
