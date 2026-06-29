@@ -9,11 +9,12 @@ var mouse_motion : Vector2
 var is_disabled : bool
 
 func _ready() -> void:
-
-	if GameplayManager.instance != null:
-		if GameplayManager.instance.ui_counter == 0: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		GameplayManager.instance.ui_opened.connect(func() -> void: is_disabled = true)
-		GameplayManager.instance.ui_closed.connect(func() -> void: is_disabled = false)
+	if GameManager.instance.ui_counter == 0: 
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		is_disabled = true
+	GameManager.instance.ui_opened.connect(func() -> void: is_disabled = true)
+	GameManager.instance.ui_closed.connect(func() -> void: is_disabled = false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -23,6 +24,8 @@ func gather_input() -> InputPackage:
 	var new_input : InputPackage = InputPackage.new()
 	
 	# TODO: Как-то переписать по красивому бы это, а то хуйня какая-то
+	# UPD: Скорее всего пофиксить нереально, потому что input propagation не работает
+	# нормально в _physics_update. Если брать инпут в _input появляются залипания
 	if is_disabled:
 		new_input.actions.append("idle")
 		new_input.combat_actions.append("idle")

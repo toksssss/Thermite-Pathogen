@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blovxxcqjxm0o"]
 
-[ext_resource type="Script" uid="uid://corrhk3vcxgnj" path="res://src/main_level.gd" id="1_roo2t"]
+[ext_resource type="Script" uid="uid://corrhk3vcxgnj" path="res://src/levels/main_level.gd" id="1_roo2t"]
 [ext_resource type="Environment" uid="uid://cx23gvsuxc585" path="res://assets/main/sky_environment.tres" id="2_k2f0c"]
 [ext_resource type="PackedScene" uid="uid://cp70mx5feo7pe" path="res://assets/player/player.tscn" id="3_w4qlu"]
 [ext_resource type="PackedScene" uid="uid://2vfqmo0oispt" path="res://assets/enemies/aed-p1/aed_p_1.tscn" id="4_v0qge"]

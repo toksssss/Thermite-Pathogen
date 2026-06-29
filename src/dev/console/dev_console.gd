@@ -55,14 +55,12 @@ func open() -> void:
 	visible = true
 	#m_mode = Input.mouse_mode
 	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if GameplayManager.instance != null:
-		GameplayManager.instance.ui_counter += 1
+	GameManager.instance.ui_counter += 1
  
 func close() -> void:
 	visible = false
 	#Input.mouse_mode = m_mode
-	if GameplayManager.instance != null:
-		GameplayManager.instance.ui_counter -= 1
+	GameManager.instance.ui_counter -= 1
 
 func on_submit_button_down() -> void:
 	var raw_command : String = command_line.text

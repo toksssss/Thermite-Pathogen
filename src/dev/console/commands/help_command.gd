@@ -12,7 +12,7 @@ func run_command(args: Array[String]) -> String:
 			var command: ConsoleCommand = DevConsoleManager.instance.command_dict[args[0]]
 			return "%s - %s\n" % [command.name, command.help_text]
 		else:
-			return "Unknown command. Skipping" % args[0]
+			return "Unknown command. Skipping\n" % args[0]
 	
 	var a : String = "Type 'help' to see this list:\n\n"
 	for command: ConsoleCommand in DevConsoleManager.instance.command_dict.values():

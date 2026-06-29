@@ -7,7 +7,7 @@ static var instance : LevelContainer:
 	get:
 		return GameplayManager.instance.level_container
 
-var current_level: Node :
+var current_level: BaseLevel :
 	get:
 		if current_level == null:
 			return null
@@ -19,7 +19,7 @@ var current_level: Node :
 	set(v):
 		current_level = v 
 
-func set_current_level(level: Node) -> void:
+func set_current_level(level: BaseLevel) -> void:
 	for child: Node in get_children():
 		child.queue_free.call_deferred()
 	current_level = level

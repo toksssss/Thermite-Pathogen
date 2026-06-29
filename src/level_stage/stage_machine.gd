@@ -5,6 +5,8 @@ class_name StageMachine
 
 static var instance : StageMachine:
 	get:
+		if GameplayManager.instance == null:
+			return null
 		return GameplayManager.instance.stage_machine
 
 var s_timer : Timer

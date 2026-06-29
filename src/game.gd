@@ -5,6 +5,22 @@ static var instance : GameManager
 
 signal scene_loaded
 
+signal ui_opened
+
+signal ui_closed
+
+var ui_counter : int:
+	get:
+		return ui_counter
+	set(v):
+		if v == 0:
+			ui_closed.emit()
+		if v > 0:
+			ui_opened.emit()
+		if v < 0:
+			v = 0
+		ui_counter = v
+
 var scene_container : RootSceneContainer
 
 var preload_manager : PreloadManager
