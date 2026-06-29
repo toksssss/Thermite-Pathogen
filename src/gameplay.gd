@@ -3,10 +3,6 @@ class_name GameplayManager
 
 const SCENE_PATH : String = "res://assets/game/gameplay.tscn"
 
-signal ui_opened
-
-signal ui_closed
-
 signal game_paused
 
 signal game_unpaused
@@ -27,18 +23,6 @@ var spawning_manager : SpawningManager
 
 var level_timer : LevelTimer
 
-var ui_counter : int:
-	get:
-		return ui_counter
-	set(v):
-		if v == 0:
-			ui_closed.emit()
-		if v > 0:
-			ui_opened.emit()
-		if v < 0:
-			ui_counter = 0
-		ui_counter = v
-
 func _enter_tree() -> void:
 	level_container = %LevelContainer
 	game_ui = %GameUI
@@ -47,9 +31,8 @@ func _enter_tree() -> void:
 	level_timer = %LevelTimer
 
 func _ready() -> void:
-	ui_opened.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
-	ui_closed.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED)
-	start_main_level()
+	GameManager.instance.ui_opened.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
+	GameManager.instance.ui_closed.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED)
 
 static func create() -> GameplayManager:
 	var _scene := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
