@@ -23,11 +23,11 @@ func _ready() -> void:
 	ConsoleCommandsRegister.register_commands()
 	console_manager.console = self
 	exit_button = %ExitButton
-	exit_button.button_down.connect(close)
+	exit_button.button_down.connect(close, CONNECT_DEFERRED)
 	submit_button = %SubmitButton
-	submit_button.button_down.connect(on_submit_button_down)
+	submit_button.button_down.connect(on_submit_button_down, CONNECT_DEFERRED)
 	command_line = %CommandPromt
-	command_line.text_submitted.connect(on_command_line_text_sumbitted)
+	command_line.text_submitted.connect(on_command_line_text_sumbitted, CONNECT_DEFERRED)
 	console_output = %ConsoleOutput
 	console_output.text = ""
 
@@ -51,6 +51,7 @@ func _input(event: InputEvent) -> void:
 					command_line.text = console_manager.command_history[console_manager.command_history_index]
 
 func open() -> void:
+	command_line.grab_focus.call_deferred()
 	visible = true
 	#m_mode = Input.mouse_mode
 	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -98,10 +98,11 @@ selection_enabled = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="CommandPromt" type="LineEdit" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1376190684]
+[node name="CommandPromt" type="LineEdit" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1376190684 node_paths=PackedStringArray("shortcut_context")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+shortcut_context = NodePath("../../../../../..")
 theme = ExtResource("1_ijhj5")
 keep_editing_on_text_submit = true
 deselect_on_focus_loss_enabled = false
