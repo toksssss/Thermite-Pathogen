@@ -35,6 +35,8 @@ var ui_counter : int:
 			ui_closed.emit()
 		if v > 0:
 			ui_opened.emit()
+		if v < 0:
+			ui_counter = 0
 		ui_counter = v
 
 func _enter_tree() -> void:

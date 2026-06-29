@@ -3,7 +3,7 @@ class_name ChangelevelCommand
 
 var levels : Dictionary[String, Object] = {
 	"main": MainLevel,
-	
+	"terrain": TerrainLevel,
 }
 
 func _init() -> void:

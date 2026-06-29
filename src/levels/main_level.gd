@@ -1,9 +1,7 @@
-extends Node3D
+extends BaseLevel
 class_name MainLevel
 
 const SCENE_PATH : String = "uid://blovxxcqjxm0o"
-
-var navigation_region : NavigationRegion3D
 
 static var instance : MainLevel:
 	get:

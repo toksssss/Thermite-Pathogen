@@ -44,5 +44,5 @@ func spawn_mob(mob: Node3D) -> void:
 
 func _on_level_changed() -> void:
 	# as Level
-	navigation_region = (LevelContainer.instance.current_level as MainLevel).navigation_region
+	navigation_region = LevelContainer.instance.current_level.navigation_region
 	_setup_points()
