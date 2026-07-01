@@ -8,6 +8,43 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_2agpi"]
 font_size = 100
 
+[sub_resource type="Animation" id="Animation_x4nck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2agpi"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pea86"]
+_data = {
+&"RESET": SubResource("Animation_x4nck"),
+&"new_animation": SubResource("Animation_2agpi")
+}
+
 [node name="LoadingScreen" type="Control" unique_id=187447983]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -45,3 +82,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "LOADING..."
 label_settings = SubResource("LabelSettings_2agpi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1403042441]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = 801.0
+offset_top = 259.00003
+offset_right = 1015.0
+offset_bottom = 473.00003
+pivot_offset = Vector2(106.721985, 110.47217)
+mouse_filter = 2
+color = Color(0.3859932, 0.57656914, 0.5660188, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1186304469]
+libraries/ = SubResource("AnimationLibrary_pea86")
+autoplay = &"new_animation"

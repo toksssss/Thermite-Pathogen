@@ -12,5 +12,10 @@ static func create() -> MainLevel:
 	var level := _level.instantiate()
 	return level
 
+static func _create() -> MainLevel:
+	var _level := load(SCENE_PATH)
+	var level : MainLevel = _level.instantiate()
+	return level
+
 func _ready() -> void:
 	navigation_region = %SpawnTest

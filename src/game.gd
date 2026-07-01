@@ -60,14 +60,14 @@ func launch_main_menu() -> void:
 	scene_container.set_current_scene(_menu) 
 
 func start_load_scene(scene: Node) -> void:
-	await loading_screen.fade_in()
-	await _load_scene(scene)
+	#await loading_screen.fade_in()
+	_load_scene(scene)
 	#load_scene(level)
 
 func _load_scene(scene: Node) -> void:
 	scene_container.set_current_scene(scene)
 	scene_loaded.emit()
-	await loading_screen.fade_out()
+	#await loading_screen.fade_out()
 
 func quit() -> void:
 	get_tree().quit()

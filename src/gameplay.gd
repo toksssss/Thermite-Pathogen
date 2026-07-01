@@ -7,6 +7,8 @@ signal game_paused
 
 signal game_unpaused
 
+signal level_changed
+
 static var instance : GameplayManager:
 	get:
 		if GameManager.instance == null:
@@ -39,6 +41,11 @@ static func create() -> GameplayManager:
 	var scene := _scene.instantiate()
 	return scene
 
+static func _create() -> GameplayManager:
+	var _scene := load(SCENE_PATH)
+	var scene : GameplayManager= _scene.instantiate()
+	return scene
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause_menu"):
 		if !game_ui.pause_menu.visible:
@@ -64,9 +71,10 @@ func close_pause_menu() -> void:
 	#await LoadingScreen.instance.fade_out()
 
 func start_main_level() -> void:
-	await set_current_level(await MainLevel.create())
+	#set_current_level(await MainLevel.create())
+	set_current_level(MainLevel._create())
 
 func set_current_level(level: Node) -> void:
-	await LoadingScreen.instance.fade_in()
+	#await LoadingScreen.instance.fade_in()
 	level_container.set_current_level(level)
-	await LoadingScreen.instance.fade_out()
+	#await LoadingScreen.instance.fade_out()
