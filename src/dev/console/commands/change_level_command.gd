@@ -20,8 +20,9 @@ func run_command(args: Array[String]) -> String:
 		var callable : Callable = Callable(levels[new_level], "_create")
 		if GameplayManager.instance == null:
 			DevConsole.instance.console_print_log("GameplayManager is not at the scene. Loading GameplayManager first\n")
-			GameManager.instance.start_load_scene(await GameplayManager.create())
-		GameplayManager.instance.set_current_level(callable.call() as Node)
+			GameManager.instance.start_load_scene(await GameplayManager.create(await MainLevel.create()))
+		else:
+			GameplayManager.instance.set_current_level(callable.call() as Node)
 	else:
 		return "Level is not found. Failed\n"
 	await LoadingScreen.instance.fade_out()

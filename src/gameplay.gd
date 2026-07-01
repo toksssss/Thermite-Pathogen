@@ -9,6 +9,8 @@ signal game_unpaused
 
 signal level_changed
 
+var init_level : BaseLevel
+
 static var instance : GameplayManager:
 	get:
 		if GameManager.instance == null:
@@ -33,12 +35,15 @@ func _enter_tree() -> void:
 	level_timer = %LevelTimer
 
 func _ready() -> void:
+	if init_level:
+		set_current_level(init_level)
 	GameManager.instance.ui_opened.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
 	GameManager.instance.ui_closed.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED)
 
-static func create() -> GameplayManager:
+static func create(level: BaseLevel = null) -> GameplayManager:
 	var _scene := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
-	var scene := _scene.instantiate()
+	var scene : GameplayManager = _scene.instantiate()
+	scene.init_level = level
 	return scene
 
 static func _create() -> GameplayManager:

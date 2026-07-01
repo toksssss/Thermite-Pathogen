@@ -7,6 +7,10 @@ static var instance : LoadingScreen:
 
 var tween : Tween
 
+func _ready() -> void:
+	modulate.a = 0
+	visible = false
+
 func fade_in() -> void:
 	if visible:
 		return

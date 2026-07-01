@@ -26,8 +26,8 @@ static func create() -> MainMenu:
 
 func _on_start_game_pressed() -> void:
 	await LoadingScreen.instance.fade_in()
-	GameManager.instance.start_load_scene(await GameplayManager.create())
-	GameplayManager.instance.start_main_level()
+	GameManager.instance.start_load_scene(await GameplayManager.create(await MainLevel.create()))
+	#GameplayManager.instance.start_main_level()
 	await LoadingScreen.instance.fade_out()
 
 func _on_settings_pressed() -> void:
