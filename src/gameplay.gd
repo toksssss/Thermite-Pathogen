@@ -7,8 +7,6 @@ signal game_paused
 
 signal game_unpaused
 
-signal level_changed
-
 var init_level : BaseLevel
 
 static var instance : GameplayManager:
@@ -70,16 +68,9 @@ func close_pause_menu() -> void:
 	 #GameManager.instance.set_pause(false)
 	 #get_tree().paused = false
 
-#func start_main_level() -> void:
-	#await LoadingScreen.instance.fade_in()
-	#level_container.set_current_level(await MainLevel.create())
-	#await LoadingScreen.instance.fade_out()
 
 func start_main_level() -> void:
-	#set_current_level(await MainLevel.create())
-	set_current_level(MainLevel._create())
+	set_current_level(await MainLevel.create())
 
 func set_current_level(level: Node) -> void:
-	#await LoadingScreen.instance.fade_in()
 	level_container.set_current_level(level)
-	#await LoadingScreen.instance.fade_out()

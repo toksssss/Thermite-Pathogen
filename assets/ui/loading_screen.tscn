@@ -84,10 +84,10 @@ label_settings = SubResource("LabelSettings_2agpi")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1403042441]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 0
-offset_left = 801.0
-offset_top = 259.00003
-offset_right = 1015.0
-offset_bottom = 473.00003
+offset_left = 1248.0
+offset_top = 483.0
+offset_right = 1352.0
+offset_bottom = 583.0
 pivot_offset = Vector2(106.721985, 110.47217)
 mouse_filter = 2
 color = Color(0.3859932, 0.57656914, 0.5660188, 1)
