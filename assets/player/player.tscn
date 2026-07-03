@@ -29,6 +29,8 @@
 [ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
 [ext_resource type="Script" uid="uid://bw62g6kg57cg7" path="res://src/player_abilities_manager.gd" id="26_h1x7r"]
 [ext_resource type="Script" uid="uid://csne0jq35eaxq" path="res://src/player_abilities/player_ability_base.gd" id="27_82wjp"]
+[ext_resource type="Script" uid="uid://b5k60qbhlheas" path="res://src/player_abilities/behaviors/throw_ability.gd" id="29_vibpd"]
+[ext_resource type="PackedScene" uid="uid://b0vef6jxiao6j" path="res://assets/abilities/throwable/grenade/grenade.tscn" id="29_xhr4e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q1ug7"]
 font_size = 34
@@ -75,6 +77,17 @@ height = 1.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u5y8p"]
 height = 1.9985352
+
+[sub_resource type="Resource" id="Resource_8b0cw"]
+script = ExtResource("29_vibpd")
+item_scene = ExtResource("29_xhr4e")
+throw_power = 2.0
+metadata/_custom_type_script = "uid://b5k60qbhlheas"
+
+[sub_resource type="Resource" id="Resource_d1kib"]
+script = ExtResource("27_82wjp")
+behavior = SubResource("Resource_8b0cw")
+metadata/_custom_type_script = "uid://csne0jq35eaxq"
 
 [node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision", "abilities_manager", "velocity_component") groups=["player"]]
 collision_mask = 53
@@ -306,4 +319,4 @@ weapon_animation = "str_anim_shoot"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
 script = ExtResource("26_h1x7r")
-abilities = Array[ExtResource("27_82wjp")]([null, null, null, null])
+starting_ability = SubResource("Resource_d1kib")

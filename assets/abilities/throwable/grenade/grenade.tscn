@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b0vef6jxiao6j"]
 
 [ext_resource type="Script" uid="uid://cnhw0t3mqx6jj" path="res://src/grenade.gd" id="1_7h17y"]
-[ext_resource type="Script" uid="uid://dr25kpbbuggri" path="res://src/hurtbox/hurtbox.gd" id="2_12tq6"]
 [ext_resource type="PackedScene" uid="uid://cto55cbxhmfpk" path="res://assets/abilities/throwable/grenade/mesh/grenade_mesh.tscn" id="2_es8fi"]
+[ext_resource type="Script" uid="uid://ljhjybykfqfo" path="res://src/hurtbox/manual_hurtbox.gd" id="3_es8fi"]
 [ext_resource type="Shader" uid="uid://131ucs6qalu5" path="res://assets/materials/shaders/texture.gdshader" id="3_tnyal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_at8f0"]
@@ -49,7 +49,7 @@ script = ExtResource("1_7h17y")
 particles = NodePath("GPUParticles3D")
 mesh_node = NodePath("Visual")
 debug_mesh = NodePath("DebugHurtBox")
-hurtbox = NodePath("Hurtbox")
+hurtbox = NodePath("ManualHurtbox")
 
 [node name="Visual" parent="." unique_id=1802262095 instance=ExtResource("2_es8fi")]
 transform = Transform3D(-0.099965736, 0, 0.0026176886, 0, 0.1, 0, -0.0026176886, 0, -0.099965736, 0, 0.03, 0)
@@ -68,13 +68,13 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_btux2")
 draw_pass_1 = SubResource("BoxMesh_irtu5")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1311838406]
+[node name="ManualHurtbox" type="Area3D" parent="." unique_id=845186473]
 collision_layer = 2
-collision_mask = 5
-script = ExtResource("2_12tq6")
-metadata/_custom_type_script = "uid://dr25kpbbuggri"
+collision_mask = 4
+script = ExtResource("3_es8fi")
+metadata/_custom_type_script = "uid://ljhjybykfqfo"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1769852574]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ManualHurtbox" unique_id=1769852574]
 shape = SubResource("SphereShape3D_tnyal")
 
 [node name="DebugHurtBox" type="MeshInstance3D" parent="." unique_id=497489362]
