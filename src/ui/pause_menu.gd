@@ -40,4 +40,6 @@ func _on_settings_pressed() -> void:
 func _on_exit_pressed() -> void:
 	#RootSceneContainer.instance.set_current_scene(await MainMenu.create())
 	close()
+	await LoadingScreen.instance.fade_in()
 	GameManager.instance.start_load_scene(await MainMenu.create())
+	await LoadingScreen.instance.fade_out()

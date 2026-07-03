@@ -11,3 +11,8 @@ static func create() -> TerrainLevel:
 	var _level := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
 	var level := _level.instantiate()
 	return level
+
+static func _create() -> TerrainLevel:
+	var _level := load(SCENE_PATH)
+	var level : TerrainLevel = _level.instantiate()
+	return level

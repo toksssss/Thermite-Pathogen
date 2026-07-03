@@ -31,10 +31,7 @@ func spawn_mob(mob: Node3D) -> void:
 		_y = p1.y
 	else:
 		_y = terrain.data.get_height(Vector3(_x, 0, _z))
-	#else
-		#_y := p1.y
-	# Terrain
-	# var _y := terrain.data.get_height(_x, _z)
+
 	# ИЛИ
 	#var region: Terrain3DRegion = terrain.data.get_regionp(global_position)
 	#if region and not region.is_deleted():
@@ -47,7 +44,6 @@ func spawn_mob(mob: Node3D) -> void:
 	Utils.add_child_safe(mob, LevelContainer.instance.current_level)
 
 func _on_level_changed() -> void:
-	# as Level
 	terrain = LevelContainer.instance.current_level.terrain
 	navigation_region = LevelContainer.instance.current_level.navigation_region
 	_setup_points()

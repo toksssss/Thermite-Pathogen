@@ -25,9 +25,10 @@ static func create() -> MainMenu:
 	return menu
 
 func _on_start_game_pressed() -> void:
-	GameManager.instance.start_load_scene(await GameplayManager.create())
-	await GameManager.instance.scene_loaded
-	GameplayManager.instance.start_main_level()
+	await LoadingScreen.instance.fade_in()
+	GameManager.instance.start_load_scene(await GameplayManager.create(await MainLevel.create()))
+	#GameplayManager.instance.start_main_level()
+	await LoadingScreen.instance.fade_out()
 
 func _on_settings_pressed() -> void:
 	settings_menu.visible = true
