@@ -12,7 +12,7 @@ bg_color = Color(0.6484375, 0.61550903, 0.61550903, 0.45882353)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lva7h"]
-bg_color = Color(0, 0, 0, 0.36862746)
+bg_color = Color(0, 0, 0, 0.49411765)
 
 [resource]
 Button/colors/font_color = Color(0.87, 0.87, 0.87, 1)
