@@ -19,7 +19,12 @@ class_name WeaponModel
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
-var current_weapon_strategy : WeaponStrategy
+var current_weapon_strategy : WeaponStrategy:
+	set(v):
+		current_weapon_strategy = v
+		setup_weapon()
+		for s: WeaponState in states.values():
+			s.current_weapon = current_weapon_strategy
 var current_weapon_viewmodel : Node3D
 #var marker : Marker3D
 @export_category("Marker")
@@ -39,16 +44,12 @@ var weapon_animator : AnimationPlayer
 
 func _ready() -> void:
 	#_init_weapon_upgrade()
-
-	_setup_weapon()
-	_setup_weapon_animator()
-	
-	#marker = current_weapon_viewmodel.get_node_or_null("Marker3D")
-	
+	current_weapon_strategy = initial_weapon_strategy
+	#_setup_weapon()
 	
 	current_state = states["idle"]
 	for state : WeaponState in states.values():
-		state.current_weapon = current_weapon_strategy
+		#state.current_weapon = current_weapon_strategy
 		state.weapon_model = self
 		state.melee_hurtbox = melee_hurtbox
 
@@ -75,22 +76,26 @@ func switch_to(new_state: String) -> void:
 	if weapon_animator and current_state.weapon_animation:
 		weapon_animator.play(current_state.weapon_animation, -1, current_state.animation_speed)
 
-func _setup_weapon_animator() -> void:
-	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
-	if weapon_animator == null:
-		push_warning("Weapons AnimationPlayer has not found")
-
-func _setup_weapon() -> void:
-	current_weapon_strategy = initial_weapon_strategy
-	
+func setup_weapon() -> void:
 	current_weapon_strategy._current_bullets = current_weapon_strategy.weapon_data.bullet_capacity
 	
+	_setup_weapon_viewmodel()
+	_setup_weapon_animator()
+
+func _setup_weapon_viewmodel() -> void:
 	current_weapon_viewmodel = current_weapon_strategy.weapon_data.weapon_scene.instantiate()
 	current_weapon_viewmodel.position = current_weapon_strategy.weapon_data.position
 	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_data.rotation
 	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_data.scale
 	
-	viewmodel_rig.add_child(current_weapon_viewmodel)
+	for c : Node in viewmodel_rig.get_children():
+		c.queue_free()
+	Utils.add_child_safe(current_weapon_viewmodel, viewmodel_rig)
+
+func _setup_weapon_animator() -> void:
+	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
+	if weapon_animator == null:
+		push_warning("Weapons AnimationPlayer has not found")
 
 #func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	## Скорее всего надо будет переделать

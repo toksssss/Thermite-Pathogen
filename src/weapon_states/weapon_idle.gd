@@ -7,7 +7,7 @@ func check_relevance(input: InputPackage) -> String:
 	if input.combat_actions.has("fire")  and current_weapon._current_bullets == 0:
 		return "reload"
 	
-	if input.combat_actions.has("reload") and (current_weapon._current_bullets == 
+	if input.combat_actions.has("reload") and (current_weapon._current_bullets >= 
 	current_weapon.weapon_data.bullet_capacity):
 		return "okay"
 	
