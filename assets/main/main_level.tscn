@@ -144,7 +144,6 @@ script = SubResource("GDScript_w4qlu")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=342840713]
 transform = Transform3D(0.8910065, -0.39316735, 0.22699524, 0, 0.49999997, 0.86602545, -0.45399052, -0.77163434, 0.44550323, 0, 0, 0)
 light_energy = 0.345
-shadow_enabled = true
 directional_shadow_max_distance = 561.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=671609340]

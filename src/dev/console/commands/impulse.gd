@@ -18,11 +18,11 @@ func run_command(args: Array[String]) -> String:
 	match args[0]:
 		'100':
 			# default weapon
-			var p : Player = LevelContainer.instance.get_tree().get_first_node_in_group("player")
+			var p : Player = GameManager.instance.get_tree().get_first_node_in_group("player")
 			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[100])
 			return "Load default weapon strategy\n"
 		'101':
-			var p : Player = LevelContainer.instance.get_tree().get_first_node_in_group("player")
+			var p : Player = GameManager.instance.get_tree().get_first_node_in_group("player")
 			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[101])
 			return "Load dev weapon strategy\n"
 		_:
