@@ -10,7 +10,7 @@ class_name WeaponModel
 	#set(v):
 		#initial_weapon_strategy = v
 		#if Engine.is_editor_hint():
-			#_setup_weapon()
+			#_setup_in_editor()
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
 @export_group("Melee")
@@ -68,7 +68,7 @@ func switch_to(new_state: String) -> void:
 	#if current_state == states[new_state]:
 		#return
 
-	#print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
+	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
@@ -87,6 +87,16 @@ func _setup_weapon_viewmodel() -> void:
 	current_weapon_viewmodel.position = current_weapon_strategy.weapon_data.position
 	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_data.rotation
 	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_data.scale
+	
+	for c : Node in viewmodel_rig.get_children():
+		c.queue_free()
+	Utils.add_child_safe(current_weapon_viewmodel, viewmodel_rig)
+
+func _setup_in_editor() -> void:
+	current_weapon_viewmodel = initial_weapon_strategy.weapon_data.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = initial_weapon_strategy.weapon_data.position
+	current_weapon_viewmodel.rotation_degrees = initial_weapon_strategy.weapon_data.rotation
+	current_weapon_viewmodel.scale = initial_weapon_strategy.weapon_data.scale
 	
 	for c : Node in viewmodel_rig.get_children():
 		c.queue_free()

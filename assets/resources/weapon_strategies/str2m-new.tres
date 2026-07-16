@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WeaponStrategy" format=3 uid="uid://c5hqk5hqmjbqh"]
+
+[ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="1_8h5yh"]
+[ext_resource type="Script" uid="uid://c1fgobbs18xn1" path="res://src/weapon_strategy.gd" id="2_goe4o"]
+[ext_resource type="Script" uid="uid://dutvrqf2cf0be" path="res://src/weapon_data_resource.gd" id="3_v85g2"]
+[ext_resource type="PackedScene" uid="uid://ckkyjfuxf5muh" path="res://assets/weapons/reworked st02m/str_2m.scn" id="4_8h5yh"]
+
+[sub_resource type="Resource" id="Resource_upppu"]
+script = ExtResource("3_v85g2")
+name = "str2m-reworked"
+weapon_scene = ExtResource("4_8h5yh")
+bullet_capacity = 100
+bullet_speed = 50.0
+is_stunned = true
+fire_rate = 120.0
+melee_speed_multiplier = 1.5
+position = Vector3(-0.055, -0.275, 0.21)
+scale = Vector3(0.2, 0.2, 0.2)
+metadata/_custom_type_script = "uid://dutvrqf2cf0be"
+
+[resource]
+script = ExtResource("2_goe4o")
+weapon_data = SubResource("Resource_upppu")
+bullet_scene = ExtResource("1_8h5yh")
+metadata/_custom_type_script = "uid://c1fgobbs18xn1"

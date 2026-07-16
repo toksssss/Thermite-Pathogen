@@ -1,6 +1,6 @@
 extends WeaponState
 
-const ANIMATION_END : float = 1.375
+const ANIMATION_END : float = 0.8333
 
 
 @warning_ignore("unused_parameter")

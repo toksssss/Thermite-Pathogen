@@ -11,6 +11,8 @@ func check_relevance(input: InputPackage) -> String:
 	current_weapon.weapon_data.bullet_capacity):
 		return "okay"
 	
+	if len(input.combat_actions) == 1:
+		return "okay"
 	return best_input_that_can_be_paid(input)
 
 #func update(input: InputPackage, delta: float) -> void:
