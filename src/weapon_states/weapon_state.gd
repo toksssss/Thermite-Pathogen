@@ -6,7 +6,6 @@ class_name WeaponState
 @export_category("Stats")
 @export var ammo_cost : int
 @export var kill_cost : int
-@export var speed_multiplier : float = 1.0
 
 @export_category("Animations")
 @export var weapon_animation : String
@@ -19,6 +18,8 @@ var weapon_model : WeaponModel
 var melee_hurtbox : ManualHurtbox
 var enter_state_time : float
 var resources : WeaponResourcesStore
+
+var animation_speed : float
 
 static var states_priority : Dictionary[String, int] = {
 	"idle" : 1,

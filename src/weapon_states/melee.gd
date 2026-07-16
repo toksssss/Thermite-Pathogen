@@ -1,6 +1,6 @@
 extends WeaponState
 
-const DEFAULT_ANIMATION_END : float = 1.375
+const ANIMATION_END : float = 1.375
 
 
 @warning_ignore("unused_parameter")
@@ -14,7 +14,8 @@ func update(input: InputPackage, delta: float) -> void:
 	pass
 
 func on_enter_state() -> void:
-	animation_duration = DEFAULT_ANIMATION_END / speed_multiplier
+	animation_duration = ANIMATION_END / current_weapon.weapon_data.melee_speed_multiplier
+	animation_speed = current_weapon.weapon_data.melee_speed_multiplier
 	
 	var attack_data : AttackData = AttackData.new()
 	attack_data.damage = 20.0

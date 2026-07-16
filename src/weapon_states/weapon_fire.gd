@@ -10,7 +10,8 @@ func check_relevance(input: InputPackage) -> String:
 	return "okay"
 
 func on_enter_state() -> void:
-	animation_duration = ANIMATION_END / speed_multiplier
+	animation_duration = 1 * 60 / current_weapon.weapon_data.fire_rate
+	animation_speed = ANIMATION_END / animation_duration
 	
 	current_weapon.attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)

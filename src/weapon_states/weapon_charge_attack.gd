@@ -10,7 +10,9 @@ func check_relevance(input: InputPackage) -> String:
 func on_enter_state() -> void:
 	print("Charged attack")
 	
-	animation_duration = ANIMATION_END / speed_multiplier
+	
+	animation_duration = ANIMATION_END / 1.0
+	animation_speed = 1.0
 	
 	current_weapon.alternative_attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
