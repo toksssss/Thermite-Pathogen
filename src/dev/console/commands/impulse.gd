@@ -2,8 +2,8 @@ extends ConsoleCommand
 class_name ImpulseCommand
 
 const WEAPON_RESOURCES : Dictionary[int, String] = {
-	100 : "",
-	101 : "",
+	100 : "uid://lx7lgsgaxkp5", # default
+	101 : "uid://cuq08t1huothi", # dev
 }
 
 func _init() -> void:
@@ -14,12 +14,16 @@ func _init() -> void:
 func run_command(args: Array[String]) -> String:
 	if len(args) == 0:
 		return "No arguments. Skipping\n"
+
 	match args[0]:
-		100:
+		'100':
 			# default weapon
-			return "100\n"
-		101:
-			# dev weapon
-			return "101\n"
+			var p : Player = LevelContainer.instance.get_tree().get_first_node_in_group("player")
+			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[100])
+			return "Load default weapon strategy\n"
+		'101':
+			var p : Player = LevelContainer.instance.get_tree().get_first_node_in_group("player")
+			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[101])
+			return "Load dev weapon strategy\n"
 		_:
-			return "Wrong argument. Failed\n"
+			return "Wrong argument. %s Failed\n" % args
