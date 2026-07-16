@@ -9,7 +9,8 @@ func check_relevance(input: InputPackage) -> String:
 	return "okay"
 
 func on_enter_state() -> void:
-	animation_duration = ANIMATION_END / speed_multiplier
+	animation_duration = ANIMATION_END / current_weapon.weapon_data.melee_speed_multiplier
+	animation_speed = current_weapon.weapon_data.reload_speed_multiplier
 
 func on_exit_state() -> void:
 	current_weapon.reload()

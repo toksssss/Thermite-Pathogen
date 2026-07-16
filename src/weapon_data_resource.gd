@@ -8,9 +8,18 @@ class_name WeaponDataResource
 @export var damage : float = 10.0 
 @export var bullet_capacity : int = 10
 @export var bullet_speed : float = 10.0
-@export var fire_rate : float = 60.0 # rounds per minute
 @export var is_chargable : bool
 @export var is_stunned : bool
+
+@export_group("Fire State")
+## Rounds per minute. 
+@export var fire_rate : float = 60.0
+
+@export_group("Melee State")
+@export var melee_speed_multiplier : float = 1.0
+
+@export_group("Reload State")
+@export var reload_speed_multiplier : float = 1.0
 
 @export_group("Transform")
 @export var position : Vector3

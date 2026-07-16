@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponStrategy" format=3 uid="uid://lx7lgsgaxkp5"]
+
+[ext_resource type="PackedScene" uid="uid://ekk5ve1r28ee" path="res://assets/projectiles/bullet/bullet.tscn" id="1_yvlqw"]
+[ext_resource type="Script" uid="uid://c1fgobbs18xn1" path="res://src/weapon_strategy.gd" id="2_e4qis"]
+[ext_resource type="Resource" uid="uid://b0mgp20sk3amq" path="res://assets/weapons/str2m/str2m_data.tres" id="3_am30j"]
+
+[resource]
+script = ExtResource("2_e4qis")
+weapon_data = ExtResource("3_am30j")
+bullet_scene = ExtResource("1_yvlqw")
+metadata/_custom_type_script = "uid://c1fgobbs18xn1"
