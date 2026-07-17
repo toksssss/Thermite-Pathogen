@@ -95,7 +95,7 @@ func _setup_weapon_animator() -> void:
 func _init_states() -> void:
 	for state in state_node.get_children():
 		if state is WeaponState:
-			states[state.name.to_lower()] = state
+			states[state.state_name.to_lower()] = state
 			state.weapon_model = self
 			state.melee_hurtbox = melee_hurtbox
 	current_state = states["idle"]
