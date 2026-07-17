@@ -6,4 +6,4 @@ class_name PlayerWeapon
 
 func update(input: InputPackage, delta: float) -> void:
 	weapon_model.update(input, delta)
-	weapon_sway.sway(weapon_model.current_weapon_strategy, input, delta)
+	weapon_sway.sway(weapon_model.weapon_strategy, input, delta)

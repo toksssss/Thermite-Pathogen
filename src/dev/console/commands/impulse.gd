@@ -19,11 +19,11 @@ func run_command(args: Array[String]) -> String:
 		'100':
 			# default weapon
 			var p : Player = GameManager.instance.get_tree().get_first_node_in_group("player")
-			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[100])
+			p.weapon.weapon_model.weapon_strategy = load(WEAPON_RESOURCES[100])
 			return "Load default weapon strategy\n"
 		'101':
 			var p : Player = GameManager.instance.get_tree().get_first_node_in_group("player")
-			p.weapon.weapon_model.current_weapon_strategy = load(WEAPON_RESOURCES[101])
+			p.weapon.weapon_model.weapon_strategy = load(WEAPON_RESOURCES[101])
 			return "Load dev weapon strategy\n"
 		_:
 			return "Wrong argument. %s Failed\n" % args

@@ -5,13 +5,21 @@ class_name WeaponModel
 @export var state_node : Node
 
 @export_group("Weapon")
-@export var initial_weapon_strategy : WeaponStrategy
+@export var weapon_strategy : WeaponStrategy :
+	set(v):
+		_current_weapon_strategy = v
+		setup_weapon.call_deferred()
+		for s: WeaponState in states.values():
+			s.current_weapon = _current_weapon_strategy
+	get:
+		return _current_weapon_strategy
+
+@export var state_timer : Timer
 
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
 
 @export_group("Melee")
-@export var melee_animator : AnimationPlayer
 @export var melee_hurtbox : ManualHurtbox
 
 @export_category("Marker")
@@ -19,12 +27,7 @@ class_name WeaponModel
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
-var current_weapon_strategy : WeaponStrategy:
-	set(v):
-		current_weapon_strategy = v
-		setup_weapon()
-		for s: WeaponState in states.values():
-			s.current_weapon = current_weapon_strategy
+var _current_weapon_strategy : WeaponStrategy
 
 var current_weapon_viewmodel : Node3D
 var weapon_animator : AnimationPlayer
@@ -35,8 +38,9 @@ var weapon_animator : AnimationPlayer
 
 func _ready() -> void:
 	#_init_weapon_upgrade()
+	_current_weapon_strategy = weapon_strategy
+	setup_weapon()
 	_init_states()
-	current_weapon_strategy = initial_weapon_strategy
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -62,26 +66,27 @@ func switch_to(new_state: String) -> void:
 		weapon_animator.play(current_state.weapon_animation, -1, current_state.animation_speed)
 
 func setup_weapon() -> void:
-	current_weapon_strategy._current_bullets = current_weapon_strategy.weapon_data.bullet_capacity
+	_current_weapon_strategy._current_bullets = _current_weapon_strategy.weapon_data.bullet_capacity
 	
 	_setup_weapon_viewmodel()
 	_setup_weapon_animator()
 
 func _setup_weapon_viewmodel() -> void:
-	current_weapon_viewmodel = current_weapon_strategy.weapon_data.weapon_scene.instantiate()
-	current_weapon_viewmodel.position = current_weapon_strategy.weapon_data.position
-	current_weapon_viewmodel.rotation_degrees = current_weapon_strategy.weapon_data.rotation
-	current_weapon_viewmodel.scale = current_weapon_strategy.weapon_data.scale
+	current_weapon_viewmodel = _current_weapon_strategy.weapon_data.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = _current_weapon_strategy.weapon_data.position
+	current_weapon_viewmodel.rotation_degrees = _current_weapon_strategy.weapon_data.rotation
+	current_weapon_viewmodel.scale = _current_weapon_strategy.weapon_data.scale
 	
 	for c : Node in viewmodel_rig.get_children():
 		c.queue_free()
+
 	Utils.add_child_safe(current_weapon_viewmodel, viewmodel_rig)
 
 func _setup_in_editor() -> void:
-	current_weapon_viewmodel = initial_weapon_strategy.weapon_data.weapon_scene.instantiate()
-	current_weapon_viewmodel.position = initial_weapon_strategy.weapon_data.position
-	current_weapon_viewmodel.rotation_degrees = initial_weapon_strategy.weapon_data.rotation
-	current_weapon_viewmodel.scale = initial_weapon_strategy.weapon_data.scale
+	current_weapon_viewmodel = weapon_strategy.weapon_data.weapon_scene.instantiate()
+	current_weapon_viewmodel.position = weapon_strategy.weapon_data.position
+	current_weapon_viewmodel.rotation_degrees = weapon_strategy.weapon_data.rotation
+	current_weapon_viewmodel.scale = weapon_strategy.weapon_data.scale
 	
 	for c : Node in viewmodel_rig.get_children():
 		c.queue_free()
@@ -93,11 +98,17 @@ func _setup_weapon_animator() -> void:
 		push_warning("Weapons AnimationPlayer has not found")
 
 func _init_states() -> void:
+	var anim : Animation = null
 	for state in state_node.get_children():
 		if state is WeaponState:
 			states[state.state_name.to_lower()] = state
+			state.current_weapon = weapon_strategy
 			state.weapon_model = self
 			state.melee_hurtbox = melee_hurtbox
+			state.timer = state_timer
+			anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
+			if anim != null:
+				state.animation_length = anim.length
 	current_state = states["idle"]
 
 #func _on_movement_strategy_changed(v: ReactiveArray) -> void:

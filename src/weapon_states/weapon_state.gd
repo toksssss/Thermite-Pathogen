@@ -11,14 +11,16 @@ class_name WeaponState
 @export var kill_cost : int
 
 @export_category("Animations")
-@export var weapon_animation : String
+@export var weapon_animation : StringName
 
 var animation_duration : float
+var animation_length : float = 0.0
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
 var melee_hurtbox : ManualHurtbox
 var enter_state_time : float
 var resources : WeaponResourcesStore
+var timer : Timer
 
 var animation_speed : float
 
@@ -60,6 +62,11 @@ func custom_sort_actions(a: String, b: String) -> bool:
 	if weapon_model.states[a].priority > weapon_model.states[b].priority:
 		return true
 	return false
+
+func start_timer(cooldown: float) -> void:
+	timer.start(cooldown)
+	current_weapon.is_cooldown = true
+	timer.timeout.connect(func () -> void: current_weapon.is_cooldown = false)
 
 # General States heir usage guide.
 
