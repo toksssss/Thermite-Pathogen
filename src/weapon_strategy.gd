@@ -15,6 +15,7 @@ var kill_count : int :
 		on_kill_count_changed()
 
 var _current_bullets : int
+var is_cooldown : bool
 var is_charged : bool
 
 func attack(_source : Node, marker : Marker3D) -> void:

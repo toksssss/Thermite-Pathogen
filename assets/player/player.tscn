@@ -46,8 +46,8 @@ script/source = "extends Label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	text = \"%2d / %2d\" % [model.current_weapon_strategy._current_bullets, 
-	model.current_weapon_strategy.weapon_data.bullet_capacity]
+	text = \"%2d / %2d\" % [model.weapon_strategy._current_bullets, 
+	model.weapon_strategy.weapon_data.bullet_capacity]
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_xhr4e"]
@@ -280,11 +280,12 @@ script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
 
-[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("state_node", "state_timer", "viewmodel_rig", "melee_hurtbox", "marker")]
 script = ExtResource("11_hai6l")
-initial_weapon_strategy = ExtResource("21_xhr4e")
+state_node = NodePath("States")
+weapon_strategy = ExtResource("21_xhr4e")
+state_timer = NodePath("StateTimer")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
-melee_animator = NodePath("EffectsAnimator")
 melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
 marker = NodePath("../../Head/Camera3D/Marker3D")
 
@@ -293,28 +294,39 @@ marker = NodePath("../../Head/Camera3D/Marker3D")
 [node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
 script = ExtResource("18_i44by")
 
+[node name="StateTimer" type="Timer" parent="Weapon/Model" unique_id=2097946698]
+process_callback = 0
+
 [node name="States" type="Node" parent="Weapon/Model" unique_id=650061942]
 
 [node name="Idle" type="Node" parent="Weapon/Model/States" unique_id=1156865502]
 script = ExtResource("12_vlpqo")
 
-[node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
-script = ExtResource("15_d61i2")
-weapon_animation = "str_reload_action"
-
 [node name="Fire" type="Node" parent="Weapon/Model/States" unique_id=108073062]
 script = ExtResource("16_yx3jh")
+state_name = "fire"
+priority = 2
 ammo_cost = 1
-weapon_animation = "str_shoot_action"
+weapon_animation = &"str_shoot_action"
+
+[node name="Charged_Attack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
+script = ExtResource("26_awgyn")
+state_name = "charged_attack"
+priority = 3
+ammo_cost = 1
+weapon_animation = &"str_shoot_action"
+
+[node name="Reload" type="Node" parent="Weapon/Model/States" unique_id=112731332]
+script = ExtResource("15_d61i2")
+state_name = "reload"
+priority = 10
+weapon_animation = &"str_reload_action"
 
 [node name="Melee" type="Node" parent="Weapon/Model/States" unique_id=921961717]
 script = ExtResource("23_bvphe")
-weapon_animation = "str_melee_action"
-
-[node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
-script = ExtResource("26_awgyn")
-ammo_cost = 1
-weapon_animation = "str_shoot_action"
+state_name = "melee"
+priority = 20
+weapon_animation = &"str_melee_action"
 
 [node name="Abilities" type="Node" parent="." unique_id=1692119669]
 script = ExtResource("26_h1x7r")

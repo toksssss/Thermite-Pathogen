@@ -4,7 +4,6 @@ class_name PlayerModel
 @onready var player : Player = $".."
 @onready var skeleton : Skeleton3D = %GeneralSkeleton
 @export var head_checker : RayCast3D
-#@onready var animator : AnimationPlayer = $SkeletonAnimator
 @export var states_group : Node
 @export var velocity_component : VelocityComponent
 
@@ -27,16 +26,6 @@ var movement_upgrades : ReactiveArray
 func _ready() -> void:
 	_init_moves()
 	#_init_movement_upgrade()
-	
-	current_move = moves["idle"]
-	for move : Move in moves.values():
-		move.player = player
-		move.head_raycast = head_checker
-		move.base_speed = base_speed
-		move.walk_speed_multiplier = walk_speed_multiplier
-		move.crouch_speed_multiplier = crouch_speed_multiplier
-		move.slide_boost_speed_multiplier = slide_speed_multiplier
-		move.vel_comp = velocity_component
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -58,8 +47,6 @@ func switch_to(state: String, delta: float) -> void:
 	current_move = moves[state]
 	current_move.on_enter_state()
 	current_move.on_continious_enter_state(delta)
-	#if current_move.animation: 
-		#animator.play(current_move.animation)
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	# Скорее всего надо будет переделать
@@ -76,6 +63,14 @@ func _init_movement_upgrade() -> void:
 		strategy.apply_upgrade(self)
 
 func _init_moves() -> void:
-	for child in states_group.get_children():
-		if child is Move:
-			moves[child.name.to_lower()] = child
+	for move in states_group.get_children():
+		if move is Move:
+			moves[move.name.to_lower()] = move
+			move.player = player
+			move.head_raycast = head_checker
+			move.base_speed = base_speed
+			move.walk_speed_multiplier = walk_speed_multiplier
+			move.crouch_speed_multiplier = crouch_speed_multiplier
+			move.slide_boost_speed_multiplier = slide_speed_multiplier
+			move.vel_comp = velocity_component
+	current_move = moves["idle"]
