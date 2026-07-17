@@ -1,17 +1,11 @@
-#@tool
 extends Node3D
 class_name WeaponModel
 
 @onready var player : Player = $"../.."
-#@onready var weapon_resources : WeaponResourcesStore = $WeaponResources
 @export var state_node : Node
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
-	#set(v):
-		#initial_weapon_strategy = v
-		#if Engine.is_editor_hint():
-			#_setup_in_editor()
 
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
@@ -37,26 +31,12 @@ var weapon_animator : AnimationPlayer
 
 # All state stats here:
 
-# Вместо ручного вписывания заменить на "for child in get_children()"
-@onready var states: Dictionary[String, WeaponState] = {
-	#"idle" : $States/Idle,
-	#"reload" : $States/Reload,
-	#"fire" : $States/Fire,
-	#"melee" : $States/Melee,
-	#"charged_attack" : $States/ChargedAttack
-}
+@onready var states: Dictionary[String, WeaponState] = {}
 
 func _ready() -> void:
 	#_init_weapon_upgrade()
 	_init_states()
 	current_weapon_strategy = initial_weapon_strategy
-	#_setup_weapon()
-	
-	#_init_states()
-	#current_state = states["idle"]
-	#for state : WeaponState in states.values():
-		#state.weapon_model = self
-		#state.melee_hurtbox = melee_hurtbox
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
