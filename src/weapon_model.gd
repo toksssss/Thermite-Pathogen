@@ -63,6 +63,7 @@ func switch_to(new_state: String) -> void:
 	current_state.on_enter_state()
 	current_state.mark_enter_state()
 	if weapon_animator and current_state.weapon_animation:
+		weapon_animator.stop()
 		weapon_animator.play(current_state.weapon_animation, -1, current_state.animation_speed)
 
 func setup_weapon() -> void:
