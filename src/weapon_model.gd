@@ -4,6 +4,7 @@ class_name WeaponModel
 
 @onready var player : Player = $"../.."
 #@onready var weapon_resources : WeaponResourcesStore = $WeaponResources
+@export var state_node : Node
 
 @export_group("Weapon")
 @export var initial_weapon_strategy : WeaponStrategy
@@ -11,11 +12,16 @@ class_name WeaponModel
 		#initial_weapon_strategy = v
 		#if Engine.is_editor_hint():
 			#_setup_in_editor()
+
 @export_group("Viewmodel")
 @export var viewmodel_rig : Node3D
+
 @export_group("Melee")
 @export var melee_animator : AnimationPlayer
 @export var melee_hurtbox : ManualHurtbox
+
+@export_category("Marker")
+@export var marker : Marker3D
 
 var current_state : WeaponState
 var weapon_upgrades : ReactiveArray
@@ -25,33 +31,32 @@ var current_weapon_strategy : WeaponStrategy:
 		setup_weapon()
 		for s: WeaponState in states.values():
 			s.current_weapon = current_weapon_strategy
+
 var current_weapon_viewmodel : Node3D
-#var marker : Marker3D
-@export_category("Marker")
-@export var marker : Marker3D
 var weapon_animator : AnimationPlayer
 
 # All state stats here:
 
 # Вместо ручного вписывания заменить на "for child in get_children()"
 @onready var states: Dictionary[String, WeaponState] = {
-	"idle" : $States/Idle,
-	"reload" : $States/Reload,
-	"fire" : $States/Fire,
-	"melee" : $States/Melee,
-	"charged_attack" : $States/ChargedAttack
+	#"idle" : $States/Idle,
+	#"reload" : $States/Reload,
+	#"fire" : $States/Fire,
+	#"melee" : $States/Melee,
+	#"charged_attack" : $States/ChargedAttack
 }
 
 func _ready() -> void:
 	#_init_weapon_upgrade()
+	_init_states()
 	current_weapon_strategy = initial_weapon_strategy
 	#_setup_weapon()
 	
-	current_state = states["idle"]
-	for state : WeaponState in states.values():
-		#state.current_weapon = current_weapon_strategy
-		state.weapon_model = self
-		state.melee_hurtbox = melee_hurtbox
+	#_init_states()
+	#current_state = states["idle"]
+	#for state : WeaponState in states.values():
+		#state.weapon_model = self
+		#state.melee_hurtbox = melee_hurtbox
 
 func update(input: InputPackage, delta: float) -> void:
 	#apply all upgrades
@@ -106,6 +111,14 @@ func _setup_weapon_animator() -> void:
 	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
 	if weapon_animator == null:
 		push_warning("Weapons AnimationPlayer has not found")
+
+func _init_states() -> void:
+	for state in state_node.get_children():
+		if state is WeaponState:
+			states[state.name.to_lower()] = state
+			state.weapon_model = self
+			state.melee_hurtbox = melee_hurtbox
+	current_state = states["idle"]
 
 #func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	## Скорее всего надо будет переделать

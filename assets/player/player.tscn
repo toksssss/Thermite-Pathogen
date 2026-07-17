@@ -280,8 +280,9 @@ script = ExtResource("11_0eov8")
 weapon_model = NodePath("Model")
 weapon_sway = NodePath("Model/WeaponSway")
 
-[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
+[node name="Model" type="Node3D" parent="Weapon" unique_id=1771394608 node_paths=PackedStringArray("state_node", "viewmodel_rig", "melee_animator", "melee_hurtbox", "marker")]
 script = ExtResource("11_hai6l")
+state_node = NodePath("States")
 initial_weapon_strategy = ExtResource("21_xhr4e")
 viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
 melee_animator = NodePath("EffectsAnimator")
@@ -292,6 +293,8 @@ marker = NodePath("../../Head/Camera3D/Marker3D")
 
 [node name="WeaponSway" type="Node" parent="Weapon/Model" unique_id=995601087]
 script = ExtResource("18_i44by")
+
+[node name="StateTimer" type="Timer" parent="Weapon/Model" unique_id=2097946698]
 
 [node name="States" type="Node" parent="Weapon/Model" unique_id=650061942]
 
@@ -311,7 +314,7 @@ weapon_animation = "str_shoot_action"
 script = ExtResource("23_bvphe")
 weapon_animation = "str_melee_action"
 
-[node name="ChargedAttack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
+[node name="Charged_Attack" type="Node" parent="Weapon/Model/States" unique_id=886028867]
 script = ExtResource("26_awgyn")
 ammo_cost = 1
 weapon_animation = "str_shoot_action"
