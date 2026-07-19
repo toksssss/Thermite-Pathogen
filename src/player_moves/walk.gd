@@ -19,6 +19,7 @@ func check_relevance(input: InputPackage) -> String:
 
 func update(input: InputPackage, delta: float) -> void:
 	velocity_by_input(input, delta)
+	footstep_sound(delta)
 
 func velocity_by_input(input: InputPackage, delta: float) -> void:
 	var direction : Vector3 = (player.global_transform.basis * 

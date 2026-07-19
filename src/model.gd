@@ -4,6 +4,7 @@ class_name PlayerModel
 @onready var player : Player = $".."
 @onready var skeleton : Skeleton3D = %GeneralSkeleton
 @export var head_checker : RayCast3D
+@export var foot_raycast : RayCast3D
 @export var states_group : Node
 @export var velocity_component : VelocityComponent
 
@@ -43,10 +44,8 @@ func switch_to(state: String, delta: float) -> void:
 
 	#print("Switch from %s to %s" % [current_move.name, state])
 	current_move.on_exit_state()
-	current_move.on_continious_exit_state(delta)
 	current_move = moves[state]
 	current_move.on_enter_state()
-	current_move.on_continious_enter_state(delta)
 
 func _on_movement_strategy_changed(v: ReactiveArray) -> void:
 	# Скорее всего надо будет переделать
@@ -67,6 +66,7 @@ func _init_moves() -> void:
 		if move is Move:
 			moves[move.name.to_lower()] = move
 			move.player = player
+			move.foot_raycast = foot_raycast
 			move.head_raycast = head_checker
 			move.base_speed = base_speed
 			move.walk_speed_multiplier = walk_speed_multiplier

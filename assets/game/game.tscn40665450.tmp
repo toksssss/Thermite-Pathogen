@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ig35f53rh73d"]
+
+[ext_resource type="Script" uid="uid://7f6if3suveta" path="res://src/game.gd" id="1_skg13"]
+[ext_resource type="Script" uid="uid://cs1sjqv7vdpmh" path="res://src/root_scene_container.gd" id="2_5g6sn"]
+[ext_resource type="Script" uid="uid://3umdrr0p3y5u" path="res://src/preload_manager.gd" id="3_r2xrw"]
+[ext_resource type="PackedScene" uid="uid://c35v73txwn5so" path="res://assets/ui/loading_screen.tscn" id="4_7bsg1"]
+[ext_resource type="Script" uid="uid://cwmxkae7m72uw" path="res://src/audio/audio_manager.gd" id="4_wwt1v"]
+[ext_resource type="PackedScene" uid="uid://di0ugxkxsygnk" path="res://assets/game/dev_console.tscn" id="5_83hap"]
+
+[node name="Game" type="Node3D" unique_id=1443932959]
+script = ExtResource("1_skg13")
+metadata/_edit_lock_ = true
+
+[node name="RootSceneContainer" type="Node3D" parent="." unique_id=1827554243]
+unique_name_in_owner = true
+script = ExtResource("2_5g6sn")
+metadata/_edit_lock_ = true
+
+[node name="PreloadManager" type="Node" parent="." unique_id=274407721]
+unique_name_in_owner = true
+script = ExtResource("3_r2xrw")
+
+[node name="AudioManager" type="Node" parent="." unique_id=990689482]
+unique_name_in_owner = true
+script = ExtResource("4_wwt1v")
+
+[node name="FmodListener3D" type="FmodListener3D" parent="AudioManager" unique_id=1322245872]
+is_locked = true
+
+[node name="LoadingScreen" parent="." unique_id=187447983 instance=ExtResource("4_7bsg1")]
+unique_name_in_owner = true
+z_index = 10
+metadata/_edit_lock_ = true
+
+[node name="DevConsole" parent="." unique_id=976879045 instance=ExtResource("5_83hap")]
+unique_name_in_owner = true
+visible = false
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=1498303195]
+bank_paths = ["res://assets/banks/Desktop/Master.strings.bank", "res://assets/banks/Desktop/Master.bank", "res://assets/banks/Desktop/SFX.bank", "res://assets/banks/Desktop/UI.bank"]

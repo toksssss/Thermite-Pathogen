@@ -6,6 +6,7 @@ class_name Move
 var player : Player
 @export var animation : String
 var head_raycast : RayCast3D
+var foot_raycast : RayCast3D
 var vel_comp : VelocityComponent
 
 var base_speed : float
@@ -13,6 +14,15 @@ var base_speed : float
 var crouch_speed_multiplier : float
 var walk_speed_multiplier : float
 var slide_boost_speed_multiplier : float
+
+# Audio
+
+const STEP_EVENT_GUID := "{447525d9-f923-426e-aa77-30467c352461}"
+
+static var sound_event : FmodEvent
+
+const footstep_timer_reset : float = 0.25
+static var footstep_timer : float = 0.0
 
 static var moves_priority : Dictionary[String, int] = {
 	"idle" : 1,
@@ -50,15 +60,57 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	pass
 
-@warning_ignore("unused_parameter")
-func on_continious_exit_state(delta: float) -> void:
-	pass
+func footstep_sound(delta: float) -> void:
+	if !sound_event:
+		sound_event = FmodServer.create_event_instance_with_guid(STEP_EVENT_GUID)
+	
+	if footstep_timer <= 0.0:
+		if foot_raycast.is_colliding():
+			#var obj := foot_raycast.get_collider()
+			#match obj.surface_type:
+				#"Grass":
+					#sound_event.set_parameter_by_name("SurfaceType", 0.0)
+				#"Wood":
+					#sound_event.set_parameter_by_name("SurfaceType", 1.0)
+				#"Metal":
+					#sound_event.set_parameter_by_name("SurfaceType", 2.0)
+				#"Water":
+					#sound_event.set_parameter_by_name("SurfaceType", 3.0)
+				#"Stone":
+					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
+				#_:
+					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
+			sound_event.set_parameter_by_name("SurfaceType", 4.0)
+			sound_event.set_3d_attributes(player.global_transform)
+			sound_event.start()
+			footstep_timer = footstep_timer_reset
+	else:
+		footstep_timer -= delta
 
-@warning_ignore("unused_parameter")
-func on_continious_enter_state(delta: float) -> void:
-	pass
+func play_footstep_sound() -> void:
+	if !sound_event:
+		sound_event = FmodServer.create_event_instance_with_guid(STEP_EVENT_GUID)
+	
+	if foot_raycast.is_colliding():
+		#var obj := foot_raycast.get_collider()
+		#match obj.surface_type:
+			#"Grass":
+				#sound_event.set_parameter_by_name("SurfaceType", 0.0)
+			#"Wood":
+				#sound_event.set_parameter_by_name("SurfaceType", 1.0)
+			#"Metal":
+				#sound_event.set_parameter_by_name("SurfaceType", 2.0)
+			#"Water":
+				#sound_event.set_parameter_by_name("SurfaceType", 3.0)
+			#"Stone":
+				#sound_event.set_parameter_by_name("SurfaceType", 4.0)
+			#_:
+				#sound_event.set_parameter_by_name("SurfaceType", 4.0)
+		sound_event.set_parameter_by_name("SurfaceType", 4.0)
+		sound_event.set_3d_attributes(player.global_transform)
+		sound_event.start()
 
-
+	
 
 # General Moves heir usage guide.
 

@@ -14,7 +14,11 @@ func update(input: InputPackage, delta: float) -> void:
 	velocity_by_input(input, delta)
 
 func on_enter_state() -> void:
+	play_footstep_sound()
 	vel_comp.jump(jump_velocity)
+
+func on_exit_state() -> void:
+	play_footstep_sound()
 
 func velocity_by_input(input: InputPackage, delta: float) -> void:
 	var direction : Vector3 = (player.global_transform.basis * 
