@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cph33qwrn17gi" path="res://src/ui/pause_menu.gd" id="1_lbq8y"]
 [ext_resource type="Shader" uid="uid://cjt3hn47kc4ui" path="res://assets/materials/shaders/blur.gdshader" id="2_cttwf"]
 [ext_resource type="Theme" uid="uid://dwfiaokhr4y0m" path="res://assets/ui/settings/themes/base_ui_theme.tres" id="3_kcxqm"]
+[ext_resource type="Script" uid="uid://cp24a8ijtb5h0" path="res://src/ui/s_control/s_button.gd" id="4_cttwf"]
 [ext_resource type="PackedScene" uid="uid://cqad3gf2rqe4y" path="res://assets/ui/settings/settings.tscn" id="4_ww1cn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rew03"]
@@ -46,23 +47,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
 
-[node name="BContinue" type="Button" parent="VBoxContainer" unique_id=1440666363]
+[node name="BContinue" type="Button" parent="VBoxContainer" unique_id=1448020959]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_kcxqm")
 text = "Continue"
+script = ExtResource("4_cttwf")
+metadata/_custom_type_script = "uid://cp24a8ijtb5h0"
 
-[node name="BSettings" type="Button" parent="VBoxContainer" unique_id=1507283148]
+[node name="BSettings" type="Button" parent="VBoxContainer" unique_id=961101700]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_kcxqm")
 text = "Settings"
+script = ExtResource("4_cttwf")
+metadata/_custom_type_script = "uid://cp24a8ijtb5h0"
 
-[node name="BExit" type="Button" parent="VBoxContainer" unique_id=293236463]
+[node name="BExit" type="Button" parent="VBoxContainer" unique_id=97872061]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_kcxqm")
 text = "Exit"
+script = ExtResource("4_cttwf")
+metadata/_custom_type_script = "uid://cp24a8ijtb5h0"
 
 [node name="Submenus" type="Control" parent="." unique_id=1432382602]
 layout_mode = 1

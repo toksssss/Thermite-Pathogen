@@ -3,8 +3,8 @@ class_name MainMenu
 
 const SCENE_PATH : String = "res://assets/main_menu/main_menu.tscn"
 
-var start_game : Button
-var settings : Button
+var start_game : SButton
+var settings : SButton
 var exit : Button
 var settings_menu : SettingsMenu
 var submenus : Control
