@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cjt3hn47kc4ui" path="res://assets/materials/shaders/blur.gdshader" id="2_xs1x2"]
 [ext_resource type="Script" uid="uid://cx0rk1fdi37ah" path="res://src/ui/settings_checkbox/fullscreen_checkbox.gd" id="3_6lpr7"]
 [ext_resource type="Script" uid="uid://utpn4tqg1kq" path="res://src/ui/settings_checkbox/vsync_checkbox.gd" id="3_gverg"]
+[ext_resource type="Script" uid="uid://cp24a8ijtb5h0" path="res://src/ui/s_control/s_button.gd" id="6_auv33"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_auv33"]
 shader = ExtResource("2_xs1x2")
@@ -76,7 +77,7 @@ label_settings = SubResource("LabelSettings_2nolj")
 layout_mode = 2
 script = ExtResource("3_6lpr7")
 
-[node name="Button" type="Button" parent="." unique_id=252197567]
+[node name="Button" type="Button" parent="." unique_id=666385575]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -87,3 +88,5 @@ offset_bottom = -205.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 43
 text = "BACK"
+script = ExtResource("6_auv33")
+metadata/_custom_type_script = "uid://cp24a8ijtb5h0"

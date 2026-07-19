@@ -27,6 +27,8 @@ var preload_manager : PreloadManager
 
 var loading_screen : LoadingScreen
 
+var audio_manager : AudioManager
+
 var gameplay_scene : GameplayManager:
 	get:
 		return scene_container.current_scene as GameplayManager
@@ -35,12 +37,11 @@ var main_menu_node : MainMenu:
 	get:
 		return scene_container.current_scene as MainMenu
 
-#var sound_manager : SoundManager
-
 var dev_console : DevConsole
 
 func _ready() -> void:
 	instance = self
+	audio_manager = %AudioManager
 	preload_manager = %PreloadManager
 	scene_container = %RootSceneContainer
 	loading_screen = %LoadingScreen

@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://c5vxwutydahin" path="res://assets/materials/dev_orange.tres" id="6_nikn1"]
 [ext_resource type="Texture2D" uid="uid://dlgi1bfntdryo" path="res://addons/kenney_prototype-textures/PNG/Dark/texture_09.png" id="7_3xa85"]
 [ext_resource type="PackedScene" uid="uid://td1pq7fpxsln" path="res://assets/enemies/dummy/dummy.tscn" id="8_s8dal"]
+[ext_resource type="Texture2D" uid="uid://ot4drl23tbxr" path="res://addons/kenney_prototype-textures/PNG/Green/texture_01.png" id="9_k2f0c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rux81"]
 font_size = 64
@@ -48,6 +49,8 @@ func _ready() -> void:
 		if body is Player:
 			npc.process_mode = Node.PROCESS_MODE_DISABLED
 			)
+
+	npc.tree_exited.connect(func() -> void: monitoring = false)
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_roo2t"]
@@ -69,6 +72,57 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 albedo_texture = ExtResource("7_3xa85")
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="Curve3D" id="Curve3D_k2f0c"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.7294483, -0.07662201, -32.32087, 0, 0, 0, 0, 0, 0, 12.686053, -0.07662201, -31.640583, 0, 0, 0, 0, 0, 0, 12.374863, -0.07662201, -48.820892, 0, 0, 0, 0, 0, 0, -6.1068916, -0.07662201, -49.635498),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="GDScript" id="GDScript_rux81"]
+script/source = "extends PathFollow3D
+
+func _physics_process(delta: float) -> void:
+	progress_ratio += 10 * delta / 100
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_u7yu4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tf38"]
+albedo_texture = ExtResource("9_k2f0c")
+uv1_triplanar = true
+grow_amount = 0.475
+stencil_flags = 2
+
+[sub_resource type="GDScript" id="GDScript_xhr4e"]
+resource_name = "movable_audio_tesat"
+script/source = "extends CSGMesh3D
+
+var event_guid : String = \"{5c19c89c-4326-4393-b4b7-5d711db1ac93}\"
+var event : FmodEvent
+var sound_delay : float = 1.0
+var timing : float = 0.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if !FmodServer.check_event_guid(event_guid):
+		print_debug(\"No event was found with guid: \" + event_guid)
+	else:
+		event = FmodServer.create_event_instance_with_guid(event_guid)
+	timing = sound_delay
+
+
+func _physics_process(delta: float) -> void:
+	event.set_3d_attributes(global_transform)
+	if timing >= sound_delay:
+		if event:
+			event.start()
+			timing = 0.0
+	else:
+		timing += delta
+"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rux81"]
 top_radius = 0.1
@@ -126,6 +180,7 @@ cache/0/32/0/scale = 1.0
 
 [node name="Main" type="Node3D" unique_id=1934239975]
 script = ExtResource("1_roo2t")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=364932141]
 
@@ -153,6 +208,7 @@ environment = ExtResource("2_k2f0c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.451473, 1.0048001, -2)
 
 [node name="Npc" type="Node3D" parent="." unique_id=1236248735]
+metadata/_edit_lock_ = true
 
 [node name="AED-P1" parent="Npc" unique_id=1116745758 instance=ExtResource("4_v0qge")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 35, 0.6612873, 30)
@@ -161,6 +217,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 35, 0.6612873, 30)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.800224, 0.4947733, -4.1484447)
 
 [node name="World" type="Node3D" parent="." unique_id=366614922]
+metadata/_edit_lock_ = true
 
 [node name="AedNavRegion" type="NavigationRegion3D" parent="World" unique_id=2056917355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.866276, 0, 27)
@@ -186,8 +243,9 @@ shape = SubResource("BoxShape3D_roo2t")
 transform = Transform3D(1, 7.541266e-05, -0.00021175794, -7.541266e-05, 1, -3.0852145e-05, 0.00021175794, 3.0852145e-05, 1, 44.27292, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_6sv45")
 
-[node name="Disabler2" type="Area3D" parent="World/SoldierNavRegion" unique_id=1406778685]
+[node name="Disabler2" type="Area3D" parent="World/SoldierNavRegion" unique_id=1406778685 node_paths=PackedStringArray("npc")]
 script = SubResource("GDScript_3yvm8")
+npc = NodePath("../../../Npc/Soldier")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/SoldierNavRegion/Disabler2" unique_id=793636978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4286346, 1.7637329, 0.80531406)
@@ -237,6 +295,7 @@ use_collision = true
 collision_layer = 16
 size = Vector3(267.37976, 1, 244.91287)
 material = SubResource("StandardMaterial3D_6sv45")
+metadata/_edit_lock_ = true
 
 [node name="Dummy" parent="World" unique_id=452110114 instance=ExtResource("8_s8dal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 4)
@@ -252,6 +311,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 2)
 
 [node name="Dummy5" parent="World" unique_id=648800441 instance=ExtResource("8_s8dal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -4)
+
+[node name="Path3D" type="Path3D" parent="World" unique_id=593607848]
+curve = SubResource("Curve3D_k2f0c")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Path3D" unique_id=580227091]
+transform = Transform3D(-0.036913786, 0, -0.9992644, 0, 1, 0, 0.9992644, 0, -0.036913786, -5.7294483, -0.07662201, -32.32087)
+script = SubResource("GDScript_rux81")
+
+[node name="AudioCSGMesh3D" type="CSGMesh3D" parent="World/Path3D/PathFollow3D" unique_id=1561400247]
+transform = Transform3D(-0.03691777, 0, 0.99937236, 0, 1, 0, -0.99937236, 0, -0.03691777, 0, 0.47370827, 0)
+mesh = SubResource("BoxMesh_u7yu4")
+material = SubResource("StandardMaterial3D_0tf38")
+script = SubResource("GDScript_xhr4e")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1321210081]
 transform = Transform3D(0.0627905, 0, -0.9980267, 0, 1, 0, 0.9980267, 0, 0.0627905, -0.165, 1.77, 0.245)

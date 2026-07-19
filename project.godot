@@ -8,6 +8,10 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://assets/banks/Desktop"
+
 [application]
 
 config/name="thermite-pathogen"
@@ -15,6 +19,10 @@ config/tags=PackedStringArray("main")
 run/main_scene="uid://ig35f53rh73d"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://bsm5nqj3kafye"
+
+[autoload]
+
+FmodManager="*uid://cds10pm7hwn3p"
 
 [debug]
 
@@ -42,7 +50,7 @@ script/templates_search_path="res://src/templates"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 
