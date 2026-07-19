@@ -10,7 +10,7 @@ class_name WeaponModel
 		_current_weapon_strategy = v
 		setup_weapon.call_deferred()
 		for s: WeaponState in states.values():
-			s.current_weapon = _current_weapon_strategy
+			s.current_weapon = v
 	get:
 		return _current_weapon_strategy
 
