@@ -9,3 +9,4 @@ static func register_commands() -> void:
 	DevConsoleManager.instance.add_command(GetNodesInGroupCommand.new())
 	DevConsoleManager.instance.add_command(SetStageCommand.new())
 	DevConsoleManager.instance.add_command(ImpulseCommand.new())
+	DevConsoleManager.instance.add_command(SetVolumeCommand.new())
