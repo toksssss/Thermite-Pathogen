@@ -19,8 +19,6 @@ var slide_boost_speed_multiplier : float
 
 const STEP_EVENT_GUID := "{447525d9-f923-426e-aa77-30467c352461}"
 
-static var sound_event : FmodEvent
-
 const footstep_timer_reset : float = 0.25
 static var footstep_timer : float = 0.0
 
@@ -61,9 +59,6 @@ func on_exit_state() -> void:
 	pass
 
 func footstep_sound(delta: float) -> void:
-	if !sound_event:
-		sound_event = FmodServer.create_event_instance_with_guid(STEP_EVENT_GUID)
-	
 	if footstep_timer <= 0.0:
 		if foot_raycast.is_colliding():
 			#var obj := foot_raycast.get_collider()
@@ -80,18 +75,17 @@ func footstep_sound(delta: float) -> void:
 					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
 				#_:
 					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
-			sound_event.set_parameter_by_name("SurfaceType", 4.0)
-			sound_event.set_3d_attributes(player.global_transform)
-			sound_event.set_volume(0.15)
-			sound_event.start()
+			SfxCmd.play_one_shot_at_position(
+				STEP_EVENT_GUID, 
+				player.global_transform, 
+				{"SurfaceType": 4.0},
+				 0.25
+				)
 			footstep_timer = footstep_timer_reset
 	else:
 		footstep_timer -= delta
 
 func play_footstep_sound() -> void:
-	if !sound_event:
-		sound_event = FmodServer.create_event_instance_with_guid(STEP_EVENT_GUID)
-	
 	if foot_raycast.is_colliding():
 		#var obj := foot_raycast.get_collider()
 		#match obj.surface_type:
@@ -107,9 +101,11 @@ func play_footstep_sound() -> void:
 				#sound_event.set_parameter_by_name("SurfaceType", 4.0)
 			#_:
 				#sound_event.set_parameter_by_name("SurfaceType", 4.0)
-		sound_event.set_parameter_by_name("SurfaceType", 4.0)
-		sound_event.set_3d_attributes(player.global_transform)
-		sound_event.start()
+		SfxCmd.play_one_shot_at_position(
+				STEP_EVENT_GUID, 
+				player.global_transform, 
+				{"SurfaceType": 4.0}
+				)
 
 # General Moves heir usage guide.
 
