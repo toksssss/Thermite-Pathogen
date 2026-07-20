@@ -21,8 +21,3 @@ func on_enter_state() -> void:
 	melee_hurtbox.attack_data = attack_data
 	
 	melee_hurtbox.damage()
-
-
-#func on_exit_state() -> void:
-	# Delete later
-	#melee_hurtbox.monitoring = false

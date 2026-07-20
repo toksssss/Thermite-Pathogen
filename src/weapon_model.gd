@@ -38,8 +38,7 @@ var weapon_animator : AnimationPlayer
 
 func _ready() -> void:
 	#_init_weapon_upgrade()
-	_current_weapon_strategy = weapon_strategy
-	setup_weapon()
+
 	_init_states()
 
 func update(input: InputPackage, delta: float) -> void:
@@ -95,11 +94,18 @@ func _setup_in_editor() -> void:
 
 func _setup_weapon_animator() -> void:
 	weapon_animator = current_weapon_viewmodel.get_node_or_null("AnimationPlayer")
+
 	if weapon_animator == null:
 		push_warning("Weapons AnimationPlayer has not found")
+	else:
+		var anim : Animation = null
+		for state in state_node.get_children():
+			if state is WeaponState:
+				anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
+				if anim != null:
+					state.animation_length = anim.length
 
 func _init_states() -> void:
-	var anim : Animation = null
 	for state in state_node.get_children():
 		if state is WeaponState:
 			states[state.state_name.to_lower()] = state
@@ -107,9 +113,9 @@ func _init_states() -> void:
 			state.weapon_model = self
 			state.melee_hurtbox = melee_hurtbox
 			state.timer = state_timer
-			anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
-			if anim != null:
-				state.animation_length = anim.length
+			#anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
+			#if anim != null:
+				#state.animation_length = anim.length
 	current_state = states["idle"]
 
 #func _on_movement_strategy_changed(v: ReactiveArray) -> void:

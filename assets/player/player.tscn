@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dcejf6b7skbnc" path="res://addons/kenney_crosshairPack/PNG/Outline/crosshair001.png" id="16_4t7cd"]
 [ext_resource type="Script" uid="uid://cic4jmh0ees7l" path="res://src/weapon_states/weapon_fire.gd" id="16_yx3jh"]
 [ext_resource type="Script" uid="uid://cn4qmij2sgdk0" path="res://src/weapon_sway.gd" id="18_i44by"]
-[ext_resource type="Resource" uid="uid://c5hqk5hqmjbqh" path="res://assets/resources/weapon_strategies/str2m-new.tres" id="21_xhr4e"]
+[ext_resource type="Resource" uid="uid://c5hqk5hqmjbqh" path="res://assets/resources/weapon_strategies/str2m.tres" id="21_xhr4e"]
 [ext_resource type="Script" uid="uid://d2lgib7u06b10" path="res://src/dev_label.gd" id="22_5bqul"]
 [ext_resource type="Script" uid="uid://dycl3v5mfpwhi" path="res://src/weapon_states/melee.gd" id="23_bvphe"]
 [ext_resource type="Script" uid="uid://bdsqa04phq5ta" path="res://src/weapon_states/weapon_charge_attack.gd" id="26_awgyn"]
@@ -227,6 +227,7 @@ current = true
 fov = 90.0
 
 [node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]
+unique_name_in_owner = true
 
 [node name="MeleeHurtbox" type="Area3D" parent="Head/Camera3D" unique_id=541473590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)

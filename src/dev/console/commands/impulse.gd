@@ -2,8 +2,8 @@ extends ConsoleCommand
 class_name ImpulseCommand
 
 const WEAPON_RESOURCES : Dictionary[int, String] = {
-	100 : "uid://lx7lgsgaxkp5", # default
-	101 : "uid://cuq08t1huothi", # dev
+	100 : "uid://c5hqk5hqmjbqh", # default str2m
+	101 : "uid://b5w70v6xb8xty", # dev str2m
 }
 
 func _init() -> void:
