@@ -3,7 +3,7 @@ extends WeaponState
 func check_relevance(input: InputPackage) -> String:
 	if !current_weapon.is_cooldown:
 		return best_input_that_can_be_paid(input)
-	return "okay"
+	return &"okay"
 
 func on_enter_state() -> void:
 	print("Charged attack")

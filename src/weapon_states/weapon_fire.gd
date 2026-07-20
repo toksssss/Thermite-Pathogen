@@ -2,12 +2,12 @@ extends WeaponState
 
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
-	if input.combat_actions.has("reload"):
-		return "reload"
+	if input.combat_actions.has(&"reload"):
+		return &"reload"
 	
 	if !current_weapon.is_cooldown:# Change to current_weapon.is_cooldown
 		return best_input_that_can_be_paid(input)
-	return "okay"
+	return &"okay"
 
 func on_enter_state() -> void:
 	var cooldown : float = 1 * 60 / current_weapon.weapon_data.fire_rate

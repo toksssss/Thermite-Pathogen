@@ -4,7 +4,7 @@ extends WeaponState
 func check_relevance(input: InputPackage) -> String:
 	if !current_weapon.is_cooldown:
 		return best_input_that_can_be_paid(input)
-	return "okay"
+	return &"okay"
 
 @warning_ignore("unused_parameter")
 func update(input: InputPackage, delta: float) -> void:

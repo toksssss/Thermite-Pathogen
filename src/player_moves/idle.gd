@@ -2,7 +2,7 @@ extends Move
 
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
-		return "falling"
+		return &"falling"
 	
 	input.actions.sort_custom(moves_priority_sort)
 	return input.actions[0]

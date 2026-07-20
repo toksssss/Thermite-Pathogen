@@ -4,14 +4,14 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
-		return "falling"
+		return &"falling"
 	
 	if head_raycast.is_colliding():
-		return "okay"
+		return &"okay"
 	
 	input.actions.sort_custom(moves_priority_sort)
-	if input.actions[0] == "crouch":
-		return "okay"
+	if input.actions[0] == &"crouch":
+		return &"okay"
 	return input.actions[0]
 
 func update(input: InputPackage, delta: float) -> void:

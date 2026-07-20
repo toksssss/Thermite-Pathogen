@@ -8,20 +8,20 @@ var event : FmodEvent
 
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
-		return "falling"
+		return &"falling"
 	
 	if player.velocity.length() <= CROUCH_THRESHOLD:
-			return "crouch"
+			return &"crouch"
 	
 	if head_raycast.is_colliding():
 		if player.velocity.length() >= CROUCH_THRESHOLD:
-			return "okay"
+			return &"okay"
 		else:
-			return "crouch"
+			return &"crouch"
 	
 	input.actions.sort_custom(moves_priority_sort)
-	if input.actions[0] == "crouch":
-		return "okay"
+	if input.actions[0] == &"crouch":
+		return &"okay"
 	return input.actions[0]
 
 

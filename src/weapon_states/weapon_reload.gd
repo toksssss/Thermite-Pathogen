@@ -4,7 +4,7 @@ extends WeaponState
 func check_relevance(input: InputPackage) -> String:
 	if !current_weapon.is_cooldown:
 		return best_input_that_can_be_paid(input)
-	return "okay"
+	return &"okay"
 
 func on_enter_state() -> void:
 	var cooldown : float = animation_length / current_weapon.weapon_data.reload_speed_multiplier

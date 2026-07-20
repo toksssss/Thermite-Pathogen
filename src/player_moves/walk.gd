@@ -6,15 +6,15 @@ const SLIDE_THRESHOLD : float = 14.0
 
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
-		return "falling"
+		return &"falling"
 	
-	if input.actions.has("crouch"):
+	if input.actions.has(&"crouch"):
 		if player.velocity.length() >= SLIDE_THRESHOLD:
-			return "slide"
+			return &"slide"
 	
 	input.actions.sort_custom(moves_priority_sort)
-	if input.actions[0] == "walk":
-		return "okay"
+	if input.actions[0] == &"walk":
+		return &"okay"
 	return input.actions[0]
 
 func update(input: InputPackage, delta: float) -> void:

@@ -6,7 +6,7 @@ func check_relevance(input: InputPackage) -> String:
 	if player.is_on_floor():
 		input.actions.sort_custom(moves_priority_sort)
 		return input.actions[0]
-	return "okay"
+	return &"okay"
 
 @warning_ignore("unused_parameter")
 func update(input: InputPackage, delta: float) -> void:
@@ -14,4 +14,14 @@ func update(input: InputPackage, delta: float) -> void:
 
 @warning_ignore("unused_parameter")
 func velocity_by_input(input : InputPackage, delta: float) -> void:
+	var direction : Vector3 = (player.global_transform.basis * 
+	Vector3(input.input_direction.x, 0, input.input_direction.y)).normalized()
+	
+	var target : Vector3 = direction * base_speed
+	
+	vel_comp.accelerate_to(target, direction, delta)
+	
 	vel_comp.apply_gravity(delta)
+
+func on_exit_state() -> void:
+	play_footstep_sound()

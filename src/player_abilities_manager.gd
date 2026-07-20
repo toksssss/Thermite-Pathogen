@@ -18,17 +18,17 @@ func _apply_passive_abilities() -> void:
 
 func try_to_use_ability(input: InputPackage) -> void:
 	# Надо бы покрасивше потом сделать
-	if input.ability_actions.has("ability_prime"):
+	if input.ability_actions.has(&"ability_prime"):
 		if starting_ability:
 			starting_ability.apply_strategy(player)
 	
-	if input.ability_actions.has("ability_1"):
+	if input.ability_actions.has(&"ability_1"):
 		abilities[0].apply_strategy(player)
-	if input.ability_actions.has("ability_2"):
+	if input.ability_actions.has(&"ability_2"):
 		abilities[1].apply_strategy(player)
-	if input.ability_actions.has("ability_3"):
+	if input.ability_actions.has(&"ability_3"):
 		abilities[2].apply_strategy(player)
-	if input.ability_actions.has("ability_4"):
+	if input.ability_actions.has(&"ability_4"):
 		abilities[3].apply_strategy(player)
 
 @warning_ignore("unused_parameter")
