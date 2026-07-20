@@ -41,11 +41,13 @@ func velocity_by_input(input: InputPackage, delta: float) -> void:
 
 
 func on_enter_state() -> void:
-	if !event:
-		event = FmodServer.create_event_instance_with_guid(SLIDE_GUID)
+	#if !event:
+		#event = FmodServer.create_event_instance_with_guid(SLIDE_GUID)
+	#
+	#event.set_volume(0.5)
+	#event.start()
 	
-	event.set_volume(0.5)
-	event.start()
+	SfxCmd.play_loop(SLIDE_GUID)
 	
 	boost()
 	player.is_crouching = true
@@ -55,7 +57,8 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	player.is_crouching = false
 	set_stand_collision_shape()
-	event.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+	#event.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+	SfxCmd.stop_loop(SLIDE_GUID)
 
 
 func boost() -> void:

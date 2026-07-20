@@ -1,33 +1,25 @@
 extends Node
 class_name AudioProxy
 
-var rig : Node3D
-var event: FmodEvent
+var node : Node3D
 
 func _ready() -> void:
-	rig = $".."
+	node = $".."
 
-func play_sound_with_param_by_guid(guid: String, param: String = "", key: float = 0.0) -> void:
-	if !FmodServer.check_event_guid(guid):
-		print("No event was found with guid: " + guid)
-		return
-	if !event:
-		event = FmodServer.create_event_instance_with_guid(guid)
-	event.set_parameter_by_name(param, key)
-	event.start()
+func play_one_shot(_guid: String, _params: Dictionary = {}, _volume: float = 1.0) -> void:
+	AudioManager.instance.play_one_shot(_guid, _params, _volume)
 
-func play_sound_with_params_by_guid(guid: String, params: Dictionary[String, float]) -> void:
-	if !FmodServer.check_event_guid(guid):
-		print("No event was found with guid: " + guid)
-		return
-	if !event:
-		event = FmodServer.create_event_instance_with_guid(guid)
-	for key: String in params.keys():
-		event.set_parameter_by_name(key, params[key])
-	event.start()
+func play_one_shot_attached(_guid: String, _params: Dictionary = {}, _volume: float = 1.0) -> void:
+	AudioManager.instance.play_one_shot_attached(_guid, node, _params, _volume)
 
-func play_one_shot_using_guid_attached(guid: String) -> void:
-	if !FmodServer.check_event_guid(guid):
-		print("No event was found with guid: " + guid)
-		return
-	FmodServer.play_one_shot_using_guid_attached(guid, rig)
+func play_one_shot_attached_(_guid: String) -> void:
+	AudioManager.instance.play_one_shot_attached_(_guid, node)
+
+func play_loop(_guid: String) -> void:
+	AudioManager.instance.play_loop(_guid)
+
+func stop_loop(_guid: String) -> void:
+	AudioManager.instance.stop_loop(_guid)
+
+func set_param(_guid: String, _param: String, _val: float) -> void:
+	AudioManager.instance.set_param(_guid, _param, _val)
