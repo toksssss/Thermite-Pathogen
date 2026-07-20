@@ -82,6 +82,7 @@ func footstep_sound(delta: float) -> void:
 					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
 			sound_event.set_parameter_by_name("SurfaceType", 4.0)
 			sound_event.set_3d_attributes(player.global_transform)
+			sound_event.set_volume(0.15)
 			sound_event.start()
 			footstep_timer = footstep_timer_reset
 	else:
@@ -109,8 +110,6 @@ func play_footstep_sound() -> void:
 		sound_event.set_parameter_by_name("SurfaceType", 4.0)
 		sound_event.set_3d_attributes(player.global_transform)
 		sound_event.start()
-
-	
 
 # General Moves heir usage guide.
 

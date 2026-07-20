@@ -4,6 +4,9 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const CROUCH_THRESHOLD : float = 7.5
 
+const SLIDE_GUID := "{361fda7e-1a65-4f9d-b69c-ab71948751a0}"
+var event : FmodEvent
+
 func check_relevance(input: InputPackage) -> String:
 	if !player.is_on_floor():
 		return "falling"
@@ -38,6 +41,12 @@ func velocity_by_input(input: InputPackage, delta: float) -> void:
 
 
 func on_enter_state() -> void:
+	if !event:
+		event = FmodServer.create_event_instance_with_guid(SLIDE_GUID)
+	
+	event.set_volume(0.5)
+	event.start()
+	
 	boost()
 	player.is_crouching = true
 	set_crouch_collision_shape()
@@ -46,6 +55,7 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	player.is_crouching = false
 	set_stand_collision_shape()
+	event.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 
 
 func boost() -> void:
