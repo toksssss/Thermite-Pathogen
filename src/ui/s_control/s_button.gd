@@ -6,7 +6,7 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 
 func _on_button_down() -> void:
-	SfxCmd.play_sfx_by_guid("{36c13bdb-0d95-4321-a5a0-00f4e59e8642}")
+	SfxCmd.play_sfx_by_guid(SfxGuid.ui_click)
 
 func _on_mouse_entered() -> void:
-	SfxCmd.play_sfx_by_guid("{9db732eb-a2f8-4f4c-9210-218cbb9c2e33}")
+	SfxCmd.play_sfx_by_guid(SfxGuid.ui_hover)

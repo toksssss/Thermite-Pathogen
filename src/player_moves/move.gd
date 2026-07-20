@@ -17,8 +17,6 @@ var slide_boost_speed_multiplier : float
 
 # Audio
 
-const STEP_EVENT_GUID := "{447525d9-f923-426e-aa77-30467c352461}"
-
 const footstep_timer_reset : float = 0.25
 static var footstep_timer : float = 0.0
 
@@ -76,7 +74,7 @@ func footstep_sound(delta: float) -> void:
 				#_:
 					#sound_event.set_parameter_by_name("SurfaceType", 4.0)
 			SfxCmd.play_one_shot_at_position(
-				STEP_EVENT_GUID, 
+				SfxGuid.footstep, 
 				player.global_transform, 
 				{"SurfaceType": 4.0},
 				 0.25
@@ -102,7 +100,7 @@ func play_footstep_sound() -> void:
 			#_:
 				#sound_event.set_parameter_by_name("SurfaceType", 4.0)
 		SfxCmd.play_one_shot_at_position(
-				STEP_EVENT_GUID, 
+				SfxGuid.footstep, 
 				player.global_transform, 
 				{"SurfaceType": 4.0}
 				)

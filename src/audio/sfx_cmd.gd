@@ -12,6 +12,12 @@ static func play_one_shot_at_position(guid: String, position: Transform3D, param
 static func play_one_shot_attached(guid: String, node: Node, params: Dictionary[String, float] = {}, volume: float = 1.0) -> void:
 	AudioManager.instance.play_one_shot_attached(guid, node, params, volume)
 
+static func play_one_shot_attached_(guid: String, node: Node3D) -> void:
+	AudioManager.instance.play_one_shot_attached_(guid, node)
+
+static func play_one_shot_attached_with_params(guid: String, node: Node3D, params: Dictionary) -> void:
+	AudioManager.instance.play_one_shot_attached_with_params(guid, node, params)
+
 static func play_loop(_guid: String) -> void:
 	AudioManager.instance.play_loop(_guid)
 
