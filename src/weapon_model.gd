@@ -56,7 +56,7 @@ func switch_to(new_state: String) -> void:
 	#if current_state == states[new_state]:
 		#return
 
-	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
+	#print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
@@ -113,6 +113,7 @@ func _init_states() -> void:
 			state.weapon_model = self
 			state.melee_hurtbox = melee_hurtbox
 			state.timer = state_timer
+			state.head_movement = player.head_movement_component
 			#anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
 			#if anim != null:
 				#state.animation_length = anim.length
