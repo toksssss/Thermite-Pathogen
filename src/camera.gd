@@ -3,7 +3,8 @@ class_name PlayerHead
 
 @export var player : Player
 @export var marker : Marker3D
-@onready var camera : Camera3D = $Camera3D
+@onready var camera : Camera3D = $Pivot/Camera3D
+@export var pivot : Node3D
 
 @export_category("Settings")
 @export var sensetivity : float = 2.0
@@ -13,10 +14,14 @@ class_name PlayerHead
 var actual_rotation : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
+	pivot.top_level = true
+	pivot.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	
 	actual_rotation.y = player.rotation.y
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-# BUG: При замене на _unhandled_input невозможно управлять персонажем.
+func _process(delta: float) -> void:
+	pivot.transform = get_global_transform_interpolated()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_head((event as InputEventMouseMotion).screen_relative)
@@ -29,4 +34,3 @@ func rotate_head(mouse_axis: Vector2) -> void:
 	
 	player.rotation.y = actual_rotation.y
 	rotation.x = actual_rotation.x
-	#print("Player.rotation.y = %s \t rotation.x = %s" % [player.rotation.y, rotation.x])
