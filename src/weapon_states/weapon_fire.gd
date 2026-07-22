@@ -17,6 +17,8 @@ func on_enter_state() -> void:
 
 	current_weapon.attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
+	
+	head_movement.add_trauma_if_less_than(0.4, 0.5)
 
 func on_exit_state() -> void:
 	pass

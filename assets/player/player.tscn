@@ -89,7 +89,7 @@ script = ExtResource("27_82wjp")
 behavior = SubResource("Resource_8b0cw")
 metadata/_custom_type_script = "uid://csne0jq35eaxq"
 
-[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision", "abilities_manager", "velocity_component") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1034354759 node_paths=PackedStringArray("input_gatherer", "model", "weapon", "head", "stand_collision", "crouch_collision", "abilities_manager", "velocity_component", "head_movement_component") groups=["player"]]
 collision_mask = 53
 script = ExtResource("1_d6veg")
 input_gatherer = NodePath("Input")
@@ -100,6 +100,7 @@ stand_collision = NodePath("StandCollider")
 crouch_collision = NodePath("CrouchCollider")
 abilities_manager = NodePath("Abilities")
 velocity_component = NodePath("Model/VelocityComponent")
+head_movement_component = NodePath("HeadMovement")
 
 [node name="DevCanvas" type="CanvasLayer" parent="." unique_id=781417395]
 
@@ -119,7 +120,7 @@ mouse_filter = 2
 texture = ExtResource("16_4t7cd")
 stretch_mode = 2
 
-[node name="DevLabel" type="Label" parent="DevCanvas" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player", "sway", "vel_comp")]
+[node name="DevLabel" type="Label" parent="DevCanvas" unique_id=807217104 node_paths=PackedStringArray("model", "weapon", "player", "sway", "vel_comp", "head_comp")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -133,6 +134,7 @@ weapon = NodePath("../../Weapon/Model")
 player = NodePath("../..")
 sway = NodePath("../../Weapon/Model/WeaponSway")
 vel_comp = NodePath("../../Model/VelocityComponent")
+head_comp = NodePath("../../HeadMovement")
 
 [node name="HudLabel" type="Label" parent="DevCanvas" unique_id=240567308 node_paths=PackedStringArray("model")]
 anchors_preset = 3
@@ -166,6 +168,7 @@ script = ExtResource("2_h6syq")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=314601792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0018717, 0)
+visible = false
 script = ExtResource("5_vibpd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" unique_id=15899647]
@@ -222,7 +225,6 @@ marker = NodePath("Camera3D/Marker3D")
 sensetivity = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1680930214]
-transform = Transform3D(0.99965733, 0.0018260464, -0.026113715, 0, 0.9975641, 0.06975638, 0.02617748, -0.06973248, 0.99722224, 0, 0, 0)
 current = true
 fov = 90.0
 
@@ -247,6 +249,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76993966)
 weight = 2.0
 transform = Transform3D(1, -4.656613e-10, -1.8626451e-09, 0, 1, 0, 0, 0, 0.99999976, 0, 0, 0)
 
+[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
+script = ExtResource("7_q1ug7")
+camera = NodePath("../Head/Camera3D")
+s_max_pitch = 5.0
+s_max_roll = 4.0
+s_max_offset = 1.0
+
 [node name="HeadCollidingRaycast" type="RayCast3D" parent="." unique_id=1918092923]
 target_position = Vector3(0, 2, 0)
 collision_mask = 255
@@ -257,10 +266,6 @@ debug_shape_thickness = 1
 target_position = Vector3(0, -0.3, 0)
 collision_mask = 16
 collide_with_areas = true
-
-[node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
-script = ExtResource("7_q1ug7")
-camera = NodePath("../Head/Camera3D")
 
 [node name="StandCollider" type="CollisionShape3D" parent="." unique_id=1917109621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

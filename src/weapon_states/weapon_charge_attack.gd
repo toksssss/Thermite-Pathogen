@@ -14,6 +14,7 @@ func on_enter_state() -> void:
 	
 	current_weapon.alternative_attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
+	head_movement.add_trauma(1.0)
 
 func on_exit_state() -> void:
 	current_weapon.is_charged = false
