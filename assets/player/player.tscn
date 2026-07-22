@@ -252,6 +252,7 @@ transform = Transform3D(1, -4.656613e-10, -1.8626451e-09, 0, 1, 0, 0, 0, 0.99999
 [node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
 script = ExtResource("7_q1ug7")
 camera = NodePath("../Head/Camera3D")
+trauma_power = 2
 s_max_pitch = 5.0
 s_max_roll = 4.0
 s_max_offset = 1.0

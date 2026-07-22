@@ -1,67 +1,8 @@
-[gd_scene format=3 uid="uid://dj7h0px3rw6qn"]
+[gd_scene format=3 uid="uid://bfa3g7cuaul6p"]
 
+[ext_resource type="Script" uid="uid://dr3y4hoq1yvmx" path="res://src/vfx/effects/muzzle_flash_a.gd" id="1_iuhfg"]
 [ext_resource type="Texture2D" uid="uid://csf0ee3kemflf" path="res://assets/vfx/textures/str_muzzleflash/mzzlflsh_circle.png" id="1_j7gtr"]
 [ext_resource type="Texture2D" uid="uid://cdmjgpyjhljvf" path="res://assets/vfx/textures/str_muzzleflash/mzzlflash_spike.png" id="2_78eot"]
-
-[sub_resource type="Animation" id="Animation_iuhfg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("muzzle_flash_ParcticleGPU_a/OmniLight3D:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_2qdg5"]
-resource_name = "start_mzzle_flash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("muzzle_flash_ParcticleGPU_a/spread:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("muzzle_flash_ParcticleGPU_a/spike:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("muzzle_flash_ParcticleGPU_a/OmniLight3D:light_energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.16666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljmff"]
-_data = {
-&"RESET": SubResource("Animation_iuhfg"),
-&"start_mzzle_flash": SubResource("Animation_2qdg5")
-}
 
 [sub_resource type="Curve" id="Curve_fu56b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9193955, 0), -4.868868, 0.0, 0, 0]
@@ -102,7 +43,6 @@ alpha_curve = SubResource("CurveTexture_78eot")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljmff"]
 transparency = 1
-blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -145,7 +85,6 @@ scale_curve = SubResource("CurveTexture_ljmff")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4h8s"]
 transparency = 1
-blend_mode = 1
 shading_mode = 0
 albedo_color = Color(4.165, 4.0396667, 2.285, 1)
 albedo_texture = ExtResource("2_78eot")
@@ -153,11 +92,13 @@ grow_amount = 4.246
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xm83q"]
 material = SubResource("StandardMaterial3D_q4h8s")
-size = Vector2(0.3, 0.3)
+size = Vector2(3, 3)
 orientation = 2
 
-[node name="muzzle_flash_ParcticleGPU_a" type="AnimationPlayer" unique_id=55764794]
-libraries/ = SubResource("AnimationLibrary_ljmff")
+[node name="MuzzleFlashA" type="Node3D" unique_id=822621989 node_paths=PackedStringArray("particles")]
+script = ExtResource("1_iuhfg")
+particles = [NodePath("spread"), NodePath("spike")]
+metadata/_edit_lock_ = true
 
 [node name="spread" type="GPUParticles3D" parent="." unique_id=2084483172]
 emitting = false
@@ -166,6 +107,7 @@ one_shot = true
 speed_scale = 1.28
 explosiveness = 1.0
 fixed_fps = 24
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_78eot")
 draw_pass_1 = SubResource("PlaneMesh_07ta0")
 
@@ -175,9 +117,12 @@ lifetime = 0.34
 one_shot = true
 speed_scale = 2.43
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_07ta0")
 draw_pass_1 = SubResource("PlaneMesh_xm83q")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1289938947]
+unique_name_in_owner = true
 light_color = Color(1, 0.84375, 0, 1)
+light_energy = 0.0
 omni_range = 0.70728445

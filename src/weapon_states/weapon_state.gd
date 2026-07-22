@@ -22,6 +22,7 @@ var melee_hurtbox : ManualHurtbox
 var enter_state_time : float
 var resources : WeaponResourcesStore
 var timer : Timer
+var muzzle : Marker3D
 
 var animation_speed : float
 
