@@ -127,9 +127,7 @@ func _init_states() -> void:
 			state.melee_hurtbox = melee_hurtbox
 			state.timer = state_timer
 			state.head_movement = player.head_movement_component
-			#anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
-			#if anim != null:
-				#state.animation_length = anim.length
+
 	current_state = states["idle"]
 
 #func _on_movement_strategy_changed(v: ReactiveArray) -> void:

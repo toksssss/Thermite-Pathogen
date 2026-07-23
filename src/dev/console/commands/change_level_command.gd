@@ -21,8 +21,10 @@ func run_command(args: Array[String]) -> String:
 		if GameplayManager.instance == null:
 			DevConsole.instance.console_print_log("GameplayManager is not at the scene. Loading GameplayManager first\n")
 			#GameManager.instance.start_load_scene(await GameplayManager.create(await MainLevel.create()))
+			@warning_ignore("unsafe_cast", "unsafe_call_argument")
 			GameManager.instance.start_load_scene(await GameplayManager.create(await callable.call() as Node))
 		else:
+			@warning_ignore("unsafe_cast", "unsafe_call_argument")
 			GameplayManager.instance.set_current_level(await callable.call() as Node)
 	else:
 		return "Level is not found. Failed\n"
