@@ -58,6 +58,7 @@ func play_one_shot(guid: String, params: Dictionary = {}, volume: float = 1.0) -
 	
 	for key: String in params:
 		if key in valid_params:
+			@warning_ignore("unsafe_call_argument")
 			event.set_parameter_by_name(key, params[key])
 		else:
 			print("Warning! Fmod Parameter %s was not found on event guid %s" % [key, guid])
@@ -106,6 +107,7 @@ func play_one_shot_attached(guid: String, node: Node, params: Dictionary = {}, v
 	
 	for key: String in params:
 		if key in valid_params:
+			@warning_ignore("unsafe_call_argument")
 			event.set_parameter_by_name(key, params[key])
 		else:
 			print("Warning! Fmod Parameter %s was not found on event guid %s" % [key, guid])

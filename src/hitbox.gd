@@ -6,6 +6,8 @@ class_name Hitbox
 @export var health : HealthComponent
 @export var fsm : StateMachine
 
+@export var visual_comp : VisualComponent
+@export var camera_effects : HeadMovementComponent
 
 @export_category("Crit")
 @export var is_crit_hitbox : bool = false
@@ -20,3 +22,9 @@ func damage(attack: AttackData) -> void:
 				fsm.switch_to("stunned")
 
 		health.damage(attack)
+
+	if visual_comp:
+		visual_comp.damage(attack)
+	
+	if camera_effects:
+		camera_effects.add_trauma_if_less_than(0.2, 0.3)

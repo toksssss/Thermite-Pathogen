@@ -72,5 +72,5 @@ func close_pause_menu() -> void:
 func start_main_level() -> void:
 	set_current_level(await MainLevel.create())
 
-func set_current_level(level: Node) -> void:
+func set_current_level(level: BaseLevel) -> void:
 	level_container.set_current_level(level)

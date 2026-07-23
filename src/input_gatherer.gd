@@ -31,11 +31,6 @@ func gather_input() -> InputPackage:
 		new_input.combat_actions.append(&"idle")
 		return new_input
 	
-	## Mouse movement:
-	#new_input.mouse_motion = mouse_motion
-	## Если не обнулять, то появляется дрифт
-	#mouse_motion = Vector2(0, 0)
-	
 	# Move actions:
 	
 	if Input.is_action_just_pressed(&"btn_jump"):

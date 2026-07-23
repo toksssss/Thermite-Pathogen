@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cioxphk6xyju1" path="res://src/health_component.gd" id="5_4t7cd"]
 [ext_resource type="Script" uid="uid://br8duwo3s26f0" path="res://src/hitbox.gd" id="5_apuko"]
 [ext_resource type="Script" uid="uid://d0qqpdubytpkw" path="res://src/player_moves/jump.gd" id="5_kwvpd"]
-[ext_resource type="Script" uid="uid://b4uhbx2iduvte" path="res://src/visuals.gd" id="5_vibpd"]
 [ext_resource type="Script" uid="uid://dbi71ulls0bl7" path="res://src/player_head_movement.gd" id="7_q1ug7"]
 [ext_resource type="Script" uid="uid://3hfvoveql381" path="res://src/velocity_component.gd" id="7_vibpd"]
 [ext_resource type="Script" uid="uid://baate7hm6jw5i" path="res://src/player_moves/falling.gd" id="8_op4fd"]
@@ -64,8 +63,6 @@ script/source = "extends Label
 func _process(_delta: float) -> void:
 	text = \"HP: %2d\" % hp.health
 "
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lqaot"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvphe"]
 size = Vector3(0.65618896, 0.4678192, 1)
@@ -165,14 +162,6 @@ hp = NodePath("../../Health")
 
 [node name="Input" type="Node" parent="." unique_id=1637412369]
 script = ExtResource("2_h6syq")
-
-[node name="Visuals" type="Node3D" parent="." unique_id=314601792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0018717, 0)
-visible = false
-script = ExtResource("5_vibpd")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" unique_id=15899647]
-mesh = SubResource("CapsuleMesh_lqaot")
 
 [node name="Model" type="Node3D" parent="." unique_id=1361034799 node_paths=PackedStringArray("head_checker", "foot_raycast", "states_group", "velocity_component")]
 script = ExtResource("2_v2miy")
@@ -281,10 +270,11 @@ shape = SubResource("CapsuleShape3D_5bqul")
 disabled = true
 debug_color = Color(0.9727394, 0, 0.44225875, 0.41960785)
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=1363708466 node_paths=PackedStringArray("health")]
+[node name="Hitbox" type="Area3D" parent="." unique_id=1363708466 node_paths=PackedStringArray("health", "camera_effects")]
 collision_mask = 2
 script = ExtResource("5_apuko")
 health = NodePath("../Health")
+camera_effects = NodePath("../HeadMovement")
 metadata/_custom_type_script = "uid://br8duwo3s26f0"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1388031248]
