@@ -17,9 +17,13 @@ var is_crouching : bool = false
 func _physics_process(delta: float) -> void:
 	var input : InputPackage = input_gatherer.gather_input()
 	model.update(input, delta)
-	weapon.update(input, delta)
+	weapon.physics_update(input, delta)
 	abilities_manager.try_to_use_ability(input)
 	velocity_component.move_and_slide()
+
+func _process(delta: float) -> void:
+	var input : InputPackage = input_gatherer.gather_movement()
+	weapon.update(input, delta)
 
 func _exit_tree() -> void:
 	remove_from_group("player")

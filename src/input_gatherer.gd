@@ -31,10 +31,10 @@ func gather_input() -> InputPackage:
 		new_input.combat_actions.append(&"idle")
 		return new_input
 	
-	# Mouse movement:
-	new_input.mouse_motion = mouse_motion
-	# Если не обнулять, то появляется дрифт
-	mouse_motion = Vector2(0, 0)
+	## Mouse movement:
+	#new_input.mouse_motion = mouse_motion
+	## Если не обнулять, то появляется дрифт
+	#mouse_motion = Vector2(0, 0)
 	
 	# Move actions:
 	
@@ -94,4 +94,12 @@ func gather_input() -> InputPackage:
 	#if new_input.combat_actions.is_empty():
 		#new_input.combat_actions.append("idle")
 	new_input.combat_actions.append(&"idle")
+	return new_input
+
+func gather_movement() -> InputPackage:
+	var new_input : InputPackage = InputPackage.new()
+	
+	new_input.mouse_motion = mouse_motion
+	mouse_motion = Vector2(0, 0)
+	
 	return new_input

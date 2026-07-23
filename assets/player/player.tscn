@@ -216,42 +216,45 @@ script = ExtResource("11_n8qm5")
 [node name="Slide" type="Node" parent="Model/Moves" unique_id=681648213]
 script = ExtResource("12_q1ug7")
 
-[node name="Head" type="Marker3D" parent="." unique_id=1377328552 node_paths=PackedStringArray("player", "marker")]
+[node name="Head" type="Marker3D" parent="." unique_id=1377328552 node_paths=PackedStringArray("player", "marker", "pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 gizmo_extents = 0.51
 script = ExtResource("10_m2mll")
 player = NodePath("..")
-marker = NodePath("Camera3D/Marker3D")
-sensetivity = 1.0
+marker = NodePath("Pivot/Camera3D/Marker3D")
+pivot = NodePath("Pivot")
+sensetivity = 0.7
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1680930214]
+[node name="Pivot" type="Node3D" parent="Head" unique_id=1764650745]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Pivot" unique_id=1680930214]
 current = true
 fov = 90.0
 
-[node name="ViewmodelRig" type="Node3D" parent="Head/Camera3D" unique_id=627227035]
+[node name="ViewmodelRig" type="Node3D" parent="Head/Pivot/Camera3D" unique_id=627227035]
 unique_name_in_owner = true
 
-[node name="MeleeHurtbox" type="Area3D" parent="Head/Camera3D" unique_id=541473590]
+[node name="MeleeHurtbox" type="Area3D" parent="Head/Pivot/Camera3D" unique_id=541473590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("15_vibpd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/MeleeHurtbox" unique_id=643993144]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Pivot/Camera3D/MeleeHurtbox" unique_id=643993144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028381348, 1.6575379, -1.0966349)
 shape = SubResource("BoxShape3D_bvphe")
 debug_color = Color(0.81, 0, 0.013499794, 0.41960785)
 
-[node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=400015165]
+[node name="Marker3D" type="Marker3D" parent="Head/Pivot/Camera3D" unique_id=400015165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.76993966)
 
-[node name="FmodListener3D" type="FmodListener3D" parent="Head" unique_id=1122748023]
+[node name="FmodListener3D" type="FmodListener3D" parent="Head/Pivot" unique_id=1122748023]
 weight = 2.0
 transform = Transform3D(1, -4.656613e-10, -1.8626451e-09, 0, 1, 0, 0, 0, 0.99999976, 0, 0, 0)
 
 [node name="HeadMovement" type="Node" parent="." unique_id=200095077 node_paths=PackedStringArray("camera")]
 script = ExtResource("7_q1ug7")
-camera = NodePath("../Head/Camera3D")
+camera = NodePath("../Head/Pivot/Camera3D")
 trauma_power = 2
 s_max_pitch = 5.0
 s_max_roll = 4.0
@@ -302,9 +305,9 @@ script = ExtResource("11_hai6l")
 state_node = NodePath("States")
 weapon_strategy = ExtResource("21_xhr4e")
 state_timer = NodePath("StateTimer")
-viewmodel_rig = NodePath("../../Head/Camera3D/ViewmodelRig")
-melee_hurtbox = NodePath("../../Head/Camera3D/MeleeHurtbox")
-marker = NodePath("../../Head/Camera3D/Marker3D")
+viewmodel_rig = NodePath("../../Head/Pivot/Camera3D/ViewmodelRig")
+melee_hurtbox = NodePath("../../Head/Pivot/Camera3D/MeleeHurtbox")
+marker = NodePath("../../Head/Pivot/Camera3D/Marker3D")
 
 [node name="EffectsAnimator" type="AnimationPlayer" parent="Weapon/Model" unique_id=2001470343]
 
