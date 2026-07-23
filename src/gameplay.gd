@@ -59,18 +59,18 @@ func _input(event: InputEvent) -> void:
 func open_pause_menu() -> void:
 	game_ui.pause_menu.open()
 	game_paused.emit()
-	#GameManager.Instance.set_pause(true)
-	#get_tree().paused = true
+	set_pause(true)
 
 func close_pause_menu() -> void:
 	game_ui.pause_menu.close()
 	game_unpaused.emit()
-	 #GameManager.instance.set_pause(false)
-	 #get_tree().paused = false
-
+	set_pause(false)
 
 func start_main_level() -> void:
 	set_current_level(await MainLevel.create())
 
 func set_current_level(level: BaseLevel) -> void:
 	level_container.set_current_level(level)
+
+func set_pause(v: bool) -> void:
+	get_tree().paused = v

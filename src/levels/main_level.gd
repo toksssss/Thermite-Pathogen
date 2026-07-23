@@ -18,4 +18,5 @@ static func _create() -> MainLevel:
 	return level
 
 func _ready() -> void:
+	super._ready()
 	navigation_region = %SpawnTest

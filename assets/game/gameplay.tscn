@@ -13,14 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://2vfqmo0oispt" path="res://assets/enemies/aed-p1/aed_p_1.tscn" id="8_wkqcf"]
 
 [node name="GameplayManager" type="Node3D" unique_id=1491618204]
+process_mode = 3
 script = ExtResource("1_01ikb")
 
 [node name="LevelContainer" type="Node3D" parent="." unique_id=1384837807]
 unique_name_in_owner = true
+process_mode = 1
 script = ExtResource("2_8jkfc")
 
 [node name="GameUI" type="Control" parent="." unique_id=164716804]
 unique_name_in_owner = true
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -38,6 +41,7 @@ layout_mode = 1
 
 [node name="StageMachine" parent="." unique_id=11707437 node_paths=PackedStringArray("initial_state") instance=ExtResource("5_o70yd")]
 unique_name_in_owner = true
+process_mode = 1
 initial_state = NodePath("None")
 
 [node name="None" type="Node" parent="StageMachine" unique_id=389134533]
@@ -52,10 +56,12 @@ script = ExtResource("8_dehof")
 
 [node name="SpawningManager" type="Node" parent="." unique_id=748837935]
 unique_name_in_owner = true
+process_mode = 1
 script = ExtResource("6_jd2df")
 metadata/_custom_type_script = "uid://4j3w2h41x6p"
 
 [node name="LevelTimer" type="Node" parent="." unique_id=1567303968]
 unique_name_in_owner = true
+process_mode = 1
 script = ExtResource("7_ugrr1")
 metadata/_custom_type_script = "uid://q7kk8mw71y7r"

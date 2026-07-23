@@ -14,3 +14,6 @@ func physics_update(delta: float) -> void:
 		timer.start(spawning_rate)
 		is_cooldown = true
 	
+func enter() -> void:
+	super.enter()
+	LevelTimer.instance.start_timer()

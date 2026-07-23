@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://di0ugxkxsygnk" path="res://assets/game/dev_console.tscn" id="5_83hap"]
 
 [node name="Game" type="Node3D" unique_id=1443932959]
+process_mode = 3
 script = ExtResource("1_skg13")
 metadata/_edit_lock_ = true
 

@@ -7,3 +7,4 @@ script = ExtResource("1_ggggo")
 metadata/_custom_type_script = "uid://ceioxmjyq6a4h"
 
 [node name="STimer" type="Timer" parent="." unique_id=1918598280]
+process_callback = 0

@@ -16,3 +16,7 @@ static func _create() -> TerrainLevel:
 	var _level := load(SCENE_PATH)
 	var level : TerrainLevel = _level.instantiate()
 	return level
+
+func _ready() -> void:
+	super._ready()
+	navigation_region = %NavigationRegion3D

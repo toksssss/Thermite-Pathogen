@@ -9,5 +9,4 @@ static func create() -> BaseLevel:
 	return
 
 func _ready() -> void:
-	navigation_region = %NavigationRegion3D
-	terrain = %Terrain3D
+	GameplayManager.instance.set_pause(false)
