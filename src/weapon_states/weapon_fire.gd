@@ -1,5 +1,11 @@
 extends WeaponState
 
+var vfx : Vfx
+
+func _ready() -> void:
+	vfx = (await PreloadManager.instance.load_scene_to_cache("uid://bfa3g7cuaul6p")).instantiate()
+	Utils.add_child_safe(vfx, muzzle)
+
 @warning_ignore("unused_parameter")
 func check_relevance(input: InputPackage) -> String:
 	if input.combat_actions.has(&"reload"):
@@ -17,6 +23,9 @@ func on_enter_state() -> void:
 
 	current_weapon.attack(weapon_model, weapon_model.marker)
 	current_weapon.pay_resource(self)
-
+	
+	head_movement.add_trauma_if_less_than(0.4, 0.5)
+	vfx.play_vfx()
+	
 func on_exit_state() -> void:
 	pass

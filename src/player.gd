@@ -9,6 +9,7 @@ class_name Player
 @export var crouch_collision : CollisionShape3D
 @export var abilities_manager : PlayerAbilitiesManager
 @export var velocity_component : VelocityComponent
+@export var head_movement_component : HeadMovementComponent
 
 # flags
 var is_crouching : bool = false

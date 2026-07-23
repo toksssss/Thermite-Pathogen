@@ -31,6 +31,7 @@ var _current_weapon_strategy : WeaponStrategy
 
 var current_weapon_viewmodel : Node3D
 var weapon_animator : AnimationPlayer
+var vfx_weapon_muzzle : Marker3D
 
 # All state stats here:
 
@@ -56,7 +57,7 @@ func switch_to(new_state: String) -> void:
 	#if current_state == states[new_state]:
 		#return
 
-	print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
+	#print("Weapon State: switch from %s to %s" % [current_state.name, new_state])
 	current_state.on_exit_state()
 	current_state = states[new_state]
 	current_state.on_enter_state()
@@ -69,7 +70,9 @@ func setup_weapon() -> void:
 	_current_weapon_strategy._current_bullets = _current_weapon_strategy.weapon_data.bullet_capacity
 	
 	_setup_weapon_viewmodel()
+
 	_setup_weapon_animator()
+	_setup_weapon_muzzle()
 
 func _setup_weapon_viewmodel() -> void:
 	current_weapon_viewmodel = _current_weapon_strategy.weapon_data.weapon_scene.instantiate()
@@ -81,6 +84,16 @@ func _setup_weapon_viewmodel() -> void:
 		c.queue_free()
 
 	Utils.add_child_safe(current_weapon_viewmodel, viewmodel_rig)
+
+func _setup_weapon_muzzle() -> void:
+	vfx_weapon_muzzle = current_weapon_viewmodel.get_node_or_null("Marker3D")
+
+	if vfx_weapon_muzzle == null:
+		push_warning("Weapons Marker3D has not found")
+	else:
+		for state in state_node.get_children():
+			if state is WeaponState:
+				state.muzzle = vfx_weapon_muzzle
 
 func _setup_in_editor() -> void:
 	current_weapon_viewmodel = weapon_strategy.weapon_data.weapon_scene.instantiate()
@@ -113,6 +126,7 @@ func _init_states() -> void:
 			state.weapon_model = self
 			state.melee_hurtbox = melee_hurtbox
 			state.timer = state_timer
+			state.head_movement = player.head_movement_component
 			#anim = weapon_animator.get_animation((state as WeaponState).weapon_animation)
 			#if anim != null:
 				#state.animation_length = anim.length

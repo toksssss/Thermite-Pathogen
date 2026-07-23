@@ -45,7 +45,7 @@ func on_enter_state() -> void:
 	#
 	#event.set_volume(0.5)
 	#event.start()
-	
+
 	SfxCmd.play_loop(SfxGuid.slide)
 	
 	boost()
@@ -56,7 +56,6 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	player.is_crouching = false
 	set_stand_collision_shape()
-	#event.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 	SfxCmd.stop_loop(SfxGuid.slide)
 
 

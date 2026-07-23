@@ -2,14 +2,34 @@
 
 [ext_resource type="Texture2D" uid="uid://c2dxfoyc7638" path="res://assets/decals/bullet_hole/true.png" id="1_s03b3"]
 
+[sub_resource type="Curve" id="Curve_ixngd"]
+_data = [Vector2(0.41142854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jt4yd"]
+curve = SubResource("Curve_ixngd")
+
+[sub_resource type="Gradient" id="Gradient_s03b3"]
+offsets = PackedFloat32Array(0, 0.98657715)
+colors = PackedColorArray(0, 0, 0, 1, 0.2109375, 0.16726685, 0.16726685, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_71chw"]
+gradient = SubResource("Gradient_s03b3")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pi54u"]
 direction = Vector3(0, 1, 0)
 spread = 11.352
 initial_velocity_min = 4.0
 initial_velocity_max = 6.0
+scale_min = 0.79999995
+scale_max = 1.1999999
+color_initial_ramp = SubResource("GradientTexture1D_71chw")
+alpha_curve = SubResource("CurveTexture_jt4yd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wl8f"]
-albedo_color = Color(0, 0, 0, 1)
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yxxpl"]
 material = SubResource("StandardMaterial3D_4wl8f")
@@ -24,7 +44,6 @@ texture_albedo = ExtResource("1_s03b3")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=406736753]
 emitting = false
 amount = 16
-lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_pi54u")

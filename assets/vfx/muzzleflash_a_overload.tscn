@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://btyw1ns26aqsv"]
+
+[ext_resource type="Script" uid="uid://d2158okst8rpa" path="res://src/vfx/vfx.gd" id="1_b6388"]
+[ext_resource type="Texture2D" uid="uid://crslp8w8eqdey" path="res://assets/vfx/textures/str_muzzleflash/lighting_sheet/lighting spritesheet.png" id="1_wtdkp"]
+[ext_resource type="Texture2D" uid="uid://csf0ee3kemflf" path="res://assets/vfx/textures/str_muzzleflash/mzzlflsh_circle.png" id="2_tnb4m"]
+
+[sub_resource type="Curve" id="Curve_h8mon"]
+_data = [Vector2(0.021739125, 0.49438208), 0.0, 0.0, 0, 0, Vector2(0.9173913, 0.3595506), -4.13483, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1cmko"]
+curve = SubResource("Curve_h8mon")
+
+[sub_resource type="Curve" id="Curve_h371v"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.6179776), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sy8ny"]
+curve = SubResource("Curve_h371v")
+
+[sub_resource type="Curve" id="Curve_b6388"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 10.0892725, 0, 0, Vector2(1, 0.73033714), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tnb4m"]
+curve = SubResource("Curve_b6388")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bw4ti"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = 95.08998
+angular_velocity_max = 95.08998
+radial_velocity_curve = SubResource("CurveTexture_1cmko")
+velocity_limit_curve = SubResource("CurveTexture_tnb4m")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_sy8ny")
+anim_speed_min = 3.0
+anim_speed_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm83q"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_color = Color(4.00413, 9.500285, 9.7895565, 0.6156863)
+albedo_texture = ExtResource("1_wtdkp")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_07ta0"]
+material = SubResource("StandardMaterial3D_xm83q")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_1cmko"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9193955, 0), -4.868868, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v2u3q"]
+curve = SubResource("Curve_1cmko")
+
+[sub_resource type="Curve" id="Curve_gl0sv"]
+_limits = [0.0, 1.283019, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 4.9342613, 0, 0, Vector2(0.13350125, 1.283019), -0.72807187, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rlxmq"]
+curve = SubResource("Curve_gl0sv")
+
+[sub_resource type="Curve" id="Curve_sy8ny"]
+_limits = [0.0, 3.0, 0.0, 2.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.997481, 0), 0.054279577, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r3m2g"]
+curve = SubResource("Curve_sy8ny")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u85yf"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+use_rotation_3d = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+velocity_limit_curve = SubResource("CurveTexture_r3m2g")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_rlxmq")
+alpha_curve = SubResource("CurveTexture_v2u3q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h371v"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.8966147, 5.912981, 5.511344, 0.20784314)
+albedo_texture = ExtResource("2_tnb4m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2bmq7"]
+material = SubResource("StandardMaterial3D_h371v")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="MuzzleflashAOverload" type="Node3D" unique_id=1084804924 node_paths=PackedStringArray("particles")]
+script = ExtResource("1_b6388")
+particles = [NodePath("lightorbs"), NodePath("spread")]
+
+[node name="lightorbs" type="GPUParticles3D" parent="." unique_id=91619948]
+emitting = false
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bw4ti")
+draw_pass_1 = SubResource("PlaneMesh_07ta0")
+
+[node name="spread" type="GPUParticles3D" parent="." unique_id=635508580]
+emitting = false
+lifetime = 0.22
+one_shot = true
+speed_scale = 1.28
+explosiveness = 1.0
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_u85yf")
+draw_pass_1 = SubResource("PlaneMesh_2bmq7")

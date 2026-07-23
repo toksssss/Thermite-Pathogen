@@ -56,7 +56,7 @@ func on_enter_state() -> void:
 func on_exit_state() -> void:
 	pass
 
-func footstep_sound(delta: float) -> void:
+func footstep_sound(delta: float, speed_multiplier : float = 1.0) -> void:
 	if footstep_timer <= 0.0:
 		if foot_raycast.is_colliding():
 			#var obj := foot_raycast.get_collider()
@@ -81,7 +81,7 @@ func footstep_sound(delta: float) -> void:
 				)
 			footstep_timer = footstep_timer_reset
 	else:
-		footstep_timer -= delta
+		footstep_timer -= delta * speed_multiplier
 
 func play_footstep_sound() -> void:
 	if foot_raycast.is_colliding():

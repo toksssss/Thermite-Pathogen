@@ -17,10 +17,12 @@ var animation_duration : float
 var animation_length : float = 0.0
 var current_weapon : WeaponStrategy
 var weapon_model : WeaponModel
+var head_movement : HeadMovementComponent
 var melee_hurtbox : ManualHurtbox
 var enter_state_time : float
 var resources : WeaponResourcesStore
 var timer : Timer
+var muzzle : Marker3D
 
 var animation_speed : float
 

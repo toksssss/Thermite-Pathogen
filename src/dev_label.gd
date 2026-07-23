@@ -5,6 +5,7 @@ extends Label
 @export var player : Player
 @export var sway : WeaponSway
 @export var vel_comp : VelocityComponent
+@export var head_comp : HeadMovementComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,3 +24,5 @@ func _physics_process(_delta: float) -> void:
 	text += "HeadRayCast is colliding: %s\n" % model.head_checker.is_colliding()
 	text += "Sway MouseMovement: %s\n" % sway.mouse_movement
 	text += "Weapon Kill_count: %s\n" % weapon.weapon_strategy.kill_count
+	text += "Trauma level: %1.10f\n" % head_comp.trauma
+	text += "Amount level: %1.10f\n" % pow(head_comp.trauma, head_comp.trauma_power)
