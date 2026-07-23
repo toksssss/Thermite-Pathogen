@@ -5,8 +5,8 @@ var check_box : CheckBox
 
 func _ready() -> void:
 	check_box = %CheckBox
-	check_box.button_up.connect(_on_fullscreen_enable)
-	check_box.button_down.connect(_on_fullscreen_disable)
+	check_box.toggled.connect(fullscreen)
+	check_box.button_pressed = DisplayServer.window_get_mode()
 
 func _on_fullscreen_enable() -> void:
 	fullscreen(true)

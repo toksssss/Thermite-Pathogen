@@ -37,6 +37,8 @@ func _ready() -> void:
 		set_current_level(init_level)
 	GameManager.instance.ui_opened.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE)
 	GameManager.instance.ui_closed.connect(func() -> void: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED)
+	game_paused.connect(func() -> void: FmodServer.pause_all_events())
+	game_unpaused.connect(func() -> void: FmodServer.unpause_all_events())
 
 static func create(level: BaseLevel = null) -> GameplayManager:
 	var _scene := await PreloadManager.instance.load_scene_to_cache(SCENE_PATH)
@@ -74,3 +76,7 @@ func set_current_level(level: BaseLevel) -> void:
 
 func set_pause(v: bool) -> void:
 	get_tree().paused = v
+	if v:
+		game_paused.emit()
+	else:
+		game_unpaused.emit()
