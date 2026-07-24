@@ -101,7 +101,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Settings/Parameter4" unique_id=125982642]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Sensitivity"
+text = "Master Volume"
 label_settings = SubResource("LabelSettings_2nolj")
 
 [node name="SettingsHSlider" parent="Settings/Parameter4" unique_id=1142436395 instance=ExtResource("8_hwdij")]
