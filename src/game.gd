@@ -9,6 +9,8 @@ signal ui_opened
 
 signal ui_closed
 
+signal sensitivity_changed
+
 var ui_counter : int:
 	get:
 		return ui_counter
@@ -51,6 +53,11 @@ func _ready() -> void:
 # В идеале запихивать на каждую стадию загрузки свою инициализацию систем 
 # В sts2 к этому еще и накидывались логгеры
 func game_startup_wrapper() -> void:
+	#SettingsManager.clear_and_save_config()
+	SettingsManager.load_user_config()
+	load_video_settings()
+	load_user_settings()
+
 	game_startup()
 
 func game_startup() -> void:
@@ -70,5 +77,29 @@ func _load_scene(scene: Node) -> void:
 	scene_loaded.emit()
 	#await loading_screen.fade_out()
 
+func save_user_settings() -> void:
+	SettingsManager.set_value_to_config("user", "sensitivity", UserSettings.sensitivity)
+	SettingsManager.set_value_to_config("user", "volume", UserSettings.volume)
+
+func load_user_settings() -> void:
+	UserSettings.sensitivity = SettingsManager.get_value_from_config("user", "sensitivity", 1.0)
+	UserSettings.volume = SettingsManager.get_value_from_config("user", "volume", 0.5)
+
+func load_video_settings() -> void:
+	DisplayServer.window_set_vsync_mode(SettingsManager.get_value_from_config("video", "vsync", 0))
+	DisplayServer.window_set_mode(SettingsManager.get_value_from_config("video", "fullscreen", 0))
+
+func save_video_settings() -> void:
+	SettingsManager.set_value_to_config("video", "vsync", DisplayServer.window_get_vsync_mode())
+	SettingsManager.set_value_to_config("video", "fullscreen", DisplayServer.window_get_mode())
+
 func quit() -> void:
+	save_video_settings()
+	save_user_settings()
+	SettingsManager.save_user_config()
 	get_tree().quit()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		quit()
+	

@@ -12,4 +12,5 @@ func run_command(args: Array[String]) -> String:
 		return "%s\n" % bus.get_volume()
 
 	SfxCmd.set_master_volume(args[0] as float)
+	UserSettings.volume = args[0] as float
 	return "%s\n" % args[0]

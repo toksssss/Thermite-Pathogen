@@ -5,7 +5,11 @@
 [ext_resource type="Shader" uid="uid://cjt3hn47kc4ui" path="res://assets/materials/shaders/blur.gdshader" id="2_xs1x2"]
 [ext_resource type="Script" uid="uid://cx0rk1fdi37ah" path="res://src/ui/settings_checkbox/fullscreen_checkbox.gd" id="3_6lpr7"]
 [ext_resource type="Script" uid="uid://utpn4tqg1kq" path="res://src/ui/settings_checkbox/vsync_checkbox.gd" id="3_gverg"]
+[ext_resource type="PackedScene" uid="uid://cpxrb6201nj2u" path="res://assets/ui/settings/settings_input.tscn" id="6_3qgb2"]
 [ext_resource type="Script" uid="uid://cp24a8ijtb5h0" path="res://src/ui/s_control/s_button.gd" id="6_auv33"]
+[ext_resource type="Script" uid="uid://dm5s0httn3spv" path="res://src/ui/settings_input/sensitivity_input.gd" id="7_g27br"]
+[ext_resource type="PackedScene" uid="uid://n8k36ajtk7en" path="res://assets/ui/settings/settings_h_slider.tscn" id="8_hwdij"]
+[ext_resource type="Script" uid="uid://wgon8ehrockv" path="res://src/ui/settings_slider/volume_slider.gd" id="9_i8ce2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_auv33"]
 shader = ExtResource("2_xs1x2")
@@ -76,6 +80,34 @@ label_settings = SubResource("LabelSettings_2nolj")
 [node name="Fscreen" parent="Settings/Parameter2" unique_id=1227729839 instance=ExtResource("2_72jqs")]
 layout_mode = 2
 script = ExtResource("3_6lpr7")
+
+[node name="Parameter3" type="HBoxContainer" parent="Settings" unique_id=1144824876]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Parameter3" unique_id=889596121]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sensitivity"
+label_settings = SubResource("LabelSettings_2nolj")
+
+[node name="SensSpinBox" parent="Settings/Parameter3" unique_id=1798288349 instance=ExtResource("6_3qgb2")]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("7_g27br")
+
+[node name="Parameter4" type="HBoxContainer" parent="Settings" unique_id=1300701406]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/Parameter4" unique_id=125982642]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_2nolj")
+
+[node name="SettingsHSlider" parent="Settings/Parameter4" unique_id=1142436395 instance=ExtResource("8_hwdij")]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("9_i8ce2")
 
 [node name="Button" type="Button" parent="." unique_id=666385575]
 layout_mode = 1

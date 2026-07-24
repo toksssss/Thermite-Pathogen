@@ -18,6 +18,8 @@ func _ready() -> void:
 	pivot.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	
 	actual_rotation.y = player.rotation.y
+	
+	GameManager.instance.sensitivity_changed.connect(set_sensitivity)
 
 func _process(delta: float) -> void:
 	pivot.transform = get_global_transform_interpolated()
@@ -34,3 +36,6 @@ func rotate_head(mouse_axis: Vector2) -> void:
 	
 	player.rotation.y = actual_rotation.y
 	rotation.x = actual_rotation.x
+
+func set_sensitivity() -> void:
+	sensetivity = UserSettings.sensitivity

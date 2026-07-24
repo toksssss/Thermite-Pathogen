@@ -18,7 +18,7 @@ var current_level_timer : float = 0
 
 var current_level_sec : int:
 	get:
-		@warning_ignore("integer_division")
+		@warning_ignore("narrowing_conversion")
 		return current_level_timer
 	set(v):
 		pass

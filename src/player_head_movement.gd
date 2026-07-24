@@ -27,7 +27,7 @@ class_name HeadMovementComponent
 @export var trauma_power : int = 3
 
 @export_subgroup("Rotation")
-@export var s_enable_rotation : bool = true	
+@export var s_enable_rotation : bool = true
 @export var s_max_pitch : float = 3.0
 @export var s_max_yaw : float = 3.0
 @export var s_max_roll : float = 3.0

@@ -5,6 +5,8 @@ static var instance : AudioManager:
 	get:
 		return GameManager.instance.audio_manager
 
+signal master_volume_changed
+
 var master_bus : FmodBus
 var sfx_bus : FmodBus
 var ui_bus : FmodBus
@@ -136,10 +138,11 @@ func set_master_volume(volume: float) -> void:
 		master_bus = FmodServer.get_bus_from_guid(SfxGuid.master_bus)
 	if master_bus != null:
 		master_bus.set_volume(volume)
+		master_volume_changed.emit.call_deferred()
 
 func set_sfx_volume(volume: float) -> void:
 	if sfx_bus == null:
-		sfx_bus = FmodServer.get_bus_from_guid("{6c83b5b6-b92e-4e6f-b438-9ce8034195fa}")
+		sfx_bus = FmodServer.get_bus_from_guid(SfxGuid.sfx_bus)
 	if sfx_bus != null:
 		sfx_bus.set_volume(volume)
 
